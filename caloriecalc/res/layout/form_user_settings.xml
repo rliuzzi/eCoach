@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:baselineAligned="true" android:orientation="vertical" android:layout_height="fill_parent">
+
+	<LinearLayout android:layout_height="10dip"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_separador"
+		android:layout_weight="1">
+	</LinearLayout>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_peso"
+		android:layout_weight="1">
+		<TextView android:layout_height="wrap_content" android:id="@+id/form_user_settings_txt_peso"
+			android:layout_width="wrap_content" android:text="@string/txt_peso" 
+			android:gravity="left" android:layout_marginLeft="10dip" android:textSize="20sp"></TextView>
+		<EditText android:inputType="numberDecimal"
+			android:id="@+id/form_user_settings_edit_txt_peso" android:layout_height="wrap_content" android:layout_marginLeft="20dip"
+			android:text="" android:hint="Introduce tu peso en Kg" android:layout_width="wrap_content"></EditText>
+	</LinearLayout>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_altura"
+		android:layout_weight="1">
+		<TextView android:id="@+id/form_user_settings_txt_altura" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/txt_altura" android:layout_marginLeft="10dip" android:textSize="20sp"></TextView>
+		<EditText android:inputType="numberDecimal" android:layout_marginLeft="8dip"
+			android:layout_height="wrap_content" android:id="@+id/form_user_settings_edit_txt_altura"
+			android:hint="Introduce tu altura (m)"
+			android:layout_width="wrap_content"></EditText>
+	</LinearLayout>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_sexo"
+		android:layout_weight="1">
+		<TextView android:id="@+id/form_user_settings_txt_sexo" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/txt_sexo" android:layout_marginLeft="10dip" android:textSize="20sp"></TextView>
+		<RadioGroup android:id="@+id/form_user_settings_radio_sexo"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:layout_marginLeft="30dip" android:layout_marginTop="10dip">
+			<RadioButton android:layout_height="wrap_content"
+				android:id="@+id/form_user_settings_radio_sexo_hombre" android:checked="true"
+				android:layout_width="wrap_content" android:text="@string/radio_sexo_hombre"></RadioButton>
+			<RadioButton android:layout_height="wrap_content"
+				android:id="@+id/form_user_settings_radio_sexo_mujer" android:layout_width="wrap_content"
+				android:text="@string/radio_sexo_mujer"></RadioButton>
+		</RadioGroup>
+	</LinearLayout>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_edad_tit">
+		<TextView android:id="@+id/form_user_settings_txt_dob" android:layout_width="wrap_content"
+			android:text="@string/txt_dob" android:layout_height="wrap_content" android:layout_marginLeft="10dip" android:textSize="20sp"></TextView>
+	</LinearLayout>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_edad_dp"
+		android:layout_weight="1">
+		<DatePicker android:layout_height="wrap_content"
+			android:id="@+id/form_user_settings_datepicker_dob" android:layout_width="wrap_content"
+			android:contentDescription="Introduce tu fecha de nacimiento"
+			android:layout_weight="1" android:startYear="1930"></DatePicker>
+	</LinearLayout>
+
+
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/form_user_settings_ll_enviar"
+		android:layout_weight="1">
+		<Button android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:id="@+id/form_user_settings_btn_cancel_user_settings"
+			android:text="@string/btn_cancelar" android:layout_weight="1"></Button>
+		<Button android:layout_height="wrap_content" android:text="@string/btn_guardar"
+			android:layout_width="wrap_content" android:id="@+id/form_user_settings_btn_save_user_settings" android:layout_weight="1"></Button>
+	</LinearLayout>
+
+
+</LinearLayout>

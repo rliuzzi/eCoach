@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:text="Posición Actual:"
+		android:layout_margin="5dip" android:id="@+id/LblPosicion" />
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_margin="5dip"
+		android:id="@+id/LblPosLatitud" android:textColor="#000000"
+		android:background="#aaaaaa" />
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_margin="5dip"
+		android:id="@+id/LblPosLongitud" android:textColor="#000000"
+		android:background="#aaaaaa" />
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_margin="5dip"
+		android:id="@+id/LblPosPrecision" android:textColor="#000000"
+		android:background="#aaaaaa" />
+	<Button android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:text="Finalizar"
+		android:id="@+id/BtnDesactivar" />
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:text="Estado proveedor:"
+		android:layout_margin="5dip" android:id="@+id/LblEst" />
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_margin="5dip"
+		android:id="@+id/LblEstado" android:textColor="#000000"
+		android:background="#aaaaaa" />
+
+</LinearLayout>
