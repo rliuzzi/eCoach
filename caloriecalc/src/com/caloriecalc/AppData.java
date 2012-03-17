@@ -4,6 +4,7 @@ import android.app.Application;
 import android.location.Location;
 
 public class AppData extends Application {
+	//ljds
 
 	private static Location currentLocationInfo;
 	private static int satellites;
