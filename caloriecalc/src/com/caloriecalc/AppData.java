@@ -1,6 +1,6 @@
 package com.caloriecalc;
 
-//ojo
+
 import android.app.Application;
 import android.location.Location;
 
