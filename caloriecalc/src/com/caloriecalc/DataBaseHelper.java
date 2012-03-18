@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	private static String DB_NAME = "CalorieCalc.sqlite";
 
-	private static String DB_TABLE = "Ejercicio";
+	//private static String DB_TABLE = "Ejercicio";
 
 	private SQLiteDatabase myDataBase;
 

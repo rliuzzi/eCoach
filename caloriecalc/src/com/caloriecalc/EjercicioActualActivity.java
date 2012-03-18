@@ -11,7 +11,6 @@ import android.database.SQLException;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -194,8 +193,8 @@ public class EjercicioActualActivity extends Activity {
 						results);
 				
 				double distance = results[0];	// in meters
-				double time = (progreso.getId().getTime() - lastProgreso.getId().getTime()) / 1000; // seconds
-				double speed = distance / time;	// in meters/second
+				//double time = (progreso.getId().getTime() - lastProgreso.getId().getTime()) / 1000; // seconds
+				//double speed = distance / time;	// in meters/second
 				//double calories = peso * distance * ????;
 				double calories = 555;
 				
