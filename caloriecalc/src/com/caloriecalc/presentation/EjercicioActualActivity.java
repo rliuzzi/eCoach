@@ -1,8 +1,12 @@
-package com.caloriecalc;
+package com.caloriecalc.presentation;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import com.caloriecalc.R;
+import com.caloriecalc.beans.Progreso;
+import com.caloriecalc.dao.DataBaseHelper;
 
 import android.app.Activity;
 import android.content.Context;

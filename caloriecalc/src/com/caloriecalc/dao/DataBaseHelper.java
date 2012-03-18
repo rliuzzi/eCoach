@@ -1,4 +1,4 @@
-package com.caloriecalc;
+package com.caloriecalc.dao;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.Progreso;
 
 import android.content.Context;
 import android.database.Cursor;

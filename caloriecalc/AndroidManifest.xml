@@ -20,7 +20,7 @@
         <activity android:name="UserSettings" android:screenOrientation="portrait"></activity>
         <activity android:name="FormUserSettings" android:screenOrientation="portrait"></activity>
         <activity android:name="CalorieCalcResult" android:screenOrientation="portrait"></activity>
-        <activity android:name="EjercicioActualActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>
     </application>
 
     
