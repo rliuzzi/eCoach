@@ -21,7 +21,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-	// The Android's default system path of your application database.
+	// The Android's default system path of the application database.
 	private static String DB_PATH = "/data/data/com.caloriecalc/databases/";
 
 	private static String DB_NAME = "CalorieCalc.sqlite";

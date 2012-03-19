@@ -4,22 +4,24 @@
       android:versionCode="1"
       android:versionName="1.0">
     <uses-sdk android:minSdkVersion="7" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <permission android:name="com.caloriecalc.services"></permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <permission android:name="com.caloriecalc.services"></permission>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <permission android:name="com.caloriecalc.services"></permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
     	
-        <activity android:name=".CalorieCalc"
-                  android:label="@string/app_name">
+        <activity android:name=".presentation.CalorieCalc" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="UserSettings" android:screenOrientation="portrait"></activity>
-        <activity android:name="FormUserSettings" android:screenOrientation="portrait"></activity>
-        <activity android:name="CalorieCalcResult" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.UserSettings" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.FormUserSettings" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.CalorieCalcResult" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>
     </application>
 
