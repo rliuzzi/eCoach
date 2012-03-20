@@ -22,15 +22,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
 	// The Android's default system path of the application database.
-	private static String DB_PATH = "/data/data/com.caloriecalc/databases/";
+	protected static String DB_PATH = "/data/data/com.caloriecalc/databases/";
 
-	private static String DB_NAME = "CalorieCalc.sqlite";
+	protected static String DB_NAME = "CalorieCalc.sqlite";
 
 	//private static String DB_TABLE = "Ejercicio";
 
-	private SQLiteDatabase myDataBase;
+	protected SQLiteDatabase myDataBase;
 
-	private final Context myContext;
+	protected final Context myContext;
 
 	/**
 	 * Constructor Takes and keeps a reference of the passed context in order to
@@ -177,104 +177,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	// return myDataBase.rawQuery(sql, null);
 	// }
 
-	public List<Ejercicio> getEjercicios() {
-		String sql = "SELECT * FROM EjercicioProgreso";
-		Cursor c = myDataBase.rawQuery(sql, null);
 
-		List<Ejercicio> list = new ArrayList<Ejercicio>();
 
-		while (c.moveToNext()) {
-			Ejercicio ej = new Ejercicio();
-			ej.setId(c.getInt(0));
-			ej.setFechaInicio(new Date(c.getLong(1)));
-			ej.setFechaFin(new Date(c.getLong(2)));
-			list.add(ej);
-		}
 
-		return list;
 
-	}
-
-	public int crearEjercicio(Date fechaInicio, int tipoEjercicio, int peso) {
-		String sql = "INSERT INTO Ejercicio (HoraInicio, TipoId, Peso) VALUES (" 
-			+ fechaInicio.getTime() + ", "
-			+ tipoEjercicio + ", "
-			+ peso + ")";
-		myDataBase.execSQL(sql);
-		Cursor c = myDataBase.rawQuery("SELECT last_insert_rowid()", null);
-		c.moveToNext();
-		return c.getInt(0);
-		//devuelve el primer campo de la BBDD (ejercicioId)
-	}
-
-	public void LogProgress(int ejercicioId, Double lat, Double lon) {
-
-		long timestamp = Calendar.getInstance().getTime().getTime();
-		// String sql =
-		// "INSERT INTO Progreso (Id, EjercicioId, Lat, Lon) VALUES(?, ?, ?, ?)";
-		// myDataBase.execSQL(sql, new Object[] {
-		// timestamp,
-		// ejercicioId,
-		// lat,
-		// lon
-		// });
-		String sql = "INSERT INTO Progreso (_id, EjercicioId, Lat, Long) VALUES("
-				+ timestamp
-				+ ", "
-				+ ejercicioId
-				+ ", "
-				+ lat
-				+ ", "
-				+ lon
-				+ ")";
-		myDataBase.execSQL(sql);
-	}
-
-	public List<Progreso> getProgresos(int ejercicioId) {
-		
-		List<Progreso> list = new ArrayList<Progreso>();
-		
-		String sql = "SELECT * FROM Progreso WHERE EjercicioId = " + ejercicioId;
-		Cursor c = myDataBase.rawQuery(sql, null);
-		while (c.moveToNext()) {
-			Progreso p = new Progreso();
-			p.setId(new Date(c.getLong(0)));
-			p.setEjercicioId(c.getInt(1));
-			p.setLat(c.getDouble(2));
-			p.setLon(c.getDouble(3));	
-			list.add(p);
-		}
-		
-		return list;		
-	}
-
-	public void actualizarEjercicio(int ejercicioId, Date horaFin, double totalDistance, double totalCalories) {
-		
-		String sql = "UPDATE Ejercicio SET " 
-			+ "Distancia = " + totalDistance + ", " 
-			+ "Calorias =  " + totalCalories + ", "
-			+ "HoraFin = " + horaFin.getTime()
-			+ " WHERE _id = " + ejercicioId;
-		
-		myDataBase.execSQL(sql);		
-	}
-	
-	public Ejercicio getEjercicio(int idEjercicio) {
-		String sql = "SELECT * FROM Ejercicio WHERE _id = " + idEjercicio; 
-		Cursor c = myDataBase.rawQuery(sql, null);
-		Ejercicio ej = null;
-		if (c.moveToNext()) {
-			ej = new Ejercicio();
-			ej.setId(c.getInt(0));
-			ej.setFechaInicio(new Date(c.getLong(1)));
-			ej.setTipoEjercicio(c.getInt(2));
-			ej.setPeso(c.getInt(3));
-			ej.setDistancia(c.getInt(4));
-			ej.setCalorias(c.getInt(5));
-			ej.setFechaFin(new Date(c.getLong(6)));
-			
-		}
-		return ej;
-	}
 
 }
