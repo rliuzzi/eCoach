@@ -1,16 +1,13 @@
 package com.caloriecalc.presentation;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
 import com.caloriecalc.R;
-import com.caloriecalc.dao.DataBaseHelper;
 import com.caloriecalc.eula.Eula;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -97,7 +94,7 @@ public class CalorieCalc extends Activity {
 
 		btn_user_settings.setOnClickListener(clk_lst_user_settings);
 
-		DataBaseHelper myDbHelper = new DataBaseHelper(CalorieCalc.this);
+/*		DataBaseHelper myDbHelper = new DataBaseHelper(CalorieCalc.this);
 
 		try {
 
@@ -137,7 +134,7 @@ public class CalorieCalc extends Activity {
 			throw sqle;
 
 		}
-
+*/
 		// Intent i = new Intent(CalorieCalc.this, CalorieCalcResult.class);
 		// startActivity(i);
 

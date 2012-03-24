@@ -1,5 +1,6 @@
 package com.caloriecalc.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,16 +13,15 @@ import android.database.Cursor;
 
 public class DaoProgreso extends DataBaseHelper {
 
-	private final  Context myContext;
 	
-	public DaoProgreso(Context context){
+	public DaoProgreso(Context context) throws IOException{
 		super(context);
-		this.myContext = context;
 	}
 	
 	
 	public void LogProgress(int ejercicioId, Double lat, Double lon) {
 
+		this.openDataBase();
 		long timestamp = Calendar.getInstance().getTime().getTime();
 		// String sql =
 		// "INSERT INTO Progreso (Id, EjercicioId, Lat, Lon) VALUES(?, ?, ?, ?)";
@@ -41,11 +41,13 @@ public class DaoProgreso extends DataBaseHelper {
 				+ lon
 				+ ")";
 		myDataBase.execSQL(sql);
+		this.close();
 	}
 
 	public List<Progreso> getProgresos(int ejercicioId) {
 		
 		List<Progreso> list = new ArrayList<Progreso>();
+		this.openDataBase();
 		
 		String sql = "SELECT * FROM Progreso WHERE EjercicioId = " + ejercicioId;
 		Cursor c = myDataBase.rawQuery(sql, null);
@@ -58,6 +60,7 @@ public class DaoProgreso extends DataBaseHelper {
 			list.add(p);
 		}
 		
+		this.close();
 		return list;		
 	}
 

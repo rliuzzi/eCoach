@@ -1,18 +1,13 @@
 package com.caloriecalc.presentation;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import com.caloriecalc.R;
-import com.caloriecalc.beans.Progreso;
-import com.caloriecalc.dao.DaoEjercicio;
-import com.caloriecalc.dao.DaoProgreso;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.SQLException;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,6 +17,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.caloriecalc.R;
+import com.caloriecalc.beans.Progreso;
+import com.caloriecalc.dao.DaoEjercicio;
+import com.caloriecalc.dao.DaoProgreso;
 
 public class EjercicioActualActivity extends Activity {
 	
@@ -100,13 +100,13 @@ public class EjercicioActualActivity extends Activity {
 		});
 		
 		
-		myDaoEjercicio = new DaoEjercicio(EjercicioActualActivity.this);
-		myDaoProgreso = new DaoProgreso(EjercicioActualActivity.this);
 		
 		try {
-			myDaoEjercicio.openDataBase();
-		} catch (SQLException sqle) {
-			throw sqle;
+			myDaoEjercicio = new DaoEjercicio(EjercicioActualActivity.this);
+			myDaoProgreso = new DaoProgreso(EjercicioActualActivity.this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
@@ -215,6 +215,6 @@ public class EjercicioActualActivity extends Activity {
 			 
 		 }
 		 myDaoEjercicio.actualizarEjercicio(ejercicioId, fechaUltimoProgreso, totalDistance, totalCalories);
-		 myDaoEjercicio.close();
+
 	}
 }

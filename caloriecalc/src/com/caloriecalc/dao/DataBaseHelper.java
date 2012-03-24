@@ -30,11 +30,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	 * access to the application assets and resources.
 	 * 
 	 * @param context
+	 * @throws IOException 
 	 */
-	public DataBaseHelper(Context context) {
+	public DataBaseHelper(Context context) throws IOException {
 
 		super(context, DB_NAME, null, 1);
 		this.myContext = context;
+		this.createDataBase();
 	}
 
 	/**
