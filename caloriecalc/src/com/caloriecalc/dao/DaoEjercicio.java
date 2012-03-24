@@ -10,38 +10,63 @@ import com.caloriecalc.beans.Ejercicio;
 import android.content.Context;
 import android.database.Cursor;
 
-
+/**
+ * @author Romina
+ * 
+ */
 public class DaoEjercicio extends DataBaseHelper {
-	
-	
-	
-	public DaoEjercicio(Context context) throws IOException{
-		super(context);		
+
+	/**
+	 * @param context
+	 * @throws IOException
+	 */
+	public DaoEjercicio(Context context) throws IOException {
+		super(context);
 	}
 
 	
-	//create a new exercise
-	public int crearEjercicio(Date fechaInicio, int tipoEjercicio, int peso) {
-		
+	/**
+	 * @param fechaInicio
+	 * @param tipoEjercicio
+	 * @param peso
+	 * @return
+	 */
+	public Ejercicio crearEjercicio(Date fechaInicio, int tipoEjercicio,
+			int peso) {
+
+		Ejercicio ejercicio = new Ejercicio();
+
 		this.openDataBase();
-		String sql = "INSERT INTO Ejercicio (HoraInicio, TipoId, Peso) VALUES (" 
-			+ fechaInicio.getTime() + ", "
-			+ tipoEjercicio + ", "
-			+ peso + ")";
+		String sql = "INSERT INTO Ejercicio (HoraInicio, TipoId, Peso) VALUES ("
+				+ fechaInicio.getTime()
+				+ ", "
+				+ tipoEjercicio
+				+ ", "
+				+ peso
+				+ ")";
 		myDataBase.execSQL(sql);
 		Cursor c = myDataBase.rawQuery("SELECT last_insert_rowid()", null);
 		c.moveToNext();
-		int result =  c.getInt(0);
-		this.close();
-		return result;
-		//returns the first database field (ejercicioId)
-	}
-	
 
-	//get a single exercise
+		ejercicio.setId(c.getInt(0));
+		ejercicio.setFechaInicio(fechaInicio);
+		ejercicio.setTipoEjercicio(tipoEjercicio);
+		ejercicio.setPeso(peso);
+
+		this.close();
+
+		return ejercicio;
+		
+	}
+
+
+	/**
+	 * @param idEjercicio
+	 * @return
+	 */
 	public Ejercicio getEjercicio(int idEjercicio) {
 		this.openDataBase();
-		String sql = "SELECT * FROM Ejercicio WHERE _id = " + idEjercicio; 
+		String sql = "SELECT * FROM Ejercicio WHERE _id = " + idEjercicio;
 		Cursor c = myDataBase.rawQuery(sql, null);
 		Ejercicio ej = null;
 		if (c.moveToNext()) {
@@ -53,13 +78,16 @@ public class DaoEjercicio extends DataBaseHelper {
 			ej.setDistancia(c.getInt(4));
 			ej.setCalorias(c.getInt(5));
 			ej.setFechaFin(new Date(c.getLong(6)));
-			
+
 		}
 		this.close();
 		return ej;
 	}
+
 	
-	//get list of exercises
+	/**
+	 * @return
+	 */
 	public List<Ejercicio> getEjercicios() {
 		this.openDataBase();
 		String sql = "SELECT * FROM EjercicioProgreso";
@@ -79,23 +107,24 @@ public class DaoEjercicio extends DataBaseHelper {
 		return list;
 
 	}
+
 	
-	
-	//update an exercise with the input values
-	public void actualizarEjercicio(int ejercicioId, Date horaFin, double totalDistance, double totalCalories) {
-		
+	/**
+	 * @param ejercicioId
+	 * @param horaFin
+	 * @param totalDistance
+	 * @param totalCalories
+	 */
+	public void actualizarEjercicio(int ejercicioId, Date horaFin,
+			double totalDistance, double totalCalories) {
+
 		this.openDataBase();
-		String sql = "UPDATE Ejercicio SET " 
-			+ "Distancia = " + totalDistance + ", " 
-			+ "Calorias =  " + totalCalories + ", "
-			+ "HoraFin = " + horaFin.getTime()
-			+ " WHERE _id = " + ejercicioId;
-		
-		myDataBase.execSQL(sql);	
+		String sql = "UPDATE Ejercicio SET " + "Distancia = " + totalDistance
+				+ ", " + "Calorias =  " + totalCalories + ", " + "HoraFin = "
+				+ horaFin.getTime() + " WHERE _id = " + ejercicioId;
+
+		myDataBase.execSQL(sql);
 		this.close();
 	}
-	
 
-
-	
 }

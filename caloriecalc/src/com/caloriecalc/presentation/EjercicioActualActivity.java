@@ -1,10 +1,5 @@
 package com.caloriecalc.presentation;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,9 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.caloriecalc.R;
-import com.caloriecalc.beans.Progreso;
-import com.caloriecalc.dao.DaoEjercicio;
-import com.caloriecalc.dao.DaoProgreso;
+import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.lao.LaoEjercicio;
+import com.caloriecalc.lao.LaoProgreso;
 
 public class EjercicioActualActivity extends Activity {
 	
@@ -32,14 +27,19 @@ public class EjercicioActualActivity extends Activity {
 	private TextView lblLongitud;
 	private TextView lblPrecision;
 	private TextView lblEstado;
+	
+	private LaoProgreso laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
+	private LaoEjercicio laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
+	private Ejercicio ejercicio;
 
 	private LocationManager locManager;
+	
 
 	// Nos registramos para recibir actualizaciones de la posición
 	private LocationListener locListener = new LocationListener() {
 		public void onLocationChanged(Location location) {
 			mostrarPosicion(location);
-			guardarProgreso(location);
+			laoProgreso.guardarProgreso(ejercicio.getId(), location.getLatitude(), location.getLongitude());
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -58,25 +58,13 @@ public class EjercicioActualActivity extends Activity {
 	};
 
 	
-	private int tipoEjercicio;
-	private int ejercicioId;
-	private int peso;
 
-
-	private DaoEjercicio myDaoEjercicio;
-	private DaoProgreso myDaoProgreso;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ejercicio_actual);
-		
-		//Leermos el intent que llamo a esta activdad para averiguar el valor del tipoEjercicio
-		//Devuvele -1 si no se ha inicializado en la llamada.
-		
-
-		
-			
+		setContentView(R.layout.ejercicio_actual);			
 		
         btnDesactivar = (Button)findViewById(R.id.BtnDesactivar);
 		
@@ -88,39 +76,31 @@ public class EjercicioActualActivity extends Activity {
 		btnDesactivar.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
+				
 				locManager.removeUpdates(locListener);
-				finalizarEjercicio();
-				// Ir a VerEjercicioActivity(); // (send ejercicioId)
+				
+				laoProgreso.finalizarEjercicio(ejercicio);
+				
 				Intent i = new Intent(EjercicioActualActivity.this,
 						CalorieCalcResult.class);
-				i.putExtra("ejercicioId", ejercicioId);
+				
+				//send ejercicioId
+				i.putExtra("ejercicioId", ejercicio.getId());
+				
 				startActivity(i);
 			}
 
 		});
 		
-		
-		
-		try {
-			myDaoEjercicio = new DaoEjercicio(EjercicioActualActivity.this);
-			myDaoProgreso = new DaoProgreso(EjercicioActualActivity.this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+
+		//Leermos el intent que llamo a esta activdad para averiguar el valor del tipoEjercicio
+		//Devuvele -1 si no se ha inicializado en la llamada.
 		
 		Intent i = getIntent();
-		tipoEjercicio = i.getIntExtra("ejercicio", -1);
-		//System.out.println("Tipo de Ejercicio: " + tipoEjercicio);
+		int tipoEjercicio = i.getIntExtra("ejercicio", -1);
 		
-		Date fechaInicio = Calendar.getInstance().getTime();	
+		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, 123);
 		
-		//TO DO
-		peso = 123;
-		
-		ejercicioId = myDaoEjercicio.crearEjercicio(fechaInicio, tipoEjercicio, peso );
 		comenzarLocalizacion();
 
 	}
@@ -129,20 +109,6 @@ public class EjercicioActualActivity extends Activity {
 		// Obtenemos una referencia al LocationManager
 		locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
-		//List<String> listaProviders = locManager.getAllProviders();
-		
-		
-		//LocationProvider provider = locManager.getProvider(listaProviders.get(0));
-		//int precision0 = provider.getAccuracy();
-		//int consumoRecursos0 = provider.getPowerRequirement();
-		//boolean requiresNetwork0 = provider.requiresNetwork();
-		
-		//LocationProvider provider1 = locManager.getProvider(listaProviders.get(1));
-		//int precision1 = provider.getAccuracy();
-		//int consumoRecursos1 = provider.getPowerRequirement();
-		//boolean requiresNetwork1 = provider.requiresNetwork();
-		
-		// Obtenemos la última posición conocida
 		Location loc = locManager
 				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		
@@ -150,7 +116,10 @@ public class EjercicioActualActivity extends Activity {
 
 		// Mostramos la última posición conocida
 		mostrarPosicion(loc);
-		guardarProgreso(loc);
+		
+		if (loc != null) {
+			laoProgreso.guardarProgreso(ejercicio.getId(), loc.getLatitude(), loc.getLongitude());
+		}
 
 		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000, 0, locListener);
 	}
@@ -172,49 +141,7 @@ public class EjercicioActualActivity extends Activity {
 		}
 	}
 	
-	private void guardarProgreso(Location loc){
-		if (loc != null) {
-			myDaoProgreso.LogProgress(ejercicioId, loc.getLatitude(), loc.getLongitude());
-		}
-	}
+	
 
-	private void finalizarEjercicio() {
-		
-		double totalDistance = 0;	
-		double totalCalories = 0;
-		Date fechaUltimoProgreso = null;
-		 
-		
-		 Progreso lastProgreso = null;
-
-		 List<Progreso> listProgreso = myDaoProgreso.getProgresos(ejercicioId);
-		 for (Progreso progreso : listProgreso) {
-			 
-			 if (lastProgreso != null) {
-				
-				float[] results = new float[2];
-				Location.distanceBetween(
-						lastProgreso.getLat(), 
-						lastProgreso.getLon(), 
-						progreso.getLat(),
-						progreso.getLon(),
-						results);
-				
-				double distance = results[0];	// in meters
-				//double time = (progreso.getId().getTime() - lastProgreso.getId().getTime()) / 1000; // seconds
-				//double speed = distance / time;	// in meters/second
-				//double calories = peso * distance * ????;
-				double calories = 555;
-				
-				totalDistance += distance;
-				totalCalories += calories;
-			 }
-			 
-			 lastProgreso = progreso;
-			 fechaUltimoProgreso = progreso.getId(); 
-			 
-		 }
-		 myDaoEjercicio.actualizarEjercicio(ejercicioId, fechaUltimoProgreso, totalDistance, totalCalories);
-
-	}
+	
 }

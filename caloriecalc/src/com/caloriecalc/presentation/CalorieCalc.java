@@ -1,11 +1,5 @@
 package com.caloriecalc.presentation;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import com.caloriecalc.R;
-import com.caloriecalc.eula.Eula;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.caloriecalc.R;
+import com.caloriecalc.eula.Eula;
 
 public class CalorieCalc extends Activity {
 
@@ -94,103 +91,6 @@ public class CalorieCalc extends Activity {
 
 		btn_user_settings.setOnClickListener(clk_lst_user_settings);
 
-/*		DataBaseHelper myDbHelper = new DataBaseHelper(CalorieCalc.this);
-
-		try {
-
-			myDbHelper.createDataBase();
-
-		} catch (IOException ioe) {
-
-			throw new Error("Imposible crear Base de Datos");
-
-		}
-
-		try {
-
-			myDbHelper.openDataBase();
-
-			// Cursor c = myDbHelper.getEjercicios();
-			// while (c.moveToNext()) {
-			// Log.d("zzzzzz", c.getString(1));
-			// Log.d("zzzzzz", c.getString(2));
-			// }
-
-			//
-			// for (int i = 0; i < 100; i++) {
-			// myDbHelper.LogProgress(1, 32.3 * i, 32.6 * i);
-			// }
-			//
-			// List<Ejercicio> list = myDbHelper.getEjercicios();
-			// for (Ejercicio ejercicio : list) {
-			// Log.d("zzzzzz", ejercicio.getFechaInicio().toString());
-			// }
-
-			// String sql = "SELECT * FROM EjercicioProgreso";
-			// Cursor mCursor = myDbHelper.getEjercicio(1);
-
-		} catch (SQLException sqle) {
-
-			throw sqle;
-
-		}
-*/
-		// Intent i = new Intent(CalorieCalc.this, CalorieCalcResult.class);
-		// startActivity(i);
-
-		/*
-		 * LocationManager locManager =
-		 * (LocationManager)getSystemService(LOCATION_SERVICE); List<String>
-		 * listaProviders = locManager.getAllProviders(); LocationProvider
-		 * provider = locManager.getProvider(listaProviders.get(0)); Criteria
-		 * req = new Criteria(); req.setAccuracy(Criteria.ACCURACY_FINE);
-		 * //req.setAltitudeRequired(true);
-		 * 
-		 * //Mejor proveedor por criterio String mejorProviderCrit =
-		 * locManager.getBestProvider(req, false);
-		 * 
-		 * //Lista de proveedores por criterio List<String> listaProvidersCrit =
-		 * locManager.getProviders(req, false);
-		 * 
-		 * if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-		 * //mostrarAvisoGpsDeshabilitado(); }
-		 * 
-		 * LocationListener locListener = new LocationListener() {
-		 * 
-		 * public void onLocationChanged(Location location) {
-		 * mostrarPosicion(location); }
-		 * 
-		 * public void onProviderDisabled(String provider){
-		 * lblEstado.setText("Provider OFF"); }
-		 * 
-		 * public void onProviderEnabled(String provider){
-		 * lblEstado.setText("Provider ON"); }
-		 * 
-		 * public void onStatusChanged(String provider, int status, Bundle
-		 * extras){ lblEstado.setText("Provider Status: " + status); } };
-		 */
-
-		Date timestamp;
-
-		// Create time stamp from current UTC time
-		timestamp = Calendar.getInstance().getTime();
-		// System.out.println("TIMESTAMP UTC " + timestamp);
-
-		// Convert time stamp to milliseconds (for saving to DB)
-		long ms = timestamp.getTime();
-		// System.out.println("date -- > ms " + ms);
-
-		// Convert milliseconds back to time stamp (for reading from DB)
-		timestamp = new Date(ms);
-		// System.out.println("ms --> date " + timestamp);
-
-		// DBAdapter db = new DBAdapter(this);
-		// Calendar c = Calendar.getInstance();
-		// String s = c.getTime().toGMTString();
-		// ---add 1 GPS coordinate
-		// db.open();
-		// db.insertPunto(ms, 100, 78, 34);
-		// db.close();
 
 	}
 

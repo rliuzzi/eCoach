@@ -4,7 +4,7 @@ package com.caloriecalc.services;
 import android.app.Application;
 import android.location.Location;
 
-public class AppData extends Application {
+public class LocationService extends Application {
 
 
 	private static Location currentLocationInfo;
@@ -15,7 +15,7 @@ public class AppData extends Application {
 	 *            the latest Location class
 	 */
 	public static void setCurrentLocationInfo(Location currentLocationInfo) {
-		AppData.currentLocationInfo = currentLocationInfo;
+		LocationService.currentLocationInfo = currentLocationInfo;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class AppData extends Application {
 	 *            sets the number of visible satellites
 	 */
 	public static void setSatelliteCount(int satellites) {
-		AppData.satellites = satellites;
+		LocationService.satellites = satellites;
 	}
 
 }
