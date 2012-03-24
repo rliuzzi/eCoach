@@ -6,7 +6,8 @@ import java.util.List;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Progreso;
-import com.caloriecalc.dao.DataBaseHelper;
+import com.caloriecalc.dao.DaoEjercicio;
+import com.caloriecalc.dao.DaoProgreso;
 
 import android.app.Activity;
 import android.content.Context;
@@ -61,7 +62,9 @@ public class EjercicioActualActivity extends Activity {
 	private int ejercicioId;
 	private int peso;
 
-	private DataBaseHelper myDbHelper;	
+
+	private DaoEjercicio myDaoEjercicio;
+	private DaoProgreso myDaoProgreso;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,10 +100,11 @@ public class EjercicioActualActivity extends Activity {
 		});
 		
 		
-		myDbHelper = new DataBaseHelper(EjercicioActualActivity.this);
-
+		myDaoEjercicio = new DaoEjercicio(EjercicioActualActivity.this);
+		myDaoProgreso = new DaoProgreso(EjercicioActualActivity.this);
+		
 		try {
-			myDbHelper.openDataBase();
+			myDaoEjercicio.openDataBase();
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
@@ -116,7 +120,7 @@ public class EjercicioActualActivity extends Activity {
 		//TO DO
 		peso = 123;
 		
-		ejercicioId = myDbHelper.crearEjercicio(fechaInicio, tipoEjercicio, peso );
+		ejercicioId = myDaoEjercicio.crearEjercicio(fechaInicio, tipoEjercicio, peso );
 		comenzarLocalizacion();
 
 	}
@@ -170,7 +174,7 @@ public class EjercicioActualActivity extends Activity {
 	
 	private void guardarProgreso(Location loc){
 		if (loc != null) {
-			myDbHelper.LogProgress(ejercicioId, loc.getLatitude(), loc.getLongitude());
+			myDaoProgreso.LogProgress(ejercicioId, loc.getLatitude(), loc.getLongitude());
 		}
 	}
 
@@ -183,7 +187,7 @@ public class EjercicioActualActivity extends Activity {
 		
 		 Progreso lastProgreso = null;
 
-		 List<Progreso> listProgreso = myDbHelper.getProgresos(ejercicioId);
+		 List<Progreso> listProgreso = myDaoProgreso.getProgresos(ejercicioId);
 		 for (Progreso progreso : listProgreso) {
 			 
 			 if (lastProgreso != null) {
@@ -210,7 +214,7 @@ public class EjercicioActualActivity extends Activity {
 			 fechaUltimoProgreso = progreso.getId(); 
 			 
 		 }
-		 myDbHelper.actualizarEjercicio(ejercicioId, fechaUltimoProgreso, totalDistance, totalCalories);
-		 myDbHelper.close();
+		 myDaoEjercicio.actualizarEjercicio(ejercicioId, fechaUltimoProgreso, totalDistance, totalCalories);
+		 myDaoEjercicio.close();
 	}
 }

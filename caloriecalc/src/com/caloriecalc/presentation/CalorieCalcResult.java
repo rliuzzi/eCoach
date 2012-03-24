@@ -2,7 +2,7 @@ package com.caloriecalc.presentation;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
-import com.caloriecalc.dao.DataBaseHelper;
+import com.caloriecalc.dao.DaoEjercicio;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class CalorieCalcResult extends Activity {
 	
-	private DataBaseHelper myDbHelper;	
+	private DaoEjercicio myDaoEjercicio;	
 	private int idEjercicio;
 	private TextView calorias;
 	
@@ -25,10 +25,10 @@ public class CalorieCalcResult extends Activity {
 
 		calorias = (TextView)findViewById(R.id.results_page_txt_kcal_quemadas);
 		
-		myDbHelper = new DataBaseHelper(CalorieCalcResult.this);
+		myDaoEjercicio = new DaoEjercicio(CalorieCalcResult.this);
 
 		try {
-			myDbHelper.openDataBase();
+			myDaoEjercicio.openDataBase();
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
@@ -36,7 +36,7 @@ public class CalorieCalcResult extends Activity {
 		Intent i = getIntent();
 		idEjercicio = i.getIntExtra("ejercicioId", 0);
 		System.out.println("VALOR> " + idEjercicio);
-		Ejercicio e = myDbHelper.getEjercicio(idEjercicio);
+		Ejercicio e = myDaoEjercicio.getEjercicio(idEjercicio);
 		String s = String.valueOf(e.getCalorias());
 		calorias.setText(s);
 		

@@ -12,7 +12,7 @@ import android.database.Cursor;
 
 public class DaoProgreso extends DataBaseHelper {
 
-	Context myContext;
+	private final  Context myContext;
 	
 	public DaoProgreso(Context context){
 		super(context);
