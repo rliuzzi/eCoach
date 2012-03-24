@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
 
@@ -97,7 +98,7 @@ public class EjercicioActualActivity extends Activity {
 		//Devuvele -1 si no se ha inicializado en la llamada.
 		
 		Intent i = getIntent();
-		int tipoEjercicio = i.getIntExtra("ejercicio", -1);
+		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra("ejercicio", -1)];
 		
 		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, 123);
 		

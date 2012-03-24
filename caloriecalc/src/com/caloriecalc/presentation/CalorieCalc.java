@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.caloriecalc.R;
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.eula.Eula;
 
 public class CalorieCalc extends Activity {
@@ -28,7 +29,7 @@ public class CalorieCalc extends Activity {
 
 			Intent i = new Intent(CalorieCalc.this,
 					EjercicioActualActivity.class);
-			i.putExtra("ejercicio", 0);
+			i.putExtra("ejercicio", TipoEjercicio.CAMINAR.ordinal());
 			startActivity(i);
 
 		}
@@ -39,7 +40,7 @@ public class CalorieCalc extends Activity {
 
 			Intent i = new Intent(CalorieCalc.this,
 					EjercicioActualActivity.class);
-			i.putExtra("ejercicio", 1);
+			i.putExtra("ejercicio", TipoEjercicio.CORRER.ordinal());
 			startActivity(i);
 
 		}
@@ -50,7 +51,7 @@ public class CalorieCalc extends Activity {
 
 			Intent i = new Intent(CalorieCalc.this,
 					EjercicioActualActivity.class);
-			i.putExtra("ejercicio", 2);
+			i.putExtra("ejercicio", TipoEjercicio.PATINAR.ordinal());
 			startActivity(i);
 
 		}
@@ -62,7 +63,7 @@ public class CalorieCalc extends Activity {
 
 			Intent i = new Intent(CalorieCalc.this,
 					EjercicioActualActivity.class);
-			i.putExtra("ejercicio", 3);
+			i.putExtra("ejercicio", TipoEjercicio.BICICLETA.ordinal());
 			startActivity(i);
 
 		}

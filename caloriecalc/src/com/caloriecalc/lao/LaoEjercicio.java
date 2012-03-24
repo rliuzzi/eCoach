@@ -7,6 +7,7 @@ import java.util.Date;
 import android.content.Context;
 
 import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.dao.DaoEjercicio;
 
 
@@ -36,7 +37,7 @@ public class LaoEjercicio {
 	 * @param peso
 	 * @return
 	 */
-	public Ejercicio crearEjercicio(int tipoEjercicio, int peso){
+	public Ejercicio crearEjercicio(TipoEjercicio tipoEjercicio, int peso){
 		
 		Date fechaInicio = Calendar.getInstance().getTime();
 		return daoEjercicio.crearEjercicio(fechaInicio, tipoEjercicio, peso);

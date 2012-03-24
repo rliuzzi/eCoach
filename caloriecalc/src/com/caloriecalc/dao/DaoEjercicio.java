@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -31,7 +32,7 @@ public class DaoEjercicio extends DataBaseHelper {
 	 * @param peso
 	 * @return
 	 */
-	public Ejercicio crearEjercicio(Date fechaInicio, int tipoEjercicio,
+	public Ejercicio crearEjercicio(Date fechaInicio, TipoEjercicio tipoEjercicio,
 			int peso) {
 
 		Ejercicio ejercicio = new Ejercicio();
@@ -40,7 +41,7 @@ public class DaoEjercicio extends DataBaseHelper {
 		String sql = "INSERT INTO Ejercicio (HoraInicio, TipoId, Peso) VALUES ("
 				+ fechaInicio.getTime()
 				+ ", "
-				+ tipoEjercicio
+				+ tipoEjercicio.ordinal()
 				+ ", "
 				+ peso
 				+ ")";
@@ -73,7 +74,7 @@ public class DaoEjercicio extends DataBaseHelper {
 			ej = new Ejercicio();
 			ej.setId(c.getInt(0));
 			ej.setFechaInicio(new Date(c.getLong(1)));
-			ej.setTipoEjercicio(c.getInt(2));
+			ej.setTipoEjercicio(TipoEjercicio.values()[c.getInt(2)]);
 			ej.setPeso(c.getInt(3));
 			ej.setDistancia(c.getInt(4));
 			ej.setCalorias(c.getInt(5));
