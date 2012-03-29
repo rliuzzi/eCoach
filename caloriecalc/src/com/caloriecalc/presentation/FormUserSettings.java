@@ -12,6 +12,7 @@ public class FormUserSettings extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.form_user_settings);
 		
+		//TODO Persist user data (weight,height,etc)
 		//Guardar los datos de usuario: peso, altura, edad,
 		
 	}
