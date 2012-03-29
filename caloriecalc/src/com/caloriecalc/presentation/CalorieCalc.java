@@ -16,13 +16,7 @@ import com.caloriecalc.eula.Eula;
 
 public class CalorieCalc extends Activity {
 
-	private OnClickListener clk_lst_user_settings = new OnClickListener() {
-
-		public void onClick(View v) {
-			Intent i = new Intent(CalorieCalc.this, FormUserSettings.class);
-			startActivity(i);
-		}
-	};
+	
 	private OnClickListener clk_lst_caminar = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -76,13 +70,13 @@ public class CalorieCalc extends Activity {
 		setContentView(R.layout.activity_selector);
 		Eula.show(this);
 
-		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta, btn_user_settings;
+		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta;
 
 		btn_caminar = (Button) findViewById(R.id.activity_selector_btn_caminar);
 		btn_correr = (Button) findViewById(R.id.activity_selector_btn_correr);
 		btn_patinar = (Button) findViewById(R.id.activity_selector_btn_patinar);
 		btn_bicicleta = (Button) findViewById(R.id.activity_selector_btn_bicicleta);
-		btn_user_settings = (Button) findViewById(R.id.activity_selector_btn_config);
+		
 
 		// Iniciar ejercicio intent.putExtra("key","value")...
 		btn_caminar.setOnClickListener(clk_lst_caminar);
@@ -90,7 +84,7 @@ public class CalorieCalc extends Activity {
 		btn_patinar.setOnClickListener(clk_lst_patinar);
 		btn_bicicleta.setOnClickListener(clk_lst_bicicleta);
 
-		btn_user_settings.setOnClickListener(clk_lst_user_settings);
+		
 
 
 	}
@@ -98,7 +92,7 @@ public class CalorieCalc extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.option_menu, menu);
+		inflater.inflate(R.menu.options_menu, menu);
 		return true;
 	}
 
@@ -110,13 +104,17 @@ public class CalorieCalc extends Activity {
 		switch (item.getItemId()) {
 
 		case R.id.option_settings:
-			i = new Intent(CalorieCalc.this, UserSettings.class);
+			i = new Intent(CalorieCalc.this, NetworkSettings.class);
 			startActivity(i);
 			break;
 		case R.id.option_exit:
 			System.exit(0);
 			break;
+		case R.id.option_personal:
+			i = new Intent(CalorieCalc.this, FormUserSettings.class);
+			startActivity(i);
 		}
+		
 		return true;
 
 	}
