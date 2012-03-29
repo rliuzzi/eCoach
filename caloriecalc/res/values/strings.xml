@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">calorieCalc</string>
     <string name="eula_title">Licencia</string>
     <string name="eula_accept">Aceptar</string>
-    <string name="eula_refuse">Rechazar</string>
-    <string name="btn_user_settings">Configuracion</string>
+    <string name="eula_refuse">Cancelar</string>
     <string name="txt_peso">Peso</string>
     <string name="txt_altura">Altura</string>
     <string name="txt_sexo">Sexo</string>
@@ -13,6 +13,12 @@
     <string name="radio_sexo_mujer">Mujer</string>
     <string name="btn_guardar">Guardar</string>
     <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_configure">Ajustes</string>
+    <string name="btn_user_settings">Mi Cuenta</string>
+    <string name="btn_terminar">Finalizar</string>
+    <string name="btn_salir">Salir</string>
+    <string name="btn_stats">Estadisticas</string>
+    <string name="btn_history">Historico</string>
     <string name="activity_selector_txt_summary">Selecciona tu actividad y comienza el ejercicio!</string>
     <string name="activity_selector_btn_andar">Caminar</string>
     <string name="activity_selector_btn_correr">Correr</string>
@@ -21,8 +27,5 @@
     <string name="result_page_txt_summary">Calorias quemadas…</string>
     <string name="enabledisablegps_title">Habilita/Desahabilita Redes</string>
     <string name="enabledisablegps_summary">Habilita/deshabilita proveedores desde los ajustes de su telefono.</string>
-    <string name="btn_terminar">Parar</string>
-    
-    
-    
+
 </resources>
