@@ -22,15 +22,15 @@ import com.caloriecalc.lao.LaoProgreso;
 public class EjercicioActualActivity extends Activity {
 	
 
-	private Button btnDesactivar;
+	private Button btnFinalizar;
 	
 	private TextView lblLatitud;
 	private TextView lblLongitud;
 	private TextView lblPrecision;
 	private TextView lblEstado;
 	
-	private LaoProgreso laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
-	private LaoEjercicio laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
+	private LaoProgreso laoProgreso;
+	private LaoEjercicio laoEjercicio;
 	private Ejercicio ejercicio;
 
 	private LocationManager locManager;
@@ -65,16 +65,20 @@ public class EjercicioActualActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ejercicio_actual);			
+		setContentView(R.layout.ejercicio_actual);
 		
-        btnDesactivar = (Button)findViewById(R.id.BtnDesactivar);
+		laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
+		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
+		
+		
+        btnFinalizar = (Button)findViewById(R.id.BtnDesactivar);
 		
 		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
 		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
 		lblPrecision = (TextView) findViewById(R.id.LblPosPrecision);
 		lblEstado = (TextView) findViewById(R.id.LblEstado);
 		       
-		btnDesactivar.setOnClickListener(new OnClickListener() {
+		btnFinalizar.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				
