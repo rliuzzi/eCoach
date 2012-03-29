@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.UserSettings" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.NetworkSettings" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.FormUserSettings" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.CalorieCalcResult" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>
