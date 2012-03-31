@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
-        android:text="Posición Actual:" />
+        android:text="@string/txt_current_location" />
 
     <TextView
         android:id="@+id/LblPosLatitud"
@@ -39,14 +39,14 @@
         android:id="@+id/BtnDesactivar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Finalizar" />
+        android:text="@string/btn_terminar" />
 
     <TextView
-        android:id="@+id/LblEst"
+        android:id="@+id/lbl_provider_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
-        android:text="Estado proveedor:" />
+        android:text="@string/txt_provider_status" />
 
     <TextView
         android:id="@+id/LblEstado"

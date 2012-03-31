@@ -15,7 +15,6 @@ public final class R {
     }
     public static final class id {
         public static final int BtnDesactivar=0x7f070012;
-        public static final int LblEst=0x7f070013;
         public static final int LblEstado=0x7f070014;
         public static final int LblPosLatitud=0x7f07000f;
         public static final int LblPosLongitud=0x7f070010;
@@ -54,6 +53,7 @@ public final class R {
         public static final int form_user_settings_txt_dob=0x7f070022;
         public static final int form_user_settings_txt_peso=0x7f070017;
         public static final int form_user_settings_txt_sexo=0x7f07001d;
+        public static final int lbl_provider_status=0x7f070013;
         public static final int option_exit=0x7f07002c;
         public static final int option_personal=0x7f07002b;
         public static final int option_settings=0x7f07002a;
@@ -93,8 +93,14 @@ public final class R {
         public static final int radio_sexo_mujer=0x7f050009;
         public static final int result_page_txt_summary=0x7f050017;
         public static final int txt_altura=0x7f050005;
+        public static final int txt_current_location=0x7f05001a;
         public static final int txt_dob=0x7f050007;
+        public static final int txt_enter_dob=0x7f05001d;
+        public static final int txt_enter_height=0x7f05001c;
+        public static final int txt_enter_weight=0x7f05001e;
+        public static final int txt_kcal=0x7f05001f;
         public static final int txt_peso=0x7f050004;
+        public static final int txt_provider_status=0x7f05001b;
         public static final int txt_sexo=0x7f050006;
     }
     public static final class xml {

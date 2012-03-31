@@ -27,5 +27,11 @@
     <string name="result_page_txt_summary">Calorias quemadas…</string>
     <string name="enabledisablegps_title">Habilita/Desahabilita Redes</string>
     <string name="enabledisablegps_summary">Habilita/deshabilita proveedores desde los ajustes de su telefono.</string>
+    <string name="txt_current_location">Posicion Actual:</string>
+    <string name="txt_provider_status">Estado proveedor:</string>
+    <string name="txt_enter_height">Introduce tu altura (m):</string>
+    <string name="txt_enter_dob">Introduce tu fecha de nacimiento:</string>
+    <string name="txt_enter_weight">Introduce tu peso en Kg</string>
+    <string name="txt_kcal">Kcal</string>
 
 </resources>

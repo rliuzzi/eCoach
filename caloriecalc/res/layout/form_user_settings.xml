@@ -33,9 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dip"
-            android:hint="Introduce tu peso en Kg"
             android:inputType="numberDecimal"
-            android:text="" >
+            android:hint="@string/txt_enter_weight" >
         </EditText>
     </LinearLayout>
 
@@ -59,8 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
-            android:hint="Introduce tu altura (m)"
-            android:inputType="numberDecimal" >
+            android:inputType="numberDecimal"
+            android:hint="@string/txt_enter_height" >
+
         </EditText>
     </LinearLayout>
 
@@ -130,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:contentDescription="Introduce tu fecha de nacimiento"
+            android:contentDescription="@string/txt_enter_dob"
             android:startYear="1930" >
         </DatePicker>
     </LinearLayout>
