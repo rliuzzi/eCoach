@@ -127,9 +127,8 @@
 
         <DatePicker
             android:id="@+id/form_user_settings_datepicker_dob"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:contentDescription="@string/txt_enter_dob"
             android:startYear="1930" >
         </DatePicker>
@@ -139,23 +138,22 @@
         android:id="@+id/form_user_settings_ll_enviar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="1" android:gravity="center">
 
         <Button
             android:id="@+id/form_user_settings_btn_cancel_user_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btn_cancelar" >
+            android:text="@string/btn_cancelar">
         </Button>
 
         <Button
             android:id="@+id/form_user_settings_btn_save_user_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/btn_guardar" >
         </Button>
     </LinearLayout>
+
 
 </LinearLayout>

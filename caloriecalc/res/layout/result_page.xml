@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/results_page_txt_kcal_quemadas"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
         android:layout_gravity="center"
         android:layout_marginTop="30dip"
         android:layout_weight="1"
