@@ -1,6 +1,7 @@
 package com.caloriecalc.lao;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +72,11 @@ public class LaoProgreso {
 			fechaUltimoProgreso = progreso.getId();
 
 		}
+		
+		if(fechaUltimoProgreso == null){
+			fechaUltimoProgreso = Calendar.getInstance().getTime();
+		}
+		
 		daoEjercicio.actualizarEjercicio(ejercicio.getId(),
 				fechaUltimoProgreso, totalDistance, totalCalories);
 	}

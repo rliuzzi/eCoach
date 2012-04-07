@@ -118,7 +118,7 @@ public class DaoEjercicio extends DataBaseHelper {
 	 */
 	public void actualizarEjercicio(int ejercicioId, Date horaFin,
 			double totalDistance, double totalCalories) {
-
+		
 		this.openDataBase();
 		String sql = "UPDATE Ejercicio SET " + "Distancia = " + totalDistance
 				+ ", " + "Calorias =  " + totalCalories + ", " + "HoraFin = "
