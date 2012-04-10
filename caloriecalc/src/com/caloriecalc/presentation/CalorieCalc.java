@@ -62,6 +62,9 @@ public class CalorieCalc extends Activity {
 
 		}
 	};
+	
+	//TODO Create onClickListener for stats button
+	//TODO Create onClickListener for history button
 
 	/** Called when the activity is first created. */
 	@Override
@@ -77,16 +80,26 @@ public class CalorieCalc extends Activity {
 		btn_patinar = (Button) findViewById(R.id.activity_selector_btn_patinar);
 		btn_bicicleta = (Button) findViewById(R.id.activity_selector_btn_bicicleta);
 		
+		//TODO Add stats button
+		//TODO Add history button
 
 		// Iniciar ejercicio intent.putExtra("key","value")...
 		btn_caminar.setOnClickListener(clk_lst_caminar);
 		btn_correr.setOnClickListener(clk_lst_correr);
 		btn_patinar.setOnClickListener(clk_lst_patinar);
 		btn_bicicleta.setOnClickListener(clk_lst_bicicleta);
+		
+		//TODO setOnClickListener for stats button
+		//TODO setOnClickListener for history button
 
 		
 
 
+	}
+	
+	
+	public void testGraphHandler (View view){
+		
 	}
 
 	@Override
