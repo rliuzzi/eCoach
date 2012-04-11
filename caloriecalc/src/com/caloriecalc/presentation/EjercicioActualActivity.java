@@ -19,10 +19,7 @@ import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
 
-/**
- * @author Romina
- *
- */
+
 /**
  * @author Romina
  *
@@ -160,6 +157,19 @@ public class EjercicioActualActivity extends Activity {
 			lblLongitud.setText("Longitud: (sin_datos)");
 			lblPrecision.setText("Precision: (sin_datos)");
 		}
+	}
+	
+	
+	//TODO Implement onPause()
+	@Override
+	protected void onPause(){
+		
+	}
+	
+	//TODO Implement onResume()
+	@Override
+	protected void onResume(){
+		
 	}
 
 }
