@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.eula.Eula;
+import com.caloriecalc.presentation.graphs.LineGraph;
 
 public class CalorieCalc extends Activity {
 
@@ -98,7 +99,10 @@ public class CalorieCalc extends Activity {
 	}
 	
 	
-	public void testGraphHandler (View view){
+	public void lineGraphHandler (View view){
+		LineGraph line = new LineGraph();
+		Intent lineIntent = line.getIntent(this);
+		startActivity(lineIntent);
 		
 	}
 

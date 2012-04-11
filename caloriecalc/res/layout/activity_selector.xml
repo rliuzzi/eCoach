@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_stats"
             android:textSize="20dip"
-            android:onClick="testGraphHandler">
+            android:onClick="lineGraphHandler">
         </Button>
     </TableRow>
 
