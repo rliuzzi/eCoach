@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/stats_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/txt_stats_title" 
+        android:textColor="#FFFFFF" />
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_workout_vs_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="WorkoutByTypeGraphHandler"
+            android:text="@string/btn_workout_vs_type"
+            android:textSize="20dip">
+        </Button>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_speed_vs_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="SpeedVsTimeGraphHandler"
+            android:text="@string/btn_speed_vs_time"
+            android:textSize="20dip" >
+        </Button>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_weight_vs_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="WeightVsDateGraphHandler"
+            android:text="@string/btn_weight_vs_date"
+            android:textSize="20dip" >
+        </Button>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_min_max_avg_speeds_vs_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="MinMaxAvgSpeedsGraphHandler"
+            android:text="@string/btn_min_max_avg_speeds_vs_date"
+            android:textSize="20dip" >
+        </Button>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_top_speed_vs_date_vs_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="TopSpeedsByTypeGraphHandler"
+            android:text="@string/btn_top_speed_vs_date_vs_type"
+            android:textSize="20dip" >
+        </Button>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/stats_selector_row_graph6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/graph_top_kcal_vs_date_vs_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="TopCaloriesVsDateGraphHandler"
+            android:text="@string/btn_top_kcal_vs_date_vs_type"
+            android:textSize="20dip" >
+        </Button>
+    </TableRow>
+
+</LinearLayout>

@@ -33,5 +33,12 @@
     <string name="txt_enter_dob">Introduce tu fecha de nacimiento:</string>
     <string name="txt_enter_weight">Introduce tu peso en Kg</string>
     <string name="txt_kcal">Kcal</string>
+    <string name="btn_workout_vs_type">Ejercicio por tipo</string>
+    <string name="btn_speed_vs_time">Velocidad vs Tiempo</string>
+    <string name="btn_weight_vs_date">Peso vs Fecha</string>
+    <string name="btn_min_max_avg_speeds_vs_date">Velocidades Promedio</string>
+    <string name="btn_top_speed_vs_date_vs_type">Velocidades Maximas</string>
+    <string name="btn_top_kcal_vs_date_vs_type">Kcal quemadas</string>
+    <string name="txt_stats_title">Mide tu progreso y descubre tus mejores tiempos</string>
 
 </resources>

@@ -53,18 +53,32 @@ public final class R {
         public static final int form_user_settings_txt_dob=0x7f070022;
         public static final int form_user_settings_txt_peso=0x7f070017;
         public static final int form_user_settings_txt_sexo=0x7f07001d;
+        public static final int graph_min_max_avg_speeds_vs_date=0x7f070032;
+        public static final int graph_speed_vs_time=0x7f07002e;
+        public static final int graph_top_kcal_vs_date_vs_type=0x7f070036;
+        public static final int graph_top_speed_vs_date_vs_type=0x7f070034;
+        public static final int graph_weight_vs_date=0x7f070030;
+        public static final int graph_workout_vs_type=0x7f07002c;
         public static final int lbl_provider_status=0x7f070013;
-        public static final int option_exit=0x7f07002c;
-        public static final int option_personal=0x7f07002b;
-        public static final int option_settings=0x7f07002a;
+        public static final int option_exit=0x7f070039;
+        public static final int option_personal=0x7f070038;
+        public static final int option_settings=0x7f070037;
         public static final int results_page_txt_kcal_quemadas=0x7f070029;
         public static final int results_page_txt_summary=0x7f070028;
+        public static final int stats_selector_row_graph1=0x7f07002b;
+        public static final int stats_selector_row_graph2=0x7f07002d;
+        public static final int stats_selector_row_graph3=0x7f07002f;
+        public static final int stats_selector_row_graph4=0x7f070031;
+        public static final int stats_selector_row_graph5=0x7f070033;
+        public static final int stats_selector_row_graph6=0x7f070035;
+        public static final int stats_title=0x7f07002a;
     }
     public static final class layout {
         public static final int activity_selector=0x7f030000;
         public static final int ejercicio_actual=0x7f030001;
         public static final int form_user_settings=0x7f030002;
         public static final int result_page=0x7f030003;
+        public static final int stats_selector=0x7f030004;
     }
     public static final class menu {
         public static final int options_menu=0x7f060000;
@@ -80,10 +94,16 @@ public final class R {
         public static final int btn_configure=0x7f05000c;
         public static final int btn_guardar=0x7f05000a;
         public static final int btn_history=0x7f050011;
+        public static final int btn_min_max_avg_speeds_vs_date=0x7f050023;
         public static final int btn_salir=0x7f05000f;
+        public static final int btn_speed_vs_time=0x7f050021;
         public static final int btn_stats=0x7f050010;
         public static final int btn_terminar=0x7f05000e;
+        public static final int btn_top_kcal_vs_date_vs_type=0x7f050025;
+        public static final int btn_top_speed_vs_date_vs_type=0x7f050024;
         public static final int btn_user_settings=0x7f05000d;
+        public static final int btn_weight_vs_date=0x7f050022;
+        public static final int btn_workout_vs_type=0x7f050020;
         public static final int enabledisablegps_summary=0x7f050019;
         public static final int enabledisablegps_title=0x7f050018;
         public static final int eula_accept=0x7f050002;
@@ -102,6 +122,7 @@ public final class R {
         public static final int txt_peso=0x7f050004;
         public static final int txt_provider_status=0x7f05001b;
         public static final int txt_sexo=0x7f050006;
+        public static final int txt_stats_title=0x7f050026;
     }
     public static final class xml {
         public static final int network_settings=0x7f040000;
