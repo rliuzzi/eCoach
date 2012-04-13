@@ -13,11 +13,9 @@ import android.widget.Button;
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.eula.Eula;
-import com.caloriecalc.presentation.graphs.LineGraph;
 
 public class CalorieCalc extends Activity {
 
-	
 	private OnClickListener clk_lst_caminar = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -29,6 +27,7 @@ public class CalorieCalc extends Activity {
 
 		}
 	};
+
 	private OnClickListener clk_lst_correr = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -40,6 +39,7 @@ public class CalorieCalc extends Activity {
 
 		}
 	};
+
 	private OnClickListener clk_lst_patinar = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -63,9 +63,20 @@ public class CalorieCalc extends Activity {
 
 		}
 	};
-	
-	//TODO Create onClickListener for stats button
-	//TODO Create onClickListener for history button
+
+	private OnClickListener clk_stats_btn = new OnClickListener() {
+
+		public void onClick(View v) {
+
+			Intent i = new Intent(CalorieCalc.this,
+					StatsSelectingActivity.class);
+			startActivity(i);
+
+		}
+
+	};
+
+	// TODO Create onClickListener for history button
 
 	/** Called when the activity is first created. */
 	@Override
@@ -74,36 +85,27 @@ public class CalorieCalc extends Activity {
 		setContentView(R.layout.activity_selector);
 		Eula.show(this);
 
-		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta;
+		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta, btn_stats;
 
 		btn_caminar = (Button) findViewById(R.id.activity_selector_btn_caminar);
 		btn_correr = (Button) findViewById(R.id.activity_selector_btn_correr);
 		btn_patinar = (Button) findViewById(R.id.activity_selector_btn_patinar);
 		btn_bicicleta = (Button) findViewById(R.id.activity_selector_btn_bicicleta);
-		
-		//TODO Add stats button
-		//TODO Add history button
+
+		btn_stats = (Button) findViewById(R.id.btn_stats);
+
+		// TODO Add history button
 
 		// Iniciar ejercicio intent.putExtra("key","value")...
 		btn_caminar.setOnClickListener(clk_lst_caminar);
 		btn_correr.setOnClickListener(clk_lst_correr);
 		btn_patinar.setOnClickListener(clk_lst_patinar);
 		btn_bicicleta.setOnClickListener(clk_lst_bicicleta);
-		
-		//TODO setOnClickListener for stats button
-		//TODO setOnClickListener for history button
 
-		
+		btn_stats.setOnClickListener(clk_stats_btn);
 
+		// TODO setOnClickListener for history button
 
-	}
-	
-	
-	public void lineGraphHandler (View view){
-		LineGraph line = new LineGraph();
-		Intent lineIntent = line.getIntent(this);
-		startActivity(lineIntent);
-		
 	}
 
 	@Override
@@ -131,7 +133,7 @@ public class CalorieCalc extends Activity {
 			i = new Intent(CalorieCalc.this, FormUserSettings.class);
 			startActivity(i);
 		}
-		
+
 		return true;
 
 	}
