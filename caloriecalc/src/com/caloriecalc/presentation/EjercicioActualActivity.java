@@ -159,7 +159,7 @@ public class EjercicioActualActivity extends Activity {
 		}
 	}
 	
-	
+	/*
 	//TODO Implement onPause()
 	@Override
 	protected void onPause(){
@@ -171,5 +171,6 @@ public class EjercicioActualActivity extends Activity {
 	protected void onResume(){
 		
 	}
+	*/
 
 }

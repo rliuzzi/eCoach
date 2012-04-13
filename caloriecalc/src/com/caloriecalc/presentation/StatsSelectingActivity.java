@@ -16,8 +16,6 @@ public class StatsSelectingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats_selector);
 		
-		//TODO completar
-		
 	}
 	
 	//TODO Una actividad que va a tener un handler por cada tipo de grafico
