@@ -1,6 +1,5 @@
 package com.caloriecalc.lao;
 
-import java.util.Date;
 
 public class Utilils {
 	
