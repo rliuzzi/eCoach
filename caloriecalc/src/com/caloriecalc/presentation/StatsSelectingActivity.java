@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.caloriecalc.R;
 import com.caloriecalc.presentation.graphs.LineGraph;
+import com.caloriecalc.presentation.graphs.PieGraph;
 
 public class StatsSelectingActivity extends Activity {
 	
@@ -21,9 +22,9 @@ public class StatsSelectingActivity extends Activity {
 	//TODO Una actividad que va a tener un handler por cada tipo de grafico
 	
 	public void WorkoutByTypeGraphHandler (View view){
-		LineGraph line = new LineGraph();
-		Intent lineIntent = line.getIntent(this);
-		startActivity(lineIntent);
+		PieGraph pie = new PieGraph();
+		Intent pieIntent = pie.getIntent(this);
+		startActivity(pieIntent);
 		
 	}
 	
