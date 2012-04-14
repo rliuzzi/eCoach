@@ -29,8 +29,18 @@ public class Utilils {
 		return km * 1000;
 	}
 	
-	
-
+	/**
+	 * Given a value in seconds returns the value converted to hours.
+	 * 
+	 * @author Romina
+	 * @param double seconds
+	 * @return double hours
+	 */
+	public double secondsToHours (double seconds)
+	{
+		return seconds / (60 * 60);
+		
+	}
 
 
 	
