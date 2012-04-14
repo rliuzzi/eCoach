@@ -8,9 +8,9 @@
         android:id="@+id/stats_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:text="@string/txt_stats_title" 
-        android:textColor="#FFFFFF" />
+        android:text="@string/txt_stats_title"  
+        android:textSize="20dip" 
+        android:layout_marginBottom="30dip"/>
 
     <TableRow
         android:id="@+id/stats_selector_row_graph1"
