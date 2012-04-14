@@ -9,6 +9,7 @@ import com.caloriecalc.R;
 import com.caloriecalc.presentation.graphs.BarGraph;
 import com.caloriecalc.presentation.graphs.LineGraph;
 import com.caloriecalc.presentation.graphs.PieGraph;
+import com.caloriecalc.presentation.graphs.ScatterGraph;
 
 public class StatsSelectingActivity extends Activity {
 	
@@ -51,16 +52,15 @@ public class StatsSelectingActivity extends Activity {
 	}
 	
 	public void TopSpeedsByTypeGraphHandler (View view){
-		LineGraph line = new LineGraph();
-		Intent lineIntent = line.getIntent(this);
-		startActivity(lineIntent);
-		
+		ScatterGraph scatter = new ScatterGraph();
+		Intent scatterIntent = scatter.getIntent(this);
+		startActivity(scatterIntent);
 	}
 	
 	public void TopCaloriesVsDateGraphHandler (View view){
-		LineGraph line = new LineGraph();
-		Intent lineIntent = line.getIntent(this);
-		startActivity(lineIntent);
+		ScatterGraph scatter = new ScatterGraph();
+		Intent scatterIntent = scatter.getIntent(this);
+		startActivity(scatterIntent);
 		
 	}
 
