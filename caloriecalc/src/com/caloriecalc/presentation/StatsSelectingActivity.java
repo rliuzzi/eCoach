@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.caloriecalc.R;
+import com.caloriecalc.presentation.graphs.BarGraph;
 import com.caloriecalc.presentation.graphs.LineGraph;
 import com.caloriecalc.presentation.graphs.PieGraph;
 
@@ -43,9 +44,9 @@ public class StatsSelectingActivity extends Activity {
 	}
 	
 	public void MinMaxAvgSpeedsGraphHandler (View view){
-		LineGraph line = new LineGraph();
-		Intent lineIntent = line.getIntent(this);
-		startActivity(lineIntent);
+		BarGraph bar = new BarGraph();
+		Intent barIntent = bar.getIntent(this);
+		startActivity(barIntent);
 		
 	}
 	
