@@ -1,45 +1,86 @@
 package com.caloriecalc.beans;
 
-import java.util.Date;
 
-public class Progreso{
-	
-	private Date id;
+
+/**
+ * @author Romina
+ * 
+ */
+public class Progreso {
+
+	private Double id;
 	private int ejercicioId;
-	private Double lat;
-	private Double lon;	
-	
-	
-	public Date getId(){
+	private Double latitude;
+	private Double longitude;
+	private Double speed;
+
+	/**
+	 * @return Double id
+	 */
+	public Double getId() {
 		return this.id;
 	}
-	
-	public int getEjercicioId(){
+
+	/**
+	 * @return int ejercicioId
+	 */
+	public int getEjercicioId() {
 		return this.ejercicioId;
-	}	
-	
-	public Double getLat(){
-		return this.lat;
 	}
-	
-	public Double getLon(){
-		return this.lon;
+
+	/**
+	 * @return Double latitude
+	 */
+	public Double getLatitude() {
+		return this.latitude;
 	}
-	
-	
-	public void setId(Date value){
-		this.id = value;
+
+	/**
+	 * @return Double longitude
+	 */
+	public Double getLongitude() {
+		return this.longitude;
 	}
-	
-	public void setEjercicioId(int value){
-		this.ejercicioId = value;
+
+	/**
+	 * @return Double speed
+	 */
+	public Double getSpeed() {
+		return this.speed;
 	}
-	
-	public void setLat(Double value){
-		this.lat = value;
+
+	/**
+	 * @param progressId
+	 */
+	public void setId(Double progressId) {
+		this.id = progressId;
 	}
-	
-	public void setLon(Double value){
-		this.lon = value;
+
+	/**
+	 * @param ejercicioId
+	 */
+	public void setEjercicioId(int ejercicioId) {
+		this.ejercicioId = ejercicioId;
+	}
+
+	/**
+	 * @param latitude
+	 */
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @param longitude
+	 */
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
+	 * @param speed
+	 */
+	public void setSpeed(Double speed) {
+		this.speed = speed;
 	}
 }
