@@ -129,11 +129,6 @@ public class EjercicioActualActivity extends Activity {
 		// Mostramos la última posición conocida
 		mostrarPosicion(loc);
 
-		if (loc != null) {
-			laoProgreso.guardarProgreso(ejercicio.getId(), loc.getLatitude(),
-					loc.getLongitude());
-		}
-
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000,
 				0, locationListener);
 	}
