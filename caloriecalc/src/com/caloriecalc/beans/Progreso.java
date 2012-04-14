@@ -12,6 +12,7 @@ public class Progreso {
 	private int ejercicioId;
 	private Double latitude;
 	private Double longitude;
+	private Double altitude;
 	private Double speed;
 
 	/**
@@ -42,6 +43,13 @@ public class Progreso {
 		return this.longitude;
 	}
 
+	/**
+	 * @return Double altitude
+	 */
+	public Double getAltitude() {
+		return this.altitude;
+	}
+	
 	/**
 	 * @return Double speed
 	 */
@@ -75,6 +83,13 @@ public class Progreso {
 	 */
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+	
+	/**
+	 * @param altitude
+	 */
+	public void setAltitude(Double altitude) {
+		this.altitude = altitude;
 	}
 
 	/**
