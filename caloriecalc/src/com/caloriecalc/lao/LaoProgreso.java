@@ -43,7 +43,8 @@ public class LaoProgreso {
 	 * @param ejercicio
 	 */
 	public void finalizarEjercicio(Ejercicio ejercicio) {
-
+		
+		double distance, time, speed;
 		double totalDistance = 0;
 		double totalCalories = 0;
 		double finalTime = 0;
@@ -55,8 +56,6 @@ public class LaoProgreso {
 		for (Progreso progress : listProgreso) {
 
 			if (nextProgress != null) {
-
-				double distance, time, speed;
 
 				distance = calculateDistance(nextProgress, progress);
 
