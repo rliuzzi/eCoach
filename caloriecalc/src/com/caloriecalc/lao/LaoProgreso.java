@@ -2,7 +2,6 @@ package com.caloriecalc.lao;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -35,69 +34,147 @@ public class LaoProgreso {
 		}
 	}
 
+
 	/**
+	 * Performs all operations necessary in order to finalize the exercise.
+	 * Calculations and updates are handled for both exercises and progresses.
 	 * 
+	 * @author Romina
 	 * @param ejercicio
 	 */
 	public void finalizarEjercicio(Ejercicio ejercicio) {
 
 		double totalDistance = 0;
 		double totalCalories = 0;
-		Date fechaUltimoProgreso = null;
+		double finalTime = 0;
 
-		Progreso lastProgreso = null;
+		Progreso nextProgress = null;
 
 		List<Progreso> listProgreso = this.getProgresos(ejercicio);
-		for (Progreso progreso : listProgreso) {
 
-			if (lastProgreso != null) {
+		for (Progreso progress : listProgreso) {
 
-				float[] results = new float[2];
-				Location.distanceBetween(lastProgreso.getLat(),
-						lastProgreso.getLon(), progreso.getLat(),
-						progreso.getLon(), results);
+			if (nextProgress != null) {
 
-				double distance = results[0]; // in meters
-				// double time = (progreso.getId().getTime() -
-				// lastProgreso.getId().getTime()) / 1000; // seconds
-				// double speed = distance / time; // in meters/second
-				// double calories = peso * distance * ????;
+				double distance, time, speed;
+
+				distance = calculateDistance(nextProgress, progress);
+
+				time = calculateTime(nextProgress.getId(), progress.getId());
+
+				speed = calculateSpeed(distance, time);
+
+				daoProgreso.updateProgressSpeeds(progress.getId(), speed);
+
+				// TODO calories burned calculation
 				double calories = 555;
+				totalCalories += calories;
 
 				totalDistance += distance;
-				totalCalories += calories;
+
 			}
 
-			lastProgreso = progreso;
-			fechaUltimoProgreso = progreso.getId();
+			nextProgress = progress;
+
+			if (progress.getId() == null) {
+				finalTime = Calendar.getInstance().getTime().getTime();
+			}
 
 		}
-		
-		if(fechaUltimoProgreso == null){
-			fechaUltimoProgreso = Calendar.getInstance().getTime();
-		}
-		
-		daoEjercicio.actualizarEjercicio(ejercicio.getId(),
-				fechaUltimoProgreso, totalDistance, totalCalories);
+
+		daoEjercicio.actualizarEjercicio(ejercicio.getId(), finalTime,
+				totalDistance, totalCalories);
 	}
 
 	/**
+	 * Given an exercise, calls on to the data layer to retrieve the list of
+	 * progresses associated to the exercise.
+	 * 
+	 * @author Romina
 	 * @param ejercicio
-	 * @return
+	 * @return progresos
 	 */
 	public List<Progreso> getProgresos(Ejercicio ejercicio) {
+
 		return this.daoProgreso.getProgresos(ejercicio.getId());
+
 	}
 
 	/**
+	 * Calls on to the data layer to save basic progress information.
+	 * 
+	 * @author Romina
 	 * @param ejercicioId
 	 * @param latitude
 	 * @param longitude
 	 */
+
 	public void guardarProgreso(int ejercicioId, Double latitude,
 			Double longitude) {
 
 		daoProgreso.LogProgress(ejercicioId, latitude, longitude);
+
+	}
+
+	/**
+	 * Given two progresses, the distance in meters between their locations is
+	 * returned.
+	 * 
+	 * @author Romina
+	 * @param progress
+	 * @param nextProgress
+	 * @return distance
+	 */
+
+	public double calculateDistance(Progreso progress, Progreso nextProgress) {
+
+		float[] results = new float[2];
+
+		Location.distanceBetween(progress.getLatitude(),
+				progress.getLongitude(), nextProgress.getLatitude(),
+				nextProgress.getLongitude(), results);
+
+		double distance = results[0];
+
+		return distance;
+
+	}
+
+	/**
+	 * Given an initial time and an ending time in milliseconds, elapsed
+	 * time in seconds is returned.
+	 * 
+	 * @author Romina
+	 * @param initTime
+	 * @param endTime
+	 * @return time
+	 */
+	public double calculateTime(double initTime, double endTime) {
+
+		double time;
+
+		time = (endTime - initTime) / 1000;
+
+		return time;
+
+	}
+
+	/**
+	 * Given a distance and a time, the speed is returned maintaining the units
+	 * provided.
+	 * 
+	 * @author Romina
+	 * @param distance
+	 * @param time
+	 * @return speed
+	 */
+	public double calculateSpeed(Double distance, Double time) {
+
+		double speed;
+
+		speed = distance / time;
+
+		return speed;
 
 	}
 

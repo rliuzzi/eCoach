@@ -3,7 +3,6 @@ package com.caloriecalc.dao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.caloriecalc.beans.Progreso;
@@ -26,6 +25,9 @@ public class DaoProgreso extends DataBaseHelper {
 	}
 
 	/**
+	 * Persists basic progress information.
+	 * 
+	 * @author Romina
 	 * @param ejercicioId
 	 * @param latitude
 	 * @param longitude
@@ -34,7 +36,7 @@ public class DaoProgreso extends DataBaseHelper {
 
 		this.openDataBase();
 
-		long timestamp = Calendar.getInstance().getTime().getTime();
+		double timestamp = Calendar.getInstance().getTime().getTime();
 
 		String sql = "INSERT INTO Progreso (_id, EjercicioId, Lat, Long) VALUES("
 				+ timestamp
@@ -52,27 +54,55 @@ public class DaoProgreso extends DataBaseHelper {
 	}
 
 	/**
+	 * Updates the speed field for the progress associated to the id provided.
+	 * 
+	 * @author Romina
+	 * @param id
+	 * @param speed
+	 */
+	public void updateProgressSpeeds(double id, double speed) {
+
+		this.openDataBase();
+
+		String sql = "UPDATE Progreso SET " + "speed = " + speed
+				+ " WHERE _id = " + id;
+
+		myDataBase.execSQL(sql);
+
+		this.close();
+
+	}
+
+	/**
+	 * Retrieves a list of progresses associated the the exerciseId provided.
+	 * 
+	 * @author Romina
 	 * @param ejercicioId
-	 * @return
+	 * @return list
 	 */
 	public List<Progreso> getProgresos(int ejercicioId) {
 
 		List<Progreso> list = new ArrayList<Progreso>();
+
 		this.openDataBase();
 
 		String sql = "SELECT * FROM Progreso WHERE EjercicioId = "
 				+ ejercicioId;
+
 		Cursor c = myDataBase.rawQuery(sql, null);
+
 		while (c.moveToNext()) {
 			Progreso p = new Progreso();
-			p.setId(new Date(c.getLong(0)));
+			p.setId(c.getDouble(0));
 			p.setEjercicioId(c.getInt(1));
-			p.setLat(c.getDouble(2));
-			p.setLon(c.getDouble(3));
+			p.setLatitude(c.getDouble(2));
+			p.setLongitude(c.getDouble(3));
+			p.setSpeed(c.getDouble(4));
 			list.add(p);
 		}
 
 		this.close();
+
 		return list;
 	}
 
