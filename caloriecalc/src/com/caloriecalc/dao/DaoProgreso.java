@@ -31,21 +31,24 @@ public class DaoProgreso extends DataBaseHelper {
 	 * @param ejercicioId
 	 * @param latitude
 	 * @param longitude
+	 * @param altitude
 	 */
-	public void LogProgress(int ejercicioId, Double latitude, Double longitude) {
+	public void LogProgress(int ejercicioId, Double latitude, Double longitude, Double altitude) {
 
 		this.openDataBase();
 
 		double timestamp = Calendar.getInstance().getTime().getTime();
 
-		String sql = "INSERT INTO Progreso (_id, EjercicioId, Lat, Long) VALUES("
+		String sql = "INSERT INTO Progreso (_id, EjercicioId, Latitude, Longitude, Altitude) VALUES("
 				+ timestamp
 				+ ", "
 				+ ejercicioId
 				+ ", "
 				+ latitude
 				+ ", "
-				+ longitude + ")";
+				+ longitude
+				+ ", "
+				+ altitude + ")";
 
 		myDataBase.execSQL(sql);
 
@@ -97,7 +100,8 @@ public class DaoProgreso extends DataBaseHelper {
 			p.setEjercicioId(c.getInt(1));
 			p.setLatitude(c.getDouble(2));
 			p.setLongitude(c.getDouble(3));
-			p.setSpeed(c.getDouble(4));
+			p.setAltitude(c.getDouble(4));
+			p.setSpeed(c.getDouble(5));
 			list.add(p);
 		}
 

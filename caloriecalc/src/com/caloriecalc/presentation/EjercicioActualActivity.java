@@ -48,7 +48,7 @@ public class EjercicioActualActivity extends Activity {
 		public void onLocationChanged(Location location) {
 			mostrarPosicion(location);
 			laoProgreso.guardarProgreso(ejercicio.getId(),
-					location.getLatitude(), location.getLongitude());
+					location.getLatitude(), location.getLongitude(), location.getAltitude());
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -60,8 +60,15 @@ public class EjercicioActualActivity extends Activity {
 		}
 
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			Log.i("", "Provider Status: " + status);
+			
+			/* STATUS VALUES
+			 * 2 = AVAILABLE
+			 * 1 = TEMPORARILY_UNAVAILABLE
+			 * 0 = OUT_OF_SERVICE
+			 * */
+			
 			lblEstado.setText("Provider Status: " + status);
+			
 		}
 	};
 	
@@ -146,7 +153,9 @@ public class EjercicioActualActivity extends Activity {
 					+ String.valueOf(loc.getAccuracy()));
 			Log.i("",
 					String.valueOf(loc.getLatitude() + " - "
-							+ String.valueOf(loc.getLongitude())));
+					+ String.valueOf(loc.getLongitude())) + " - " 
+					+ String.valueOf(loc.getAltitude()));
+			
 		} else {
 			lblLatitud.setText("Latitud: (sin_datos)");
 			lblLongitud.setText("Longitud: (sin_datos)");

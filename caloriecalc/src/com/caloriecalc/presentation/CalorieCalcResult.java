@@ -35,7 +35,9 @@ public class CalorieCalcResult extends Activity {
 		}
 
 		Intent i = getIntent();
+		
 		idEjercicio = i.getIntExtra("ejercicioId", 0);
+		
 		System.out.println("VALOR> " + idEjercicio);
 		Ejercicio e = myDaoEjercicio.getEjercicio(idEjercicio);
 		String s = String.valueOf(e.getCalorias());

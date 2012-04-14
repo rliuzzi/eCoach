@@ -106,12 +106,13 @@ public class LaoProgreso {
 	 * @param ejercicioId
 	 * @param latitude
 	 * @param longitude
+	 * @param altitude
 	 */
 
 	public void guardarProgreso(int ejercicioId, Double latitude,
-			Double longitude) {
+			Double longitude, Double altitude) {
 
-		daoProgreso.LogProgress(ejercicioId, latitude, longitude);
+		daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude);
 
 	}
 
