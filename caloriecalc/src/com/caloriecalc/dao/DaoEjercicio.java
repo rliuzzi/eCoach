@@ -33,7 +33,7 @@ public class DaoEjercicio extends DataBaseHelper {
 	 * @return
 	 */
 	public Ejercicio crearEjercicio(Date fechaInicio, TipoEjercicio tipoEjercicio,
-			int peso) {
+			Double peso) {
 
 		Ejercicio ejercicio = new Ejercicio();
 
@@ -75,9 +75,9 @@ public class DaoEjercicio extends DataBaseHelper {
 			ej.setId(c.getInt(0));
 			ej.setFechaInicio(new Date(c.getLong(1)));
 			ej.setTipoEjercicio(TipoEjercicio.values()[c.getInt(2)]);
-			ej.setPeso(c.getInt(3));
-			ej.setDistancia(c.getInt(4));
-			ej.setCalorias(c.getInt(5));
+			ej.setPeso(c.getDouble(3));
+			ej.setDistancia(c.getDouble(4));
+			ej.setCalorias(c.getDouble(5));
 			ej.setFechaFin(new Date(c.getLong(6)));
 
 		}

@@ -35,12 +35,22 @@ public class LaoEjercicio {
 	/**
 	 * @param tipoEjercicio
 	 * @param peso
-	 * @return
+	 * @return ejercicio
 	 */
-	public Ejercicio crearEjercicio(TipoEjercicio tipoEjercicio, int peso){
+	public Ejercicio crearEjercicio(TipoEjercicio tipoEjercicio, Double peso){
 		
 		Date fechaInicio = Calendar.getInstance().getTime();
 		return daoEjercicio.crearEjercicio(fechaInicio, tipoEjercicio, peso);
+	}
+	
+	/**
+	 * @param ejercicioId
+	 * @return ejercicio
+	 */
+	public Ejercicio consultarEjercicio(int ejercicioId){
+		
+		return daoEjercicio.getEjercicio(ejercicioId);
+		
 	}
 
 }

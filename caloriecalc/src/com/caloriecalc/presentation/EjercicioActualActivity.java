@@ -19,10 +19,9 @@ import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
 
-
 /**
  * @author Romina
- *
+ * 
  */
 public class EjercicioActualActivity extends Activity {
 
@@ -32,6 +31,8 @@ public class EjercicioActualActivity extends Activity {
 	private TextView lblLongitud;
 	private TextView lblPrecision;
 	private TextView lblEstado;
+	private TextView calories;
+	private TextView distance;
 
 	private LaoProgreso laoProgreso;
 	private LaoEjercicio laoEjercicio;
@@ -39,16 +40,17 @@ public class EjercicioActualActivity extends Activity {
 
 	private LocationManager locationManager;
 
-	
 	/**
-	 * Registrarmos un LocationListener para recibir actualizaciones de la posicion
+	 * Registrarmos un LocationListener para recibir actualizaciones de la
+	 * posicion
 	 */
 	private LocationListener locationListener = new LocationListener() {
-		
+
 		public void onLocationChanged(Location location) {
 			mostrarPosicion(location);
 			laoProgreso.guardarProgreso(ejercicio.getId(),
-					location.getLatitude(), location.getLongitude(), location.getAltitude());
+					location.getLatitude(), location.getLongitude(),
+					location.getAltitude());
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -60,20 +62,18 @@ public class EjercicioActualActivity extends Activity {
 		}
 
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			
-			/* STATUS VALUES
-			 * 2 = AVAILABLE
-			 * 1 = TEMPORARILY_UNAVAILABLE
-			 * 0 = OUT_OF_SERVICE
-			 * */
-			
+
+			/*
+			 * STATUS VALUES 2 = AVAILABLE 1 = TEMPORARILY_UNAVAILABLE 0 =
+			 * OUT_OF_SERVICE
+			 */
+
 			lblEstado.setText("Provider Status: " + status);
-			
+
 		}
 	};
-	
-	
-	private OnClickListener finalizar =  new OnClickListener() {
+
+	private OnClickListener finalizar = new OnClickListener() {
 
 		public void onClick(View v) {
 
@@ -81,13 +81,12 @@ public class EjercicioActualActivity extends Activity {
 
 			laoProgreso.finalizarEjercicio(ejercicio);
 
-			Intent i = new Intent(EjercicioActualActivity.this,
-					CalorieCalcResult.class);
+			ejercicio = laoEjercicio.consultarEjercicio(ejercicio.getId());
 
-			// send ejercicioId
-			i.putExtra("ejercicioId", ejercicio.getId());
+			calories.setText(ejercicio.getCalorias().toString());
 
-			startActivity(i);
+			distance.setText(ejercicio.getDistancia().toString());
+
 		}
 
 	};
@@ -99,12 +98,14 @@ public class EjercicioActualActivity extends Activity {
 		setContentView(R.layout.ejercicio_actual);
 
 		laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
-		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);		
+		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
 
 		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
 		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
 		lblPrecision = (TextView) findViewById(R.id.LblPosPrecision);
 		lblEstado = (TextView) findViewById(R.id.LblEstado);
+		calories = (TextView) findViewById(R.id.calories);
+		distance = (TextView) findViewById(R.id.distance);
 
 		btnFinalizar = (Button) findViewById(R.id.BtnDesactivar);
 		btnFinalizar.setOnClickListener(finalizar);
@@ -117,7 +118,7 @@ public class EjercicioActualActivity extends Activity {
 		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra(
 				"ejercicio", -1)];
 
-		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, 123);
+		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, 123.00);
 
 		comenzarLocalizacion();
 
@@ -136,8 +137,8 @@ public class EjercicioActualActivity extends Activity {
 		// Mostramos la última posición conocida
 		mostrarPosicion(loc);
 
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000,
-				0, locationListener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				30000, 0, locationListener);
 	}
 
 	/**
@@ -153,28 +154,28 @@ public class EjercicioActualActivity extends Activity {
 					+ String.valueOf(loc.getAccuracy()));
 			Log.i("",
 					String.valueOf(loc.getLatitude() + " - "
-					+ String.valueOf(loc.getLongitude())) + " - " 
-					+ String.valueOf(loc.getAltitude()));
-			
+							+ String.valueOf(loc.getLongitude()))
+							+ " - " + String.valueOf(loc.getAltitude()));
+
 		} else {
 			lblLatitud.setText("Latitud: (sin_datos)");
 			lblLongitud.setText("Longitud: (sin_datos)");
 			lblPrecision.setText("Precision: (sin_datos)");
 		}
 	}
-	
+
 	/*
-	//TODO Implement onPause()
-	@Override
-	protected void onPause(){
-		
-	}
-	
-	//TODO Implement onResume()
-	@Override
-	protected void onResume(){
-		
-	}
-	*/
+	 * //TODO Implement onPause()
+	 * 
+	 * @Override protected void onPause(){
+	 * 
+	 * }
+	 * 
+	 * //TODO Implement onResume()
+	 * 
+	 * @Override protected void onResume(){
+	 * 
+	 * }
+	 */
 
 }

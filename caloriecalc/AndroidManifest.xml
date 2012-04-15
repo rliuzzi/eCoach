@@ -21,7 +21,6 @@
         </activity>
         <activity android:name=".presentation.NetworkSettings" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.FormUserSettings" android:screenOrientation="portrait"></activity>
-        <activity android:name=".presentation.CalorieCalcResult" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.StatsSelectingActivity" android:screenOrientation="portrait"></activity>
         <activity android:name="org.achartengine.GraphicalActivity"></activity>

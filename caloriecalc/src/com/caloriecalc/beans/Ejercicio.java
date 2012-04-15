@@ -7,9 +7,9 @@ public class Ejercicio {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private TipoEjercicio tipoEjercicio;
-	private int peso;
-	private int distancia;
-	private int calorias;
+	private Double peso;
+	private Double distancia;
+	private Double calorias;
 	
 	
 	public enum TipoEjercicio {
@@ -119,7 +119,7 @@ public class Ejercicio {
 	/**
 	 * @return the peso
 	 */
-	public int getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
@@ -127,7 +127,7 @@ public class Ejercicio {
 	/**
 	 * @param peso the peso to set
 	 */
-	public void setPeso(int peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -135,7 +135,7 @@ public class Ejercicio {
 	/**
 	 * @return the dist
 	 */
-	public int getDistancia() {
+	public Double getDistancia() {
 		return distancia;
 	}
 
@@ -143,7 +143,7 @@ public class Ejercicio {
 	/**
 	 * @param dist the dist to set
 	 */
-	public void setDistancia(int dist) {
+	public void setDistancia(Double dist) {
 		this.distancia = dist;
 	}
 
@@ -151,7 +151,7 @@ public class Ejercicio {
 	/**
 	 * @return the calorias
 	 */
-	public int getCalorias() {
+	public Double getCalorias() {
 		return calorias;
 	}
 
@@ -159,7 +159,7 @@ public class Ejercicio {
 	/**
 	 * @param calorias the calorias to set
 	 */
-	public void setCalorias(int calorias) {
+	public void setCalorias(Double calorias) {
 		this.calorias = calorias;
 	}
 }
