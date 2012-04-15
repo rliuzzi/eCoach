@@ -1,7 +1,7 @@
 package com.caloriecalc.lao;
 
 
-public class Utilils {
+public class Utilities {
 	
 
 	/**
