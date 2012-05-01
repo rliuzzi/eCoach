@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.CalorieCalc" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.UserRegistrationActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.NetworkSettings" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.UserSettings" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>

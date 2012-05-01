@@ -2,51 +2,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_marginRight="5dip"
     android:orientation="vertical" >
 
-    <TextView 
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Please enter your login"
-        />
-    <TextView 
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="15dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="80dip"
+            android:minWidth="80dip"
+            android:text="@string/txt_username" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Login:"
-        />
-    <EditText
-        android:id="@+id/username"
-        android:singleLine="true"
+        android:layout_marginLeft="5dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="80dip"
+            android:minWidth="80dip"
+            android:text="@string/txt_password" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:password="true"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    />
-    <TextView 
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="15dip" >
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_login" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Password:"
-        />
-    <EditText
-        android:id="@+id/password"
-        android:password="true"
-        android:singleLine="true"
+        android:layout_marginLeft="5dip" >
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancelar" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    />
-    <Button
-        android:id="@+id/login_button"
-        android:text="Login"
+        android:layout_marginLeft="5dip" >
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:linksClickable="true"
+            android:text="@string/register.title" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    />
-    <Button
-        android:id="@+id/cancel_button"
-        android:text="Cancel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-    />
-    <TextView
-        android:id="@+id/result" 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_marginLeft="5dip" >
+
+        <TextView
+            android:id="@+id/error_msg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000" />
+    </LinearLayout>
+
 </LinearLayout>

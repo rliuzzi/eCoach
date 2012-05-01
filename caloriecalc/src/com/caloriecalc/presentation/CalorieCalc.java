@@ -104,8 +104,6 @@ public class CalorieCalc extends Activity {
 		btn_bicicleta.setOnClickListener(clk_lst_bicicleta);
 
 		btn_stats.setOnClickListener(clk_stats_btn);
-		
-		//UserSettingsPreferencesActivity.show(this);
 
 		// TODO setOnClickListener for history button
 
