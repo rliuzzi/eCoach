@@ -40,5 +40,8 @@
     <string name="btn_top_speed_vs_date_vs_type">Velocidades Maximas</string>
     <string name="btn_top_kcal_vs_date_vs_type">Kcal quemadas</string>
     <string name="txt_stats_title">Mide tu progreso y descubre tus mejores tiempos</string>
+    <string name="user_settings.title">Confirma tus datos</string>
+    <string name="user_settings.ok">Continuar</string>
+    <string name="user_settings.ko">Modificar</string>
 
 </resources>

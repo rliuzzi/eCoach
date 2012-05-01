@@ -1,9 +1,9 @@
 package com.caloriecalc.presentation;
 
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.util.Log;
+
 
 import com.caloriecalc.R.xml;
 
