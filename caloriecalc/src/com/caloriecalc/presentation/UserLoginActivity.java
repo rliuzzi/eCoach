@@ -41,14 +41,20 @@ public class UserLoginActivity extends Activity {
     	        //retrieve input username and password
     	        String username = inputUsername.getText().toString();
     	        String password = inputPassword.getText().toString();
-    	         
-    	        //encrypt before saving
+    	        
+    	        //hash the input password
+    	        String hashedPassword = Encrypt.md5Hash(password);
+    	        
     	        //Retrieve from shared preference stored
-    	        //compare results
     	        final SharedPreferences settings = getSharedPreferences(
 						UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
-    	              
-    	        if(username.equals(settings.getString(UserRegistrationActivity.USER_NAME, "")) && (Encrypt.md5Hash(password)).equals(settings.getString(UserRegistrationActivity.USER_PASSWORD, ""))){
+    	        
+    	        String storedUsername = settings.getString(UserRegistrationActivity.USER_NAME, "");
+    	        String storedHashPassword = settings.getString(UserRegistrationActivity.USER_PASSWORD, "");
+
+    			//compare results
+    	        
+    	        if(username.equals(storedUsername) && Encrypt.EQUAL == Encrypt.compareHash(hashedPassword, storedHashPassword)){
     	        	
     	        	Intent i = new Intent(UserLoginActivity.this, CalorieCalc.class);
     				startActivity(i);

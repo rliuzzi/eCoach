@@ -131,7 +131,7 @@ public class CalorieCalc extends Activity {
 			System.exit(0);
 			break;
 		case R.id.option_personal:
-			i = new Intent(CalorieCalc.this, UserSettings.class);
+			i = new Intent(CalorieCalc.this, UserRegistrationActivity.class);
 			startActivity(i);
 		}
 

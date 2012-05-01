@@ -59,8 +59,9 @@ public final class Utilities {
 	 * @return double i
 	 */
 	public static double gramsToKg(int value) {
-		double i = value / 1000;
-		return i;
+		//NOTE: When dividing integer types, the result is an integer type. 
+		//This means it returns the whole number part of the result; it does not perform any rounding
+		return value/1000.00;
 	}
 
 	/**
@@ -85,8 +86,7 @@ public final class Utilities {
 	 */
 
 	public static double cmToMeters(int value) {
-		int i = value / 100;
-		return i;
+		return value/100.00;
 	}
 
 }

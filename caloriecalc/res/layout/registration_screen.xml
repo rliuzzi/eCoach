@@ -146,7 +146,6 @@
 
                 <RadioButton
                     android:id="@+id/radio_sex_man"
-                    android:checked="true"
                     android:text="@string/radio_sex_man" >
                 </RadioButton>
 
