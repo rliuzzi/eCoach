@@ -28,6 +28,7 @@
         <activity android:name=".presentation.CalorieCalc" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.EjercicioActualActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".presentation.StatsSelectingActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".presentation.ExerciseHistoryActivity" android:screenOrientation="portrait"></activity>
         <activity android:name="org.achartengine.GraphicalActivity"></activity>
     </application>
 

@@ -129,5 +129,38 @@ public class DaoEjercicio extends DataBaseHelper {
 		
 		this.close();
 	}
+	
+	
+	/**
+	 * Retrieves the full list of stored exercises
+	 * 
+	 * @author Romina
+	 * @return List of exercises
+	 */
+	public ArrayList<Ejercicio> getExerciseList() {
+		
+		this.openDataBase();
+		String sql = "SELECT * FROM Ejercicio";
+		
+		Cursor c = myDataBase.rawQuery(sql, null);
+
+		ArrayList<Ejercicio> list = new ArrayList<Ejercicio>();
+
+		while (c.moveToNext()) {
+			Ejercicio ej = new Ejercicio();
+			ej.setId(c.getInt(0));
+			ej.setFechaInicio(new Date(c.getLong(1)));
+			ej.setTipoEjercicio(TipoEjercicio.values()[c.getInt(2)]);
+			ej.setDistancia(c.getDouble(4));
+			ej.setCalorias(c.getDouble(5));
+			list.add(ej);
+			
+		}
+
+		this.close();
+		
+		return list;
+
+	}
 
 }

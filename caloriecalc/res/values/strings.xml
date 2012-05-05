@@ -58,5 +58,7 @@
     <string name="txt_hint_check_detail">Se utilizará en caso de necesitar resetear el password</string>
 	<string name="mandatory_fields">Todos los campos son obligatorios</string>
 	<string name="txt_loginRequired">Habilitar/Deshabilitar pantalla de Login</string>
+    <string name="txt_no_items">Aun no tienes ejercicios guardados.</string>
+    <string name="img_description">CalorieCalc logo</string>
 	
 </resources>

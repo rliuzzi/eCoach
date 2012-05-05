@@ -75,7 +75,17 @@ public class CalorieCalc extends Activity {
 
 	};
 
-	// TODO Create onClickListener for history button
+	private OnClickListener clk_history_btn = new OnClickListener() {
+
+		public void onClick(View v) {
+
+			Intent i = new Intent(CalorieCalc.this,
+					ExerciseHistoryActivity.class);
+			startActivity(i);
+
+		}
+
+	};
 
 	/** Called when the activity is first created. */
 	@Override
@@ -85,7 +95,7 @@ public class CalorieCalc extends Activity {
 		
 		
 
-		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta, btn_stats;
+		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta, btn_stats, btn_history;
 
 		btn_caminar = (Button) findViewById(R.id.activity_selector_btn_caminar);
 		btn_correr = (Button) findViewById(R.id.activity_selector_btn_correr);
@@ -93,8 +103,8 @@ public class CalorieCalc extends Activity {
 		btn_bicicleta = (Button) findViewById(R.id.activity_selector_btn_bicicleta);
 
 		btn_stats = (Button) findViewById(R.id.btn_stats);
+		btn_history = (Button) findViewById(R.id.btn_history);
 
-		// TODO Add history button
 
 		// Iniciar ejercicio intent.putExtra("key","value")...
 		btn_caminar.setOnClickListener(clk_lst_caminar);
@@ -103,8 +113,9 @@ public class CalorieCalc extends Activity {
 		btn_bicicleta.setOnClickListener(clk_lst_bicicleta);
 
 		btn_stats.setOnClickListener(clk_stats_btn);
+		btn_history.setOnClickListener(clk_history_btn);
 
-		// TODO setOnClickListener for history button
+
 
 	}
 

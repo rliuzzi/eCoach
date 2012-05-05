@@ -1,6 +1,7 @@
 package com.caloriecalc.lao;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -50,6 +51,18 @@ public class LaoEjercicio {
 	public Ejercicio consultarEjercicio(int ejercicioId){
 		
 		return daoEjercicio.getEjercicio(ejercicioId);
+		
+	}
+	
+	/**
+	 * Retrieves the full list of stored exercises
+	 * 
+	 * @author Romina
+	 * @return List of exercises
+	 */
+	public ArrayList<Ejercicio> getExercises (){
+		
+		return daoEjercicio.getExerciseList();
 		
 	}
 
