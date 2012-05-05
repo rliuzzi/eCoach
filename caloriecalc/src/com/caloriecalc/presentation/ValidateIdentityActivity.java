@@ -80,6 +80,7 @@ public class ValidateIdentityActivity extends Activity {
 				Intent i = new Intent(ValidateIdentityActivity.this,
 						ResetPasswordActivity.class);
 				startActivity(i);
+				finish();
 
 			} else {
 				errorMsg.setText("La respuesta es incorrecta, vuelve a intentarlo");

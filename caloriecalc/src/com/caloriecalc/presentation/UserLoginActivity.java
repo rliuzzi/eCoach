@@ -27,7 +27,8 @@ public class UserLoginActivity extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+		
+        super.onCreate(null);
         setContentView(R.layout.login_screen);
         
         Eula.show(this);
@@ -39,7 +40,6 @@ public class UserLoginActivity extends Activity {
         errorMsg = (TextView)findViewById(R.id.error_msg);
         linkRegister = (TextView)findViewById(R.id.register);
         linkForgatPassword = (TextView) findViewById(R.id.forgat_password);
-        
         
     	btnLogin.setOnClickListener(new OnClickListener() {
     		
@@ -64,6 +64,7 @@ public class UserLoginActivity extends Activity {
     	        	
     	        	Intent i = new Intent(UserLoginActivity.this, CalorieCalc.class);
     				startActivity(i);
+    				finish();
     	        	
     	        } else {
     	        	errorMsg.setText("El username y/o password es incorrecto");
@@ -89,10 +90,14 @@ public class UserLoginActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(UserLoginActivity.this, ValidateIdentityActivity.class);
 				startActivity(i);
+				
 
 			}
 		});
     }
+	
+	
+
 
 
 }

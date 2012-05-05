@@ -94,6 +94,7 @@ public class UserDataEditActivity extends Activity {
 			Intent i = new Intent(UserDataEditActivity.this,
 					CalorieCalc.class);
 			startActivity(i);
+			finish();
 
 		}
 	};
