@@ -1,31 +1,27 @@
 package com.caloriecalc.beans;
 
 
-import org.joda.time.DateTime;
-import org.joda.time.Years;
+import java.util.Date;
 
 
 
 public class UserSettings {
 	
-	private long weight;
-	private long height;
-	private char sex;
-	private int age;
-	private DateTime dob;
+	private double weight;
+	private double height;
+	private String sex;
+	private Date dob;
 	
 	
-	public UserSettings(DateTime dob){
-		this.dob = dob;
-		if(dob != null)
-			setAge(dob);
+	public UserSettings(){
+
 	}
 
 
 	/**
 	 * @return the weight
 	 */
-	public long getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
@@ -33,7 +29,7 @@ public class UserSettings {
 	/**
 	 * @param weight the weight to set
 	 */
-	public void setWeight(long weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 
@@ -41,7 +37,7 @@ public class UserSettings {
 	/**
 	 * @return the height
 	 */
-	public long getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
@@ -49,7 +45,7 @@ public class UserSettings {
 	/**
 	 * @param height the height to set
 	 */
-	public void setHeight(long height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 
@@ -57,7 +53,7 @@ public class UserSettings {
 	/**
 	 * @return the sex
 	 */
-	public char getSex() {
+	public String getSex() {
 		return sex;
 	}
 
@@ -65,35 +61,15 @@ public class UserSettings {
 	/**
 	 * @param sex the sex to set
 	 */
-	public void setSex(char sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
-	}
-
-
-	/**
-	 * @return the age
-	 */
-	public int getAge() {
-		return age;
-	}
-
-
-	/**
-	 * @param age the age to set
-	 */
-	private void setAge(DateTime dob) {
-		 
-		DateTime now = new DateTime();
-		Years years = Years.yearsBetween(dob, now);
-		age = years.getYears();
-		
 	}
 
 
 	/**
 	 * @return the dob
 	 */
-	public DateTime getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
@@ -101,12 +77,13 @@ public class UserSettings {
 	/**
 	 * @param dob the dob to set
 	 */
-	public void setDob(DateTime dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	
 	
-	
+
+
 	
 
 }

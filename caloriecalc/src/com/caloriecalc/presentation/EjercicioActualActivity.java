@@ -3,6 +3,7 @@ package com.caloriecalc.presentation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
+import com.caloriecalc.beans.UserSettings;
+import com.caloriecalc.content.UserSettingsPreferencesTransformer;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
 
@@ -96,6 +99,8 @@ public class EjercicioActualActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ejercicio_actual);
+		
+		
 
 		laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
 		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
@@ -117,8 +122,18 @@ public class EjercicioActualActivity extends Activity {
 		Intent i = getIntent();
 		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra(
 				"ejercicio", -1)];
-
-		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, 123.00);
+		
+		
+		
+		//Retrieve SharedPreferences to be transformed and stored
+		SharedPreferences settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
+		String s = settings.getString(UserRegistrationActivity.USER_SEX, null);
+		String d = settings.getString(UserRegistrationActivity.USER_DOB, null) ;
+		int w = settings.getInt(UserRegistrationActivity.USER_WEIGHT, 0);
+		int h = settings.getInt(UserRegistrationActivity.USER_HEIGHT, 0);
+		UserSettings userData = UserSettingsPreferencesTransformer.getUserSettings(d, s, h, w); 
+				
+		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());
 
 		comenzarLocalizacion();
 

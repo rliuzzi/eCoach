@@ -1,6 +1,8 @@
 package com.caloriecalc.lao;
 
-import java.lang.Math;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public final class Utilities {
 
@@ -88,5 +90,43 @@ public final class Utilities {
 	public static double cmToMeters(int value) {
 		return value/100.00;
 	}
+	
+	/**
+	 * Calculates the age given a Date of Birth
+	 * 
+	 * @author Romina
+	 * @param date of birth
+	 * @return the age
+	 */
+	public static int calculateAge(Date dob) {
+		
+		Date now = new Date();
+		int age = now.getYear() - dob.getYear(); 
+		return age;
+		
+	}
+
+	
+	/**
+	 * Parses a date out of String in a predefined format.
+	 * 
+	 * @author Romina
+	 * @param dob
+	 * @return
+	 * @throws ParseException
+	 */
+	public static Date parseDate(String dob) throws ParseException{
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		if (dob != null){
+			Date date = formatter.parse(dob);
+			return date;
+		}
+		
+		return null;
+	}
+	
+	
 
 }
