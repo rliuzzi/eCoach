@@ -75,9 +75,10 @@ public class ValidateIdentityActivity extends Activity {
 			// compare results
 
 			if (Encrypt.EQUAL == Encrypt.compareHash(hashedInput, storedInput)) {
-
+				
+				//redirect user to the reset password activity
 				Intent i = new Intent(ValidateIdentityActivity.this,
-						CalorieCalc.class);
+						ResetPasswordActivity.class);
 				startActivity(i);
 
 			} else {
