@@ -12,7 +12,6 @@ import android.widget.Button;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
-import com.caloriecalc.content.Eula;
 
 public class CalorieCalc extends Activity {
 
@@ -83,7 +82,7 @@ public class CalorieCalc extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_selector);
-		Eula.show(this);
+		
 		
 
 		Button btn_caminar, btn_correr, btn_patinar, btn_bicicleta, btn_stats;
@@ -131,7 +130,7 @@ public class CalorieCalc extends Activity {
 			System.exit(0);
 			break;
 		case R.id.option_personal:
-			i = new Intent(CalorieCalc.this, UserRegistrationActivity.class);
+			i = new Intent(CalorieCalc.this, UserDataEditActivity.class);
 			startActivity(i);
 		}
 

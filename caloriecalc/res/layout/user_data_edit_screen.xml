@@ -27,10 +27,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:inputType="text" />
+                android:inputType="text" android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dip"

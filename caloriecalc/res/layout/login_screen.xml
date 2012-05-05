@@ -78,12 +78,20 @@
         android:layout_marginLeft="5dip" >
 
         <TextView
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
+            android:id="@+id/forgat_password"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_weight="0.70"
             android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:linksClickable="true"
+            android:text="@string/link_forgot_password" />
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.30"
+            android:clickable="true"
             android:linksClickable="true"
             android:text="@string/register.title" />
     </LinearLayout>
