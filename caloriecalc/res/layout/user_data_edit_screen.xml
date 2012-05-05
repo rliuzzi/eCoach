@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -26,8 +26,9 @@
                 android:id="@+id/username"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:inputType="text" android:focusable="false"/>
+                android:focusable="false"
+                android:inputType="text"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,9 +49,9 @@
                 android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:password="true"
-                android:singleLine="true" 
-                android:inputType="textPassword"/>
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,6 +156,19 @@
                     android:text="@string/radio_sex_woman" >
                 </RadioButton>
             </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginRight="5dip" >
+
+            <CheckBox
+                android:id="@+id/loginRequired"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="@string/txt_loginRequired" />
         </LinearLayout>
 
         <LinearLayout

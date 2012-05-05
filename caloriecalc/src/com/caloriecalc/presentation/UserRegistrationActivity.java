@@ -36,6 +36,7 @@ public class UserRegistrationActivity extends Activity {
 	public static final String USER_WEIGHT = "user.weight";
 	public static final String USER_HEIGHT = "user.height";
 	public static final String USER_DOB = "user.dob";
+	public static final String USER_LOGIN_REQUIRED = "user.login.required";
 
 	/**
 	 * SharedPreference file
@@ -86,6 +87,9 @@ public class UserRegistrationActivity extends Activity {
 				editor.putString(USER_HINT, hint);
 
 				editor.putString(USER_HINT_CHECK, Encrypt.md5Hash(hintCheck.trim().toLowerCase()));
+				
+				//Set the login screen required to true by default during registration.
+				editor.putBoolean(USER_LOGIN_REQUIRED, true);
 
 				// Commit the edits
 				editor.commit();
@@ -93,6 +97,7 @@ public class UserRegistrationActivity extends Activity {
 				Intent i = new Intent(UserRegistrationActivity.this,
 						UserLoginActivity.class);
 				startActivity(i);
+				finish();
 			} else {
 				
 				//Inform error status and highlight hint texts

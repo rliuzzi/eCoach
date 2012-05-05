@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -38,6 +39,8 @@ public class UserDataEditActivity extends Activity {
 	private EditText inputWeight;
 	private EditText inputHeight;
 	private EditText inputDOB;
+	private CheckBox loginRequired;
+	private boolean isLoginRequired;
 
 	/**
 	 * onClicListener to handle radioButton changes
@@ -48,6 +51,20 @@ public class UserDataEditActivity extends Activity {
 			inputSex = rb.getText().toString().toLowerCase();
 		}
 	};
+	
+	/**
+	 * onClicListener to handle checkBox changes
+	 */	
+	OnClickListener login_required_listener = new OnClickListener() {
+		
+		public void onClick(View v) {
+			
+			CheckBox cb = (CheckBox) v;
+			isLoginRequired = cb.isChecked();					
+			
+		}
+	};
+	
 
 	/**
 	 * Form Buttons
@@ -79,11 +96,10 @@ public class UserDataEditActivity extends Activity {
 
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putString(UserRegistrationActivity.USER_NAME, username);
-
-
 			editor.putString(UserRegistrationActivity.USER_SEX, inputSex);
 			editor.putInt(UserRegistrationActivity.USER_WEIGHT, weight);
 			editor.putInt(UserRegistrationActivity.USER_HEIGHT, height);
+			editor.putBoolean(UserRegistrationActivity.USER_LOGIN_REQUIRED, isLoginRequired);
 
 			// validate correct values
 			editor.putString(UserRegistrationActivity.USER_DOB, dob);
@@ -132,10 +148,16 @@ public class UserDataEditActivity extends Activity {
 		// Initialize Radio Buttons
 		isMan = (RadioButton) findViewById(R.id.radio_sex_man);
 		isWoman = (RadioButton) findViewById(R.id.radio_sex_woman);
+		
+		//Initialize Check Box
+		loginRequired = (CheckBox) findViewById(R.id.loginRequired);
 
 		// Attach onClickListener to radio buttons
 		isMan.setOnClickListener(radio_listener);
 		isWoman.setOnClickListener(radio_listener);
+		
+		//Attach onClickListener to check box
+		loginRequired.setOnClickListener(login_required_listener);
 
 		// Handle changes onClick of btnSave
 		btnSave.setOnClickListener(btnSavePress);
@@ -164,6 +186,13 @@ public class UserDataEditActivity extends Activity {
 				.toString())) {
 			isWoman.setChecked(true);
 			inputSex = isWoman.getText().toString().toLowerCase();
+		}
+		
+		//display and persist current login options choice
+		isLoginRequired = settings.getBoolean(UserRegistrationActivity.USER_LOGIN_REQUIRED, true);
+		
+		if(isLoginRequired){
+			loginRequired.setChecked(true);
 		}
 
 		inputUsername.setText(settings.getString(UserRegistrationActivity.USER_NAME, null),
