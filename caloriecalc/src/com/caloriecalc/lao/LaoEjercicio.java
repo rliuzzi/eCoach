@@ -45,6 +45,10 @@ public class LaoEjercicio {
 	}
 	
 	/**
+	 * Retrieves the exercise identified by the exercise id provided.
+	 * 
+	 * @author Romina
+	 * 
 	 * @param ejercicioId
 	 * @return ejercicio
 	 */
@@ -58,11 +62,41 @@ public class LaoEjercicio {
 	 * Retrieves the full list of stored exercises
 	 * 
 	 * @author Romina
+	 * 
 	 * @return List of exercises
 	 */
 	public ArrayList<Ejercicio> getExercises (){
 		
 		return daoEjercicio.getExerciseList();
+		
+	}
+	
+	
+	/**
+	 * Retrieves the amount of exercises of each type performed in ascending order.
+	 * 
+	 * @author Romina
+	 * 
+	 * @return list with the amount of occurences of each exercise type.
+	 */
+	public ArrayList<Integer> getCountExercisesById (){
+		
+		return daoEjercicio.getCountExercisesById();
+	}
+	
+	
+	
+	/**
+	 * Retrieves the amount of exercises of the typeId provided.
+	 * 
+	 * @author Romina
+	 * 
+	 * @param  exercise typeId
+	 * @return the amount of occurrences of the exercise typeId provided.
+	 */
+	public Integer getCountExercises(int typeId){
+		
+		return daoEjercicio.getCountExercises(typeId);
 		
 	}
 

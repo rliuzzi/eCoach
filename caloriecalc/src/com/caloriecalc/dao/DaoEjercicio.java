@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.caloriecalc.beans.Ejercicio;
-import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
-
 import android.content.Context;
 import android.database.Cursor;
+
+import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
 
 /**
  * @author Romina
@@ -162,5 +162,59 @@ public class DaoEjercicio extends DataBaseHelper {
 		return list;
 
 	}
+	
+	
+	/**
+	 * Retrieves the amount of exercises of each type performed in ascending order.
+	 * 
+	 * @author Romina
+	 * @return list with the amount of occurences of each exercise type.
+	 */
+	public ArrayList<Integer> getCountExercisesById(){
+		this.openDataBase();
+		
+		String sql = "SELECT COUNT(*)  FROM Ejercicio GROUP BY TipoId ORDER BY TipoId ASC";
+		
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		while (c.moveToNext()){
+			Integer i = new Integer(0);
+			i = (c.getInt(2));
+			list.add(i);
+		}
+		
+		this.close();
+		
+		return list;
+	}
+	
+	
+	/**
+	 * Retrieves the amount of exercises of the typeId provided.
+	 * 
+	 * @author Romina
+	 * 
+	 * @param  exercise typeId
+	 * @return the amount of occurrences of the exercise typeId provided.
+	 */
+	public Integer getCountExercises(int typeId){
+		
+		this.openDataBase();
+		
+		String sql = "SELECT * FROM Ejercicio WHERE tipoId = " + typeId; 
+		//SELECT COUNT(*) FROM Ejercicio WHERE tipoId = 1;
+		
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		Integer i = c.getCount();
+		
+		this.close();
+		
+		return i;
+	}
+	
+	
 
 }

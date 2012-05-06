@@ -130,7 +130,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		myInput.close();
 
 	}
-
+	
+	
+	//FIXME check the db exists before opening!
 	public void openDataBase() throws SQLException {
 
 		// Open the database
