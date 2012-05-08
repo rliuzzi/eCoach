@@ -1,7 +1,6 @@
 package com.caloriecalc.lao;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
 import android.content.Context;
@@ -49,37 +48,42 @@ public class LaoProgreso {
 		double totalCalories = 0;
 		double finalTime = 0;
 
-		Progreso nextProgress = null;
+		Progreso progress = null;
 
 		List<Progreso> listProgreso = this.getProgresos(ejercicio);
 
-		for (Progreso progress : listProgreso) {
+		for (Progreso nextProgress : listProgreso) {
 
-			if (nextProgress != null) {
+			if (progress != null) {
+				
+				//retrieve updated distance and speed (as well as all the rest of fields) of the progress
+				progress = this.getProgreso(progress.getId());
+				
+				//all the calculations are relative
+				distance = calculateDistance(progress, nextProgress);
 
-				distance = calculateDistance(nextProgress, progress);
-
-				time = calculateTime(nextProgress.getId(), progress.getId());
+				time = calculateTime(progress.getId(), nextProgress.getId());
 
 				speed = calculateSpeed(distance, time);
-
-				daoProgreso.updateProgressSpeeds(progress.getId(), speed);
+				
+				//update distance and speed
+				daoProgreso.updateProgressSpeedDistance(nextProgress.getId(), speed, distance + progress.getDistance());
 
 				// TODO calories burned calculation
 				double calories = 555;
+				
 				totalCalories += calories;
-
+				
 				totalDistance += distance;
 
 			}
-
-			nextProgress = progress;
-
-			if (progress.getId() == null) {
-				finalTime = Calendar.getInstance().getTime().getTime();
-			}
+			
+			progress = nextProgress;
+			finalTime = nextProgress.getId();
 
 		}
+		
+		
 
 		daoEjercicio.actualizarEjercicio(ejercicio.getId(), finalTime,
 				totalDistance, totalCalories);
@@ -114,6 +118,22 @@ public class LaoProgreso {
 
 		daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude);
 
+	} 
+	
+	
+	/**
+	 * Retrieves the progress identified by the progress id provided.
+	 * 
+	 * @author Romina
+	 * 
+	 * @param progresoId
+	 * @return progress
+	 */
+	public Progreso getProgreso(double progresoId){
+		
+		return daoProgreso.getProgreso(progresoId);
+
+		
 	}
 
 	/**

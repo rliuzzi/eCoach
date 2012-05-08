@@ -1,6 +1,5 @@
 package com.caloriecalc.presentation;
 
-import security.Encrypt;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.caloriecalc.R;
+import com.caloriecalc.security.Encrypt;
 
 public class ValidateIdentityActivity extends Activity {
 

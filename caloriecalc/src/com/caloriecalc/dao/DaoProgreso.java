@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.caloriecalc.beans.Progreso;
-
 import android.content.Context;
 import android.database.Cursor;
+
+import com.caloriecalc.beans.Progreso;
 
 /**
  * @author Romina
@@ -62,12 +62,13 @@ public class DaoProgreso extends DataBaseHelper {
 	 * @author Romina
 	 * @param id
 	 * @param speed
+	 * @param distance TODO
 	 */
-	public void updateProgressSpeeds(double id, double speed) {
+	public void updateProgressSpeedDistance(double id, double speed, double distance) {
 
 		this.openDataBase();
 
-		String sql = "UPDATE Progreso SET " + "speed = " + speed
+		String sql = "UPDATE Progreso SET " + "speed = " + speed + " ,distance = " + distance
 				+ " WHERE _id = " + id;
 
 		myDataBase.execSQL(sql);
@@ -102,12 +103,36 @@ public class DaoProgreso extends DataBaseHelper {
 			p.setLongitude(c.getDouble(3));
 			p.setAltitude(c.getDouble(4));
 			p.setSpeed(c.getDouble(5));
+			p.setDistance(c.getDouble(6));
 			list.add(p);
 		}
 
 		this.close();
 
 		return list;
+	}
+	
+	/**
+	 * @param idProgreso
+	 * @return progreso
+	 */
+	public Progreso getProgreso(double idProgreso) {
+		this.openDataBase();
+		String sql = "SELECT * FROM Progreso WHERE _id = " + idProgreso;
+		Cursor c = myDataBase.rawQuery(sql, null);
+		Progreso progreso = null;
+		if (c.moveToNext()) {
+			progreso = new Progreso();
+			progreso.setId(c.getDouble(0));
+			progreso.setEjercicioId(c.getInt(1));
+			progreso.setLatitude(c.getDouble(2));
+			progreso.setLongitude(c.getDouble(3));
+			progreso.setAltitude(c.getDouble(4));
+			progreso.setSpeed(c.getDouble(5));
+			progreso.setDistance(c.getDouble(6));
+		}
+		this.close();
+		return progreso;
 	}
 
 }

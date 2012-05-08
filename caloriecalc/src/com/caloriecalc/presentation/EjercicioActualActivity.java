@@ -131,6 +131,7 @@ public class EjercicioActualActivity extends Activity {
 		String d = settings.getString(UserRegistrationActivity.USER_DOB, null) ;
 		int w = settings.getInt(UserRegistrationActivity.USER_WEIGHT, 0);
 		int h = settings.getInt(UserRegistrationActivity.USER_HEIGHT, 0);
+		
 		UserSettings userData = UserSettingsPreferencesTransformer.getUserSettings(d, s, h, w); 
 				
 		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());

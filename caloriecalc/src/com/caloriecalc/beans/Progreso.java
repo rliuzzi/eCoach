@@ -14,6 +14,7 @@ public class Progreso {
 	private Double longitude;
 	private Double altitude;
 	private Double speed;
+	private Double distance;
 
 	/**
 	 * @return Double id
@@ -97,5 +98,19 @@ public class Progreso {
 	 */
 	public void setSpeed(Double speed) {
 		this.speed = speed;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public Double getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(Double distance) {
+		this.distance = distance;
 	}
 }

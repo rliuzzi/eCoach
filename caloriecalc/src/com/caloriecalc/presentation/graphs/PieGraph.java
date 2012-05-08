@@ -1,18 +1,16 @@
 package com.caloriecalc.presentation.graphs;
 
-import java.util.ArrayList;
-
 import org.achartengine.ChartFactory;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
-import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
-import com.caloriecalc.lao.LaoEjercicio;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+
+import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
+import com.caloriecalc.lao.LaoEjercicio;
 
 public class PieGraph {
 
@@ -24,6 +22,8 @@ public class PieGraph {
 		CategorySeries series = new CategorySeries("Grafico de pastel");
 		
 		//FIXME Index out of bounds exception
+		//Check length match
+		//Check renderer and series are not null
 		series.add(TipoEjercicio.CAMINAR.name(), laoEjercicio.getCountExercises(TipoEjercicio.CAMINAR.ordinal()));
 		series.add(TipoEjercicio.CORRER.name(), laoEjercicio.getCountExercises(TipoEjercicio.CORRER.ordinal()));
 		series.add(TipoEjercicio.PATINAR.name(), laoEjercicio.getCountExercises(TipoEjercicio.PATINAR.ordinal()));
