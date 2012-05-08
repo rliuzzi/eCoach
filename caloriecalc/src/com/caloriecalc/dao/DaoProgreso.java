@@ -33,13 +33,15 @@ public class DaoProgreso extends DataBaseHelper {
 	 * @param longitude
 	 * @param altitude
 	 */
-	public void LogProgress(int ejercicioId, Double latitude, Double longitude, Double altitude) {
+	public void LogProgress(int ejercicioId, Double latitude, Double longitude, Double altitude, int locId) {
 
 		this.openDataBase();
+		
 
 		double timestamp = Calendar.getInstance().getTime().getTime();
 
-		String sql = "INSERT INTO Progreso (_id, EjercicioId, Latitude, Longitude, Altitude) VALUES("
+
+		String sql = "INSERT INTO Progreso (_id, EjercicioId, Latitude, Longitude, Altitude, LocId) VALUES("
 				+ timestamp
 				+ ", "
 				+ ejercicioId
@@ -48,11 +50,17 @@ public class DaoProgreso extends DataBaseHelper {
 				+ ", "
 				+ longitude
 				+ ", "
-				+ altitude + ")";
+				+ altitude
+				+ ", "
+				+ locId
+				+ ")";
 
 		myDataBase.execSQL(sql);
+		
+		
 
 		this.close();
+
 
 	}
 
@@ -75,6 +83,24 @@ public class DaoProgreso extends DataBaseHelper {
 
 		this.close();
 
+	}
+	
+	
+	/**
+	 * Deletes all the progresses associated to the ejercicioId provided.
+	 * 
+	 * @param ejercicioId
+	 */
+	public void deleteProgreso (int ejercicioId){
+		
+		this.openDataBase();
+		
+		String sql = "DELETE FROM Progreso WHERE EjercicioId = " + ejercicioId;
+		
+		myDataBase.execSQL(sql);
+		
+		this.close();
+		
 	}
 
 	/**
@@ -104,6 +130,8 @@ public class DaoProgreso extends DataBaseHelper {
 			p.setAltitude(c.getDouble(4));
 			p.setSpeed(c.getDouble(5));
 			p.setDistance(c.getDouble(6));
+			p.setCalories(c.getDouble(7));
+			p.setLocId(c.getInt(8));
 			list.add(p);
 		}
 
@@ -130,9 +158,43 @@ public class DaoProgreso extends DataBaseHelper {
 			progreso.setAltitude(c.getDouble(4));
 			progreso.setSpeed(c.getDouble(5));
 			progreso.setDistance(c.getDouble(6));
+			progreso.setCalories(c.getDouble(7));
+			progreso.setLocId(c.getInt(8));
 		}
 		this.close();
 		return progreso;
 	}
+	
+	/**
+	 * 
+	 * Retrieve the progress log identified by the exerciseId and loacalization counter
+	 * 
+	 * @author Romina
+	 * 
+	 * @param ejercicioId
+	 * @param LocId
+	 * @return
+	 */
+	public Progreso getProgresoByEjIdAndLocId(int ejercicioId, int locId) {
+		this.openDataBase();
+		String sql = "SELECT * FROM Progreso WHERE EjercicioId = " + ejercicioId + " AND LocId = " + locId;
+		Cursor c = myDataBase.rawQuery(sql, null);
+		Progreso progreso = null;
+		if (c.moveToNext()) {
+			progreso = new Progreso();
+			progreso.setId(c.getDouble(0));
+			progreso.setEjercicioId(c.getInt(1));
+			progreso.setLatitude(c.getDouble(2));
+			progreso.setLongitude(c.getDouble(3));
+			progreso.setAltitude(c.getDouble(4));
+			progreso.setSpeed(c.getDouble(5));
+			progreso.setDistance(c.getDouble(6));
+			progreso.setCalories(c.getDouble(7));
+			progreso.setLocId(c.getInt(8));
+		}
+		this.close();
+		return progreso;
+	}
+	
 
 }

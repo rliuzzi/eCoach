@@ -114,9 +114,9 @@ public class LaoProgreso {
 	 */
 
 	public void guardarProgreso(int ejercicioId, Double latitude,
-			Double longitude, Double altitude) {
+			Double longitude, Double altitude, int locId) {
 
-		daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude);
+		daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude, locId);
 
 	} 
 	
@@ -133,9 +133,23 @@ public class LaoProgreso {
 		
 		return daoProgreso.getProgreso(progresoId);
 
-		
 	}
+	
+	/**
+	 * Retrieves the progress identified by the exercise id and location counter provided
+	 * 
+	 * @author Romina
+	 * 
+	 * @param ejercicioId
+	 * @param location count
+	 * @return progress
+	 */
+	public Progreso getProgresoByEjIdAndLocId(int ejercicioId, int locId){
+		
+		return daoProgreso.getProgresoByEjIdAndLocId(ejercicioId, locId);
 
+	}
+	
 	/**
 	 * Given two progresses, the distance in meters between their locations is
 	 * returned.
@@ -159,6 +173,8 @@ public class LaoProgreso {
 		return distance;
 
 	}
+	
+	
 
 	/**
 	 * Given an initial time and an ending time in milliseconds, elapsed
@@ -197,5 +213,19 @@ public class LaoProgreso {
 		return speed;
 
 	}
+	
+	/**
+	 * Deletes an exercise and all of its associated progresses.
+	 * 
+	 * @param ejercicioId
+	 */
+	public void cancelEjercicioProgreso(int ejercicioId){
+		
+		daoProgreso.deleteProgreso(ejercicioId);
+		
+		daoEjercicio.deleteEjercicio(ejercicioId);
+		
+	}
+	
 
 }

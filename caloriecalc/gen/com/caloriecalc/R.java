@@ -15,7 +15,12 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int bike=0x7f020000;
+        public static final int icon=0x7f020001;
+        public static final int run=0x7f020002;
+        public static final int skate=0x7f020003;
+        public static final int trash=0x7f020004;
+        public static final int walk=0x7f020005;
     }
     public static final class id {
         public static final int BtnDesactivar=0x7f080014;
@@ -49,10 +54,10 @@ public final class R {
         public static final int edit_txt_weight=0x7f08003b;
         public static final int errorMsg=0x7f080027;
         public static final int error_msg=0x7f080024;
-        public static final int ex_calories=0x7f08001d;
+        public static final int ex_calories=0x7f08001c;
         public static final int ex_date=0x7f08001a;
-        public static final int ex_distance=0x7f08001c;
-        public static final int ex_type=0x7f08001b;
+        public static final int ex_distance=0x7f08001b;
+        public static final int ex_trash=0x7f08001d;
         public static final int forgat_password=0x7f080022;
         public static final int graph_min_max_avg_speeds_vs_date=0x7f080032;
         public static final int graph_speed_vs_time=0x7f08002e;

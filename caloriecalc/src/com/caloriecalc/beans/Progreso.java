@@ -15,6 +15,8 @@ public class Progreso {
 	private Double altitude;
 	private Double speed;
 	private Double distance;
+	private Double calories;
+	private int locId;
 
 	/**
 	 * @return Double id
@@ -112,5 +114,33 @@ public class Progreso {
 	 */
 	public void setDistance(Double distance) {
 		this.distance = distance;
+	}
+
+	/**
+	 * @return the locId
+	 */
+	public int getLocId() {
+		return locId;
+	}
+
+	/**
+	 * @param locId the locId to set
+	 */
+	public void setLocId(int locId) {
+		this.locId = locId;
+	}
+
+	/**
+	 * @return the calories
+	 */
+	public Double getCalories() {
+		return calories;
+	}
+
+	/**
+	 * @param calories the calories to set
+	 */
+	public void setCalories(Double calories) {
+		this.calories = calories;
 	}
 }

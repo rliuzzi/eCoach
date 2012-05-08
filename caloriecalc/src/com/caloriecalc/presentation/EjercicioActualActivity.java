@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
+import com.caloriecalc.beans.Progreso;
 import com.caloriecalc.beans.UserSettings;
 import com.caloriecalc.content.UserSettingsPreferencesTransformer;
 import com.caloriecalc.lao.LaoEjercicio;
@@ -32,14 +33,21 @@ public class EjercicioActualActivity extends Activity {
 
 	private TextView lblLatitud;
 	private TextView lblLongitud;
-	private TextView lblPrecision;
+	private TextView lblAltitude;
 	private TextView lblEstado;
-	private TextView calories;
-	private TextView distance;
+	private TextView lblCalories;
+	private TextView lblDistance;
 
 	private LaoProgreso laoProgreso;
 	private LaoEjercicio laoEjercicio;
+	
 	private Ejercicio ejercicio;
+	private Progreso progresoInit;
+	private Progreso progresoEnd;
+	
+	//contador de localizaciones recibidas 
+	private int i = 0;
+	private double relTime;
 
 	private LocationManager locationManager;
 
@@ -50,10 +58,50 @@ public class EjercicioActualActivity extends Activity {
 	private LocationListener locationListener = new LocationListener() {
 
 		public void onLocationChanged(Location location) {
-			mostrarPosicion(location);
+			//Cada vez que recibo una actualizacion de la ubicacion incremento el contador
+			i++;
+			
+			//Guardo el numero de posicion en la bbdd. Mejora: cache?
 			laoProgreso.guardarProgreso(ejercicio.getId(),
 					location.getLatitude(), location.getLongitude(),
-					location.getAltitude());
+					location.getAltitude(), i);
+			
+			if (i>1){
+				
+				//get progreso i. inicializar
+				progresoEnd = laoProgreso.getProgresoByEjIdAndLocId(ejercicio.getId(), i);
+				
+				//get progreso i-1. inicializar
+				progresoInit = laoProgreso.getProgresoByEjIdAndLocId(ejercicio.getId(), i-1);
+				
+				//calcular tiempo
+				relTime = laoProgreso.calculateTime(progresoInit.getId(), progresoEnd.getId());
+				
+				//calcular distancia
+				progresoEnd.setDistance(laoProgreso.calculateDistance(progresoInit, progresoEnd));
+				
+				//calcular velocidad
+				progresoEnd.setSpeed(laoProgreso.calculateSpeed(progresoEnd.getDistance(), relTime));
+				
+				//calcular calorias
+				
+			} else {
+				
+				if (progresoEnd != null) {
+				
+					progresoEnd.setDistance(0.00);
+				
+					relTime = 0;
+				
+					progresoEnd.setSpeed(0.00);
+				}
+				
+			}
+			
+			//mostrar calorias, distancia, etc...
+			if (progresoEnd !=null)
+				mostrarPosicion(progresoEnd);
+			
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -86,9 +134,9 @@ public class EjercicioActualActivity extends Activity {
 
 			ejercicio = laoEjercicio.consultarEjercicio(ejercicio.getId());
 
-			calories.setText(ejercicio.getCalorias().toString());
+			lblCalories.setText(ejercicio.getCalorias().toString());
 
-			distance.setText(ejercicio.getDistancia().toString());
+			lblDistance.setText(ejercicio.getDistancia().toString());
 
 		}
 
@@ -107,10 +155,11 @@ public class EjercicioActualActivity extends Activity {
 
 		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
 		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
-		lblPrecision = (TextView) findViewById(R.id.LblPosPrecision);
+		lblAltitude = (TextView) findViewById(R.id.LblPosPrecision);
+		
 		lblEstado = (TextView) findViewById(R.id.LblEstado);
-		calories = (TextView) findViewById(R.id.calories);
-		distance = (TextView) findViewById(R.id.distance);
+		lblCalories = (TextView) findViewById(R.id.calories);
+		lblDistance = (TextView) findViewById(R.id.distance);
 
 		btnFinalizar = (Button) findViewById(R.id.BtnDesactivar);
 		btnFinalizar.setOnClickListener(finalizar);
@@ -151,7 +200,7 @@ public class EjercicioActualActivity extends Activity {
 				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 		// Mostramos la última posición conocida
-		mostrarPosicion(loc);
+		//mostrarPosicion(loc);
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				30000, 0, locationListener);
@@ -161,22 +210,23 @@ public class EjercicioActualActivity extends Activity {
 	 * @param loc
 	 * @author Romina
 	 */
-	private void mostrarPosicion(Location loc) {
-		if (loc != null) {
-			lblLatitud.setText("Latitud: " + String.valueOf(loc.getLatitude()));
-			lblLongitud.setText("Longitud: "
-					+ String.valueOf(loc.getLongitude()));
-			lblPrecision.setText("Precision: "
-					+ String.valueOf(loc.getAccuracy()));
+	private void mostrarPosicion(Progreso progreso) {
+		if (progreso != null) {
+			lblLatitud.setText("Latitud: " + progreso.getLatitude());
+			lblLongitud.setText("Longitud: " + progreso.getLongitude());
+			lblAltitude.setText("Altitud: " + progreso.getAltitude());
+			lblCalories.setText(progreso.getCalories().toString() + " Kcal");
+			lblDistance.setText(progreso.getDistance().toString() + " mts");
+			
 			Log.i("",
-					String.valueOf(loc.getLatitude() + " - "
-							+ String.valueOf(loc.getLongitude()))
-							+ " - " + String.valueOf(loc.getAltitude()));
+					String.valueOf(progreso.getLatitude() + " - "
+							+ String.valueOf(progreso.getLongitude()))
+							+ " - " + String.valueOf(progreso.getAltitude()));
 
 		} else {
 			lblLatitud.setText("Latitud: (sin_datos)");
 			lblLongitud.setText("Longitud: (sin_datos)");
-			lblPrecision.setText("Precision: (sin_datos)");
+			lblAltitude.setText("Precision: (sin_datos)");
 		}
 	}
 

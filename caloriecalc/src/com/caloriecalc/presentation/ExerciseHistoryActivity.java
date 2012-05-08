@@ -1,5 +1,6 @@
 package com.caloriecalc.presentation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
@@ -10,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.lao.LaoEjercicio;
+
 
 public class ExerciseHistoryActivity extends ListActivity {
 
@@ -29,12 +32,14 @@ public class ExerciseHistoryActivity extends ListActivity {
 	// Retrieve Exercise List
 	private LaoEjercicio laoEjercicio;
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.exercise_history);
 
 		laoEjercicio = new LaoEjercicio(ExerciseHistoryActivity.this);
+
 
 		exercises = new ArrayList<Ejercicio>();
 		this.adapter = new ExerciseAdapter(this, R.layout.exercise_item, exercises);
@@ -45,7 +50,7 @@ public class ExerciseHistoryActivity extends ListActivity {
 				getExercises();
 			}
 		};
-		Thread thread = new Thread(null, loadExercises, "MagentoBackground");
+		Thread thread = new Thread(null, loadExercises, "BackgroundProcess");
 		thread.start();
 		progressDialog = ProgressDialog.show(ExerciseHistoryActivity.this,
 				"Por favor espera...", "Recogiendo datos ...", true);
@@ -88,26 +93,49 @@ public class ExerciseHistoryActivity extends ListActivity {
 				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.exercise_item, null);
 			}
+			
 			Ejercicio e = items.get(position);
+			
 			if (e != null) {
+				ImageButton typeImg = (ImageButton) v.findViewById(R.id.icon);
 				TextView date = (TextView) v.findViewById(R.id.ex_date);
-				TextView type = (TextView) v.findViewById(R.id.ex_type);
 				TextView dist = (TextView) v.findViewById(R.id.ex_distance);
 				TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
-				if (date != null) {
-					date.setText("Fecha: " + e.getFechaInicio());
+								
+
+				if (typeImg != null) {
+					int type = e.getTipoEjercicio().getTipo();
+					switch(type){
+					case 0:
+						typeImg.setImageResource(com.caloriecalc.R.drawable.walk);
+						break;
+					case 1:
+						typeImg.setImageResource(com.caloriecalc.R.drawable.run);
+						break;
+					case 2:
+						typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
+						break;
+					case 3:
+						typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
+						break;
+					}
 				}
-				if (type != null) {
-					type.setText("Tipo: " + e.getTipoEjercicio().name());
+				if (date != null) {
+					SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
+					String fecha = sdf.format(e.getFechaInicio());
+					date.setText("Fecha: " + fecha);
 				}
 				if (dist != null) {
-					dist.setText("Distancia: " + e.getDistancia());
+					dist.setText("Distancia: " + Math.round(e.getDistancia()) + " mts.");
 				}
 				if (cal  != null){
-					cal.setText("Calorias: " + e.getCalorias());
+					cal.setText("Calorias: " + Math.round(e.getCalorias()) + " Kcal");
 				}
 				
 			}
+			
+			
+			
 			return v;
 		}
 	}

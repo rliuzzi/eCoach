@@ -46,6 +46,7 @@ public class DaoEjercicio extends DataBaseHelper {
 				+ peso
 				+ ")";
 		myDataBase.execSQL(sql);
+		
 		Cursor c = myDataBase.rawQuery("SELECT last_insert_rowid()", null);
 		c.moveToNext();
 
@@ -128,6 +129,26 @@ public class DaoEjercicio extends DataBaseHelper {
 		myDataBase.execSQL(sql);
 		
 		this.close();
+	}
+	
+	
+	
+	
+	/**
+	 * Deletes the exercise identified by the ejercicioId provided.
+	 * 
+	 * @param ejercicioId
+	 */
+	public void deleteEjercicio (int ejercicioId){
+		
+		this.openDataBase();
+		
+		String sql = "DELETE FROM Ejercicio WHERE _id + " + ejercicioId;
+		
+		myDataBase.execSQL(sql);
+		
+		this.close();
+		
 	}
 	
 	
