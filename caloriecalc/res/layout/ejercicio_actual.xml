@@ -4,7 +4,38 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+
     <TextView
+        android:id="@+id/lbl_calories_burned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/txt_calories_burned" />
+
+    <TextView
+        android:id="@+id/calories"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#aaaaaa"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/lbl_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/txt_distance_travelled" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#aaaaaa"
+        android:textColor="#000000" />
+
+        <TextView
         android:id="@+id/LblPosicion"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -55,35 +86,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_terminar" />
-
-    <TextView
-        android:id="@+id/lbl_calories_burned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:text="@string/txt_calories_burned" />
-
-    <TextView
-        android:id="@+id/calories"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:background="#aaaaaa"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/lbl_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:text="@string/txt_distance_travelled" />
-
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:background="#aaaaaa"
-        android:textColor="#000000" />
-
+    
+    
 </LinearLayout>

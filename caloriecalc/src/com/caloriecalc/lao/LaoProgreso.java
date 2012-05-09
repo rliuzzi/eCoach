@@ -67,12 +67,8 @@ public class LaoProgreso {
 				speed = calculateSpeed(distance, time);
 				
 				//update distance and speed
-				daoProgreso.updateProgressSpeedDistance(nextProgress.getId(), speed, distance + progress.getDistance());
+				//daoProgreso.updateProgress(nextProgress.getId(), speed, distance + progress.getDistance());
 
-				// TODO calories burned calculation
-				double calories = 555;
-				
-				totalCalories += calories;
 				
 				totalDistance += distance;
 
@@ -88,6 +84,26 @@ public class LaoProgreso {
 		daoEjercicio.actualizarEjercicio(ejercicio.getId(), finalTime,
 				totalDistance, totalCalories);
 	}
+	
+	
+	/**
+	 * Given a progressId, calls on to the data layer to update the calculated fields
+	 * distance, speed and calories burned.
+	 * 
+	 * @author Romina
+	 * @param  progressId
+	 * @param  speed
+	 * @param  distance
+	 * @param  calories
+	 */
+	public void updateProgress (Progreso p) {
+
+		daoProgreso.updateProgress(p.getId(), p.getSpeed(), p.getDistance(), p.getCalories());
+
+	}	
+	
+	
+	
 
 	/**
 	 * Given an exercise, calls on to the data layer to retrieve the list of
@@ -113,10 +129,10 @@ public class LaoProgreso {
 	 * @param altitude
 	 */
 
-	public void guardarProgreso(int ejercicioId, Double latitude,
+	public Progreso guardarProgreso(int ejercicioId, Double latitude,
 			Double longitude, Double altitude, int locId) {
 
-		daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude, locId);
+		return daoProgreso.LogProgress(ejercicioId, latitude, longitude, altitude, locId);
 
 	} 
 	

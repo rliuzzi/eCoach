@@ -23,12 +23,12 @@ public final class R {
         public static final int walk=0x7f020005;
     }
     public static final class id {
-        public static final int BtnDesactivar=0x7f080014;
-        public static final int LblEstado=0x7f080013;
-        public static final int LblPosLatitud=0x7f08000f;
-        public static final int LblPosLongitud=0x7f080010;
-        public static final int LblPosPrecision=0x7f080011;
-        public static final int LblPosicion=0x7f08000e;
+        public static final int BtnDesactivar=0x7f080018;
+        public static final int LblEstado=0x7f080017;
+        public static final int LblPosLatitud=0x7f080013;
+        public static final int LblPosLongitud=0x7f080014;
+        public static final int LblPosPrecision=0x7f080015;
+        public static final int LblPosicion=0x7f080012;
         public static final int activity_selector_btn_bicicleta=0x7f080009;
         public static final int activity_selector_btn_caminar=0x7f080003;
         public static final int activity_selector_btn_correr=0x7f080005;
@@ -45,9 +45,9 @@ public final class R {
         public static final int btn_history=0x7f08000d;
         public static final int btn_next=0x7f080029;
         public static final int btn_stats=0x7f08000c;
-        public static final int calories=0x7f080016;
+        public static final int calories=0x7f08000f;
         public static final int cancel_button=0x7f080021;
-        public static final int distance=0x7f080018;
+        public static final int distance=0x7f080011;
         public static final int dob=0x7f08003d;
         public static final int editText=0x7f080026;
         public static final int edit_txt_height=0x7f080039;
@@ -67,9 +67,9 @@ public final class R {
         public static final int graph_workout_vs_type=0x7f08002c;
         public static final int icon=0x7f080019;
         public static final int layout_password=0x7f080037;
-        public static final int lbl_calories_burned=0x7f080015;
-        public static final int lbl_distance=0x7f080017;
-        public static final int lbl_provider_status=0x7f080012;
+        public static final int lbl_calories_burned=0x7f08000e;
+        public static final int lbl_distance=0x7f080010;
+        public static final int lbl_provider_status=0x7f080016;
         public static final int loginRequired=0x7f080042;
         public static final int login_button=0x7f080020;
         public static final int mandatory_fields=0x7f080048;

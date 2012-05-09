@@ -33,13 +33,13 @@ public class DaoProgreso extends DataBaseHelper {
 	 * @param longitude
 	 * @param altitude
 	 */
-	public void LogProgress(int ejercicioId, Double latitude, Double longitude, Double altitude, int locId) {
+	public Progreso LogProgress(int ejercicioId, Double latitude, Double longitude, Double altitude, int locId) {
+		
+		Progreso progreso = new Progreso();
 
 		this.openDataBase();
-		
 
 		double timestamp = Calendar.getInstance().getTime().getTime();
-
 
 		String sql = "INSERT INTO Progreso (_id, EjercicioId, Latitude, Longitude, Altitude, LocId) VALUES("
 				+ timestamp
@@ -57,26 +57,33 @@ public class DaoProgreso extends DataBaseHelper {
 
 		myDataBase.execSQL(sql);
 		
-		
-
 		this.close();
-
+		
+		progreso.setId(timestamp);
+		progreso.setEjercicioId(ejercicioId);
+		progreso.setLatitude(latitude);
+		progreso.setLongitude(longitude);
+		progreso.setAltitude(altitude);
+		progreso.setLocId(locId);
+		
+		return progreso;
 
 	}
 
 	/**
-	 * Updates the speed field for the progress associated to the id provided.
+	 * Updates the speed, distance and calories fields for the progress associated to the id provided.
 	 * 
 	 * @author Romina
 	 * @param id
 	 * @param speed
-	 * @param distance TODO
+	 * @param distance
+	 * @param calories
 	 */
-	public void updateProgressSpeedDistance(double id, double speed, double distance) {
+	public void updateProgress(double id, double speed, double distance, double calories) {
 
 		this.openDataBase();
 
-		String sql = "UPDATE Progreso SET " + "speed = " + speed + " ,distance = " + distance
+		String sql = "UPDATE Progreso SET " + "speed = " + speed + " ,distance = " + distance + " ,calories = " + calories
 				+ " WHERE _id = " + id;
 
 		myDataBase.execSQL(sql);

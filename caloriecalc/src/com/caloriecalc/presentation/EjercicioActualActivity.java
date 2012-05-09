@@ -22,6 +22,7 @@ import com.caloriecalc.beans.UserSettings;
 import com.caloriecalc.content.UserSettingsPreferencesTransformer;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
+import com.caloriecalc.lao.Utilities;
 
 /**
  * @author Romina
@@ -62,7 +63,7 @@ public class EjercicioActualActivity extends Activity {
 			i++;
 			
 			//Guardo el numero de posicion en la bbdd. Mejora: cache?
-			laoProgreso.guardarProgreso(ejercicio.getId(),
+			progresoEnd = laoProgreso.guardarProgreso(ejercicio.getId(),
 					location.getLatitude(), location.getLongitude(),
 					location.getAltitude(), i);
 			
@@ -77,6 +78,7 @@ public class EjercicioActualActivity extends Activity {
 				//calcular tiempo
 				relTime = laoProgreso.calculateTime(progresoInit.getId(), progresoEnd.getId());
 				
+				
 				//calcular distancia
 				progresoEnd.setDistance(laoProgreso.calculateDistance(progresoInit, progresoEnd));
 				
@@ -84,23 +86,22 @@ public class EjercicioActualActivity extends Activity {
 				progresoEnd.setSpeed(laoProgreso.calculateSpeed(progresoEnd.getDistance(), relTime));
 				
 				//calcular calorias
+				progresoEnd.setCalories(Utilities.calculateCaloriesBurned(ejercicio.getPeso(), ejercicio.getTipoEjercicio(), progresoEnd.getSpeed(), relTime));
 				
 			} else {
 				
-				if (progresoEnd != null) {
+				progresoEnd.setDistance(0.00);
 				
-					progresoEnd.setDistance(0.00);
+				progresoEnd.setCalories(0.00);
+			
+				progresoEnd.setSpeed(0.00);
 				
-					relTime = 0;
-				
-					progresoEnd.setSpeed(0.00);
-				}
+				relTime = 0;
 				
 			}
 			
-			//mostrar calorias, distancia, etc...
-			if (progresoEnd !=null)
-				mostrarPosicion(progresoEnd);
+			mostrarPosicion(progresoEnd);
+			laoProgreso.updateProgress(progresoEnd);
 			
 		}
 
@@ -218,16 +219,8 @@ public class EjercicioActualActivity extends Activity {
 			lblCalories.setText(progreso.getCalories().toString() + " Kcal");
 			lblDistance.setText(progreso.getDistance().toString() + " mts");
 			
-			Log.i("",
-					String.valueOf(progreso.getLatitude() + " - "
-							+ String.valueOf(progreso.getLongitude()))
-							+ " - " + String.valueOf(progreso.getAltitude()));
 
-		} else {
-			lblLatitud.setText("Latitud: (sin_datos)");
-			lblLongitud.setText("Longitud: (sin_datos)");
-			lblAltitude.setText("Precision: (sin_datos)");
-		}
+		} 
 	}
 
 	/*
