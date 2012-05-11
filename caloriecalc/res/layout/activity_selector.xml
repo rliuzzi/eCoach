@@ -29,7 +29,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_selector_btn_andar"
-            android:textSize="20dip" >
+            android:textSize="20dip">
         </Button>
     </TableRow>
 

@@ -8,10 +8,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.caloriecalc.R;
@@ -36,8 +36,11 @@ public class EjercicioActualActivity extends Activity {
 	private TextView lblLongitud;
 	private TextView lblAltitude;
 	private TextView lblEstado;
+	private TextView lblTipo;
 	private TextView lblCalories;
 	private TextView lblDistance;
+	private TextView lblSpeed;
+	private Chronometer timer;
 
 	private LaoProgreso laoProgreso;
 	private LaoEjercicio laoEjercicio;
@@ -48,6 +51,9 @@ public class EjercicioActualActivity extends Activity {
 	
 	//contador de localizaciones recibidas 
 	private int i = 0;
+	private double calories = 0;
+	private double distance = 0;
+	private double speed = 0;
 	private double relTime;
 
 	private LocationManager locationManager;
@@ -75,18 +81,23 @@ public class EjercicioActualActivity extends Activity {
 				//get progreso i-1. inicializar
 				progresoInit = laoProgreso.getProgresoByEjIdAndLocId(ejercicio.getId(), i-1);
 				
-				//calcular tiempo
+				//calcular tiempo seconds
 				relTime = laoProgreso.calculateTime(progresoInit.getId(), progresoEnd.getId());
 				
-				
-				//calcular distancia
+				//calcular distancia meters
 				progresoEnd.setDistance(laoProgreso.calculateDistance(progresoInit, progresoEnd));
 				
-				//calcular velocidad
-				progresoEnd.setSpeed(laoProgreso.calculateSpeed(progresoEnd.getDistance(), relTime));
+				//calcular velocidad Km/h
+				progresoEnd.setSpeed(laoProgreso.calculateSpeed(Utilities.metersToKm(progresoEnd.getDistance()), Utilities.secondsToHours(relTime)));
 				
 				//calcular calorias
 				progresoEnd.setCalories(Utilities.calculateCaloriesBurned(ejercicio.getPeso(), ejercicio.getTipoEjercicio(), progresoEnd.getSpeed(), relTime));
+				
+				distance += progresoEnd.getDistance();
+				
+				calories += progresoEnd.getCalories();
+				
+				speed = progresoEnd.getSpeed();
 				
 			} else {
 				
@@ -128,16 +139,20 @@ public class EjercicioActualActivity extends Activity {
 	private OnClickListener finalizar = new OnClickListener() {
 
 		public void onClick(View v) {
+			
+			timer.stop();
 
 			locationManager.removeUpdates(locationListener);
 
-			laoProgreso.finalizarEjercicio(ejercicio);
+			laoProgreso.finalizarEjercicio(ejercicio.getId());
 
 			ejercicio = laoEjercicio.consultarEjercicio(ejercicio.getId());
 
-			lblCalories.setText(ejercicio.getCalorias().toString());
+			lblCalories.setText(ejercicio.getCalorias().toString()  + " Kcal");
 
-			lblDistance.setText(ejercicio.getDistancia().toString());
+			lblDistance.setText(ejercicio.getDistancia().toString() + " mts");
+			
+			lblSpeed.setText(speed + " Km/h");
 
 		}
 
@@ -156,11 +171,15 @@ public class EjercicioActualActivity extends Activity {
 
 		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
 		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
-		lblAltitude = (TextView) findViewById(R.id.LblPosPrecision);
+		lblAltitude = (TextView) findViewById(R.id.LblPosAltitude);
+		lblEstado = (TextView) findViewById(R.id.lbl_provider_status);
 		
-		lblEstado = (TextView) findViewById(R.id.LblEstado);
+		lblTipo = (TextView) findViewById(R.id.LblTipoEjercicio);
 		lblCalories = (TextView) findViewById(R.id.calories);
 		lblDistance = (TextView) findViewById(R.id.distance);
+		lblSpeed = (TextView) findViewById(R.id.txt_speed);
+		
+		timer = (Chronometer) findViewById(R.id.chronometer);
 
 		btnFinalizar = (Button) findViewById(R.id.BtnDesactivar);
 		btnFinalizar.setOnClickListener(finalizar);
@@ -173,7 +192,7 @@ public class EjercicioActualActivity extends Activity {
 		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra(
 				"ejercicio", -1)];
 		
-		
+		lblTipo.setText("Tipo de ejercicio: 	  " + tipoEjercicio.name());
 		
 		//Retrieve SharedPreferences to be transformed and stored
 		SharedPreferences settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
@@ -187,6 +206,7 @@ public class EjercicioActualActivity extends Activity {
 		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());
 
 		comenzarLocalizacion();
+		timer.start();
 
 	}
 
@@ -213,11 +233,12 @@ public class EjercicioActualActivity extends Activity {
 	 */
 	private void mostrarPosicion(Progreso progreso) {
 		if (progreso != null) {
-			lblLatitud.setText("Latitud: " + progreso.getLatitude());
-			lblLongitud.setText("Longitud: " + progreso.getLongitude());
-			lblAltitude.setText("Altitud: " + progreso.getAltitude());
-			lblCalories.setText(progreso.getCalories().toString() + " Kcal");
-			lblDistance.setText(progreso.getDistance().toString() + " mts");
+			lblLatitud.setText( progreso.getLatitude()+"");
+			lblLongitud.setText(progreso.getLongitude()+"");
+			lblAltitude.setText(progreso.getAltitude()+"");
+			lblCalories.setText(calories + " Kcal");
+			lblDistance.setText(distance + " mts");
+			lblSpeed.setText(speed + " Km/h");
 			
 
 		} 

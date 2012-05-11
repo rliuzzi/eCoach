@@ -92,6 +92,110 @@ public class DaoProgreso extends DataBaseHelper {
 
 	}
 	
+	/**
+	 * Sums all the values of a column for a given exercise.
+	 * 
+	 * @author Romina
+	 * @param columnName to sum (i.e: Calories, Distance, Speed)
+	 * @param identifier of the exercise
+	 * @return the result of the operation
+	 */
+	public double sumColumn(String columnName, double ejId) {
+
+		this.openDataBase();
+
+		String sql = "SELECT SUM (" + columnName +") FROM Progreso WHERE EjercicioId = " + ejId;
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		c.moveToFirst();
+		
+		double result = c.getDouble(0);
+		
+		this.close();
+		
+		return result;
+
+	}
+	
+	/**
+	 * Gets the average of all the values of a column for a given exercise.
+	 * 
+	 * @author Romina
+	 * @param columnName to evaluate (i.e: Calories, Distance, Speed)
+	 * @param identifier of the exercise
+	 * @return the result of the operation
+	 */
+	public double avgColumn(String columnName, double ejId) {
+
+		this.openDataBase();
+
+		String sql = "SELECT AVG (" + columnName +") FROM Progreso WHERE EjercicioId = " + ejId;
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		c.moveToFirst();
+		
+		double result = c.getDouble(0);
+		
+		this.close();
+		
+		return result;
+
+	}
+	
+	/**
+	 * Gets the maximum value of a column for a given exercise.
+	 * 
+	 * @author Romina
+	 * @param columnName to evaluate (i.e: Calories, Distance, Speed)
+	 * @param identifier of the exercise
+	 * @return the result of the operation
+	 */
+	public double maxColumn(String columnName, double ejId) {
+
+		this.openDataBase();
+
+		String sql = "SELECT MAX (" + columnName +") FROM Progreso WHERE EjercicioId = " + ejId;
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		c.moveToFirst();
+		
+		double result = c.getInt(0);
+		
+		this.close();
+		
+		return result;
+
+	}
+	
+	/**
+	 * Gets the minimum value of a column for a given exercise.
+	 * 
+	 * @author Romina
+	 * @param columnName to evaluate (i.e: Calories, Distance, Speed)
+	 * @param identifier of the exercise
+	 * @return the result of the operation
+	 */
+	public double minColumn(String columnName, double ejId) {
+
+		this.openDataBase();
+
+		String sql = "SELECT MIN (" + columnName +") FROM Progreso WHERE EjercicioId = " + ejId;
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		c.moveToFirst();
+		
+		double result = c.getDouble(0);
+		
+		this.close();
+		
+		return result;
+
+	}
+	
 	
 	/**
 	 * Deletes all the progresses associated to the ejercicioId provided.

@@ -41,48 +41,11 @@ public class LaoProgreso {
 	 * @author Romina
 	 * @param ejercicio
 	 */
-	public void finalizarEjercicio(Ejercicio ejercicio) {
-		
-		double distance, time, speed;
-		double totalDistance = 0;
-		double totalCalories = 0;
-		double finalTime = 0;
+	public void finalizarEjercicio(int exerciseId) {
 
-		Progreso progress = null;
-
-		List<Progreso> listProgreso = this.getProgresos(ejercicio);
-
-		for (Progreso nextProgress : listProgreso) {
-
-			if (progress != null) {
-				
-				//retrieve updated distance and speed (as well as all the rest of fields) of the progress
-				progress = this.getProgreso(progress.getId());
-				
-				//all the calculations are relative
-				distance = calculateDistance(progress, nextProgress);
-
-				time = calculateTime(progress.getId(), nextProgress.getId());
-
-				speed = calculateSpeed(distance, time);
-				
-				//update distance and speed
-				//daoProgreso.updateProgress(nextProgress.getId(), speed, distance + progress.getDistance());
-
-				
-				totalDistance += distance;
-
-			}
-			
-			progress = nextProgress;
-			finalTime = nextProgress.getId();
-
-		}
-		
-		
-
-		daoEjercicio.actualizarEjercicio(ejercicio.getId(), finalTime,
-				totalDistance, totalCalories);
+	 daoEjercicio.actualizarEjercicio(exerciseId, daoProgreso.maxColumn("_id", exerciseId),
+				daoProgreso.sumColumn("Distance", exerciseId), daoProgreso.sumColumn("Calories", exerciseId));
+	 
 	}
 	
 	

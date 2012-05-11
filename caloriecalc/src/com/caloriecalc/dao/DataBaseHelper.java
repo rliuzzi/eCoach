@@ -24,6 +24,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	protected SQLiteDatabase myDataBase;
 
 	protected final Context myContext;
+	
+
+	
 
 	/**
 	 * Constructor Takes and keeps a reference of the passed context in order to
@@ -38,6 +41,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		this.myContext = context;
 		this.createDataBase();
 	}
+
+
 
 	/**
 	 * Creates a empty database on the system and rewrites it with your own
