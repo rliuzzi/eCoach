@@ -157,8 +157,7 @@
         android:id="@+id/lbl_provider_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dip"
-        android:text="@string/txt_provider_status" />
+        android:layout_margin="5dip" />
 
 
     <Button

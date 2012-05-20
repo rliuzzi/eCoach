@@ -31,15 +31,6 @@
         android:id="@+id/stats_selector_row_graph2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/graph_speed_vs_time"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="SpeedVsTimeGraphHandler"
-            android:text="@string/btn_speed_vs_time"
-            android:textSize="20dip" >
-        </Button>
     </TableRow>
 
     <TableRow
@@ -66,8 +57,8 @@
             android:id="@+id/graph_min_max_avg_speeds_vs_date"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="MinMaxAvgSpeedsGraphHandler"
-            android:text="@string/btn_min_max_avg_speeds_vs_date"
+            android:onClick="MinMaxCurWeightGraphHandler"
+            android:text="@string/btn_min_max_cur_weight"
             android:textSize="20dip" >
         </Button>
     </TableRow>

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.content.Context;
 
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
+import com.caloriecalc.beans.Serie;
 import com.caloriecalc.dao.DaoEjercicio;
 
 
@@ -97,6 +99,62 @@ public class LaoEjercicio {
 	public Integer getCountExercises(int typeId){
 		
 		return daoEjercicio.getCountExercises(typeId);
+		
+	}
+	
+	
+	
+	/**
+	 * Deletes the exercise identified by the ejercicioId provided.
+	 * 
+	 * @param ejercicioId
+	 */
+	public void deleteEjercicio(int ejercicioId){
+		
+		daoEjercicio.deleteEjercicio(ejercicioId);
+	
+	}
+	
+	/**
+	 * Retrieves the maximum value for a column queried.
+	 * 
+	 * @author Romina
+	 * 
+	 * @param  the name of the column to query 
+	 * @return the max value
+	 */
+	public Double getMaxValueInColumn(String columnName){
+		
+		return daoEjercicio.getMaxValueInColumn(columnName);
+		
+	}
+	
+	
+	/**
+	 * Retrieves the amount of calories spent by date for all workouts saved
+	 * 
+	 * @author Romina
+	 * 
+	 * @return A list with date, calories values
+	 */
+	
+	public List<Serie> getCaloriesByDate(){
+		
+		return daoEjercicio.getCaloriesByDate();
+		
+	}
+	
+	/**
+	 * Retrieves the weight by date for all workouts saved
+	 * 
+	 * @author Romina
+	 * 
+	 * @return A list with date, weight values
+	 */
+	
+	public List<Serie> getWeightByDate(){
+		
+		return daoEjercicio.getWeightByDate();
 		
 	}
 

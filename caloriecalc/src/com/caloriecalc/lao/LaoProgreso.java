@@ -32,6 +32,18 @@ public class LaoProgreso {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * Deletes all the progresses associated to the ejercicioId provided.
+	 * 
+	 * @param ejercicioId
+	 */
+	public void deleteProgreso (int ejercicioId){
+		
+		daoProgreso.deleteProgreso(ejercicioId);
+		
+	}
 
 
 	/**

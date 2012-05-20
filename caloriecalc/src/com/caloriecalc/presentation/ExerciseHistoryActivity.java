@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.lao.LaoEjercicio;
+import com.caloriecalc.lao.LaoProgreso;
 
 
 public class ExerciseHistoryActivity extends ListActivity {
@@ -31,6 +33,7 @@ public class ExerciseHistoryActivity extends ListActivity {
 	private Runnable loadExercises;
 	// Retrieve Exercise List
 	private LaoEjercicio laoEjercicio;
+	private LaoProgreso laoProgreso;
 
 
 	@Override
@@ -39,6 +42,7 @@ public class ExerciseHistoryActivity extends ListActivity {
 		setContentView(R.layout.exercise_history);
 
 		laoEjercicio = new LaoEjercicio(ExerciseHistoryActivity.this);
+		laoProgreso = new LaoProgreso(ExerciseHistoryActivity.this);
 
 
 		exercises = new ArrayList<Ejercicio>();
@@ -54,6 +58,21 @@ public class ExerciseHistoryActivity extends ListActivity {
 		thread.start();
 		progressDialog = ProgressDialog.show(ExerciseHistoryActivity.this,
 				"Por favor espera...", "Recogiendo datos ...", true);
+	}
+	
+	public void deleteEjercicio (View view){
+		
+		laoProgreso.deleteProgreso(view.getId());
+		laoEjercicio.deleteEjercicio(view.getId());
+		
+		//Refresh the view
+		Intent i = new Intent(ExerciseHistoryActivity.this,
+				ExerciseHistoryActivity.class);
+		startActivity(i);
+		finish();
+		
+		
+		
 	}
 
 	private Runnable returnRes = new Runnable() {
@@ -98,11 +117,14 @@ public class ExerciseHistoryActivity extends ListActivity {
 			
 			if (e != null) {
 				ImageButton typeImg = (ImageButton) v.findViewById(R.id.icon);
+				ImageButton trashExercise = (ImageButton) v.findViewById(R.id.ex_trash);
+				
 				TextView date = (TextView) v.findViewById(R.id.ex_date);
 				TextView dist = (TextView) v.findViewById(R.id.ex_distance);
 				TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
-								
-
+				
+				trashExercise.setId(e.getId());
+				
 				if (typeImg != null) {
 					int type = e.getTipoEjercicio().getTipo();
 					switch(type){
@@ -113,10 +135,10 @@ public class ExerciseHistoryActivity extends ListActivity {
 						typeImg.setImageResource(com.caloriecalc.R.drawable.run);
 						break;
 					case 2:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
+						typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
 						break;
 					case 3:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
+						typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
 						break;
 					}
 				}

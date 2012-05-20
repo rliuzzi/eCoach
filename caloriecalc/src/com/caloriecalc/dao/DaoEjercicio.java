@@ -10,6 +10,7 @@ import android.database.Cursor;
 
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.beans.Ejercicio.TipoEjercicio;
+import com.caloriecalc.beans.Serie;
 
 /**
  * @author Romina
@@ -143,7 +144,7 @@ public class DaoEjercicio extends DataBaseHelper {
 		
 		this.openDataBase();
 		
-		String sql = "DELETE FROM Ejercicio WHERE _id + " + ejercicioId;
+		String sql = "DELETE FROM Ejercicio WHERE _id = " + ejercicioId;
 		
 		myDataBase.execSQL(sql);
 		
@@ -236,6 +237,100 @@ public class DaoEjercicio extends DataBaseHelper {
 		return i;
 	}
 	
+	
+	/**
+	 * Retrieves the amount of calories spent by date for all workouts saved
+	 * 
+	 * @author Romina
+	 * 
+	 * @return A list with date, calories values
+	 */
+	
+	public List<Serie> getCaloriesByDate (){
+		
+		this.openDataBase();
+		
+		String sql = "SELECT horaInicio, Calorias FROM Ejercicio";
+		
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		List<Serie> serie = new ArrayList<Serie>();
+		
+		while (c.moveToNext()){
+			Serie s = new Serie();
+			
+			s.setX(new Date(c.getLong(0)));
+			s.setY(c.getDouble(1));
+			serie.add(s);
+			
+			
+		}
+		
+		this.close();
+		
+		return serie;
+		
+		
+		
+	}
+	
+	/**
+	 * Retrieves the weight by date for all workouts saved
+	 * 
+	 * @author Romina
+	 * 
+	 * @return A list with date, weight values
+	 */
+	
+	public List<Serie> getWeightByDate (){
+		
+		this.openDataBase();
+		
+		String sql = "SELECT horaInicio, Peso FROM Ejercicio";
+		
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		List<Serie> serie = new ArrayList<Serie>();
+		
+		while (c.moveToNext()){
+			Serie s = new Serie();
+			
+			s.setX(new Date(c.getLong(0)));
+			s.setY(c.getDouble(1));
+			serie.add(s);
+			
+			
+		}
+		
+		this.close();
+		
+		return serie;
+	}
+	
+	/**
+	 * Gets the maximum value of a column specified.
+	 * 
+	 * @author Romina
+	 * @param columnName to evaluate (i.e: Calories, Distance, Speed)
+	 * @return the result of the operation
+	 */
+	public double getMaxValueInColumn(String columnName) {
+
+		this.openDataBase();
+
+		String sql = "SELECT MAX (" + columnName +") FROM Ejercicio";
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+		
+		c.moveToFirst();
+		
+		double result = c.getDouble(0);
+		
+		this.close();
+		
+		return result;
+
+	}
 	
 
 }

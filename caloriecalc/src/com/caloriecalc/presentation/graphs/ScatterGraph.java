@@ -18,7 +18,7 @@ public class ScatterGraph {
 		//data series 1
 		int[] x1 = {1,2,3,4,5,6,7,8,9,10};
 		double[] values1 = {1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.1};
-		XYSeries series1 = new XYSeries("Series 1");
+		XYSeries series1 = new XYSeries("Serie 1");
 		int length1 = x1.length;
 		for (int k1=0; k1<length1; k1++){
 			series1.add(x1[k1], values1[k1]);
@@ -27,7 +27,7 @@ public class ScatterGraph {
 		//data series 2
 				int[] x2 = {1,2,3,4,5,6,7,8,9,10};
 				double[] values2 = {1.5,2.5,3.5,4.5,5.5,6.8,7.8,8.9,9.5,10.5};
-				XYSeries series2 = new XYSeries("Series 2");
+				XYSeries series2 = new XYSeries("Serie 2");
 				int length2 = x2.length;
 				for (int k2=0; k2<length2; k2++){
 					series2.add(x2[k2], values2[k2]);

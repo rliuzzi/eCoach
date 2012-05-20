@@ -49,7 +49,6 @@ public class EjercicioActualActivity extends Activity {
 	private Progreso progresoInit;
 	private Progreso progresoEnd;
 	
-	//contador de localizaciones recibidas 
 	private int i = 0;
 	private double calories = 0;
 	private double distance = 0;
@@ -62,6 +61,7 @@ public class EjercicioActualActivity extends Activity {
 	 * Registrarmos un LocationListener para recibir actualizaciones de la
 	 * posicion
 	 */
+	
 	private LocationListener locationListener = new LocationListener() {
 
 		public void onLocationChanged(Location location) {
@@ -117,21 +117,38 @@ public class EjercicioActualActivity extends Activity {
 		}
 
 		public void onProviderDisabled(String provider) {
-			lblEstado.setText("Provider OFF");
+			lblEstado.setText("Estado de la conexion: Red movil no activa");
 		}
 
 		public void onProviderEnabled(String provider) {
-			lblEstado.setText("Provider ON ");
+			lblEstado.setText("Estado de la conexion: Red movil activa ");
 		}
 
 		public void onStatusChanged(String provider, int status, Bundle extras) {
 
 			/*
-			 * STATUS VALUES 2 = AVAILABLE 1 = TEMPORARILY_UNAVAILABLE 0 =
-			 * OUT_OF_SERVICE
+			 * STATUS VALUES 
+			 * 2 = AVAILABLE 
+			 * 1 = TEMPORARILY_UNAVAILABLE 
+			 * 0 = OUT_OF_SERVICE
 			 */
+			
+			String s = "";
+			
+			switch (status){
+			
+			case 0 : 
+				s = "Fuera de servicio";
+				break;
+			case 1 : 
+				s = "Temporalmente no disponible";
+				break;
+			case 2:
+				s = "Disponible";
+				break;
+			}
 
-			lblEstado.setText("Provider Status: " + status);
+			lblEstado.setText("Estado de la conexion: " + s);
 
 		}
 	};
@@ -220,8 +237,8 @@ public class EjercicioActualActivity extends Activity {
 		Location loc = locationManager
 				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-		// Mostramos la última posición conocida
-		//mostrarPosicion(loc);
+		//Mostramos la última posición conocida
+		mostrarPosicion(loc);
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				30000, 0, locationListener);
@@ -242,6 +259,20 @@ public class EjercicioActualActivity extends Activity {
 			
 
 		} 
+	}
+	
+	private void mostrarPosicion(Location loc){
+		
+		if (loc != null) {
+			lblLatitud.setText( loc.getLatitude()+"");
+			lblLongitud.setText(loc.getLongitude()+"");
+			lblAltitude.setText(loc.getAltitude()+"");
+		}
+		
+		lblCalories.setText(0 + " Kcal");
+		lblDistance.setText(0 + " mts");
+		lblSpeed.setText(0 + " Km/h");
+		
 	}
 
 	/*
