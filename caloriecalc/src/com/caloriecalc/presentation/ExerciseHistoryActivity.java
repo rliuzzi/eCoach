@@ -74,6 +74,12 @@ public class ExerciseHistoryActivity extends ListActivity {
 		
 		
 	}
+	
+	public void showRoute(View view){
+		Intent i = new Intent(ExerciseHistoryActivity.this, MapViewActivity.class);
+		startActivity(i);
+		
+	}
 
 	private Runnable returnRes = new Runnable() {
 
