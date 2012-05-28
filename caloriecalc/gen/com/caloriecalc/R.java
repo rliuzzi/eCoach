@@ -22,13 +22,14 @@ public final class R {
         public static final int green_btn=0x7f020004;
         public static final int icon=0x7f020005;
         public static final int light_blue_btn=0x7f020006;
-        public static final int run=0x7f020007;
-        public static final int skate=0x7f020008;
-        public static final int style_btn=0x7f020009;
-        public static final int style_gradient=0x7f02000a;
-        public static final int style_no_gradient=0x7f02000b;
-        public static final int trash=0x7f02000c;
-        public static final int walk=0x7f02000d;
+        public static final int marker=0x7f020007;
+        public static final int run=0x7f020008;
+        public static final int skate=0x7f020009;
+        public static final int style_btn=0x7f02000a;
+        public static final int style_gradient=0x7f02000b;
+        public static final int style_no_gradient=0x7f02000c;
+        public static final int trash=0x7f02000d;
+        public static final int walk=0x7f02000e;
     }
     public static final class id {
         public static final int BtnDesactivar=0x7f08001c;
@@ -49,19 +50,19 @@ public final class R {
         public static final int activity_selector_row_summary=0x7f080000;
         public static final int activity_selector_row_walk=0x7f080002;
         public static final int activity_selector_txt_summary=0x7f080001;
-        public static final int btn_cancel=0x7f08002c;
+        public static final int btn_cancel=0x7f08002d;
         public static final int btn_history=0x7f08000d;
-        public static final int btn_next=0x7f08002d;
+        public static final int btn_next=0x7f08002e;
         public static final int btn_stats=0x7f08000c;
         public static final int calories=0x7f080012;
         public static final int cancel_button=0x7f080025;
         public static final int chronometer=0x7f08000f;
         public static final int distance=0x7f080014;
         public static final int dob=0x7f080041;
-        public static final int editText=0x7f08002a;
+        public static final int editText=0x7f08002b;
         public static final int edit_txt_height=0x7f08003d;
         public static final int edit_txt_weight=0x7f08003f;
-        public static final int errorMsg=0x7f08002b;
+        public static final int errorMsg=0x7f08002c;
         public static final int error_msg=0x7f080028;
         public static final int ex_calories=0x7f080020;
         public static final int ex_date=0x7f08001e;
@@ -69,11 +70,10 @@ public final class R {
         public static final int ex_trash=0x7f080021;
         public static final int forgat_password=0x7f080026;
         public static final int graph_min_max_avg_speeds_vs_date=0x7f080036;
-        public static final int graph_speed_vs_time=0x7f080032;
         public static final int graph_top_kcal_vs_date_vs_type=0x7f08003a;
         public static final int graph_top_speed_vs_date_vs_type=0x7f080038;
         public static final int graph_weight_vs_date=0x7f080034;
-        public static final int graph_workout_vs_type=0x7f080030;
+        public static final int graph_workout_vs_type=0x7f080031;
         public static final int icon=0x7f08001d;
         public static final int layout_password=0x7f08003b;
         public static final int lbl_calories_burned=0x7f080011;
@@ -84,6 +84,7 @@ public final class R {
         public static final int loginRequired=0x7f080046;
         public static final int login_button=0x7f080024;
         public static final int mandatory_fields=0x7f08004c;
+        public static final int mapview=0x7f080029;
         public static final int option_exit=0x7f08004f;
         public static final int option_personal=0x7f08004e;
         public static final int option_settings=0x7f08004d;
@@ -94,14 +95,14 @@ public final class R {
         public static final int register=0x7f080027;
         public static final int register_button=0x7f080047;
         public static final int secret_question=0x7f080049;
-        public static final int show_hint=0x7f080029;
-        public static final int stats_selector_row_graph1=0x7f08002f;
-        public static final int stats_selector_row_graph2=0x7f080031;
+        public static final int show_hint=0x7f08002a;
+        public static final int stats_selector_row_graph1=0x7f080030;
+        public static final int stats_selector_row_graph2=0x7f080032;
         public static final int stats_selector_row_graph3=0x7f080033;
         public static final int stats_selector_row_graph4=0x7f080035;
         public static final int stats_selector_row_graph5=0x7f080037;
         public static final int stats_selector_row_graph6=0x7f080039;
-        public static final int stats_title=0x7f08002e;
+        public static final int stats_title=0x7f08002f;
         public static final int txt_age=0x7f080040;
         public static final int txt_height=0x7f08003c;
         public static final int txt_hint=0x7f08004b;
@@ -118,10 +119,11 @@ public final class R {
         public static final int exercise_history=0x7f030002;
         public static final int exercise_item=0x7f030003;
         public static final int login_screen=0x7f030004;
-        public static final int reset_password_screen=0x7f030005;
-        public static final int stats_selector=0x7f030006;
-        public static final int user_data_edit_screen=0x7f030007;
-        public static final int user_registration_screen=0x7f030008;
+        public static final int map_view=0x7f030005;
+        public static final int reset_password_screen=0x7f030006;
+        public static final int stats_selector=0x7f030007;
+        public static final int user_data_edit_screen=0x7f030008;
+        public static final int user_registration_screen=0x7f030009;
     }
     public static final class menu {
         public static final int options_menu=0x7f070000;
@@ -138,7 +140,7 @@ public final class R {
         public static final int btn_guardar=0x7f06000f;
         public static final int btn_history=0x7f060016;
         public static final int btn_login=0x7f060017;
-        public static final int btn_min_max_avg_speeds_vs_date=0x7f06002a;
+        public static final int btn_min_max_cur_weight=0x7f06002a;
         public static final int btn_next=0x7f060026;
         public static final int btn_salir=0x7f060014;
         public static final int btn_speed_vs_time=0x7f060028;

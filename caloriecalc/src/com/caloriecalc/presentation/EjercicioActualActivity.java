@@ -241,7 +241,7 @@ public class EjercicioActualActivity extends Activity {
 		mostrarPosicion(loc);
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				30000, 0, locationListener);
+				0, 20, locationListener);
 	}
 
 	/**

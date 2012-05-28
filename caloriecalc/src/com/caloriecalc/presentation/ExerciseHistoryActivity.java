@@ -77,6 +77,8 @@ public class ExerciseHistoryActivity extends ListActivity {
 	
 	public void showRoute(View view){
 		Intent i = new Intent(ExerciseHistoryActivity.this, MapViewActivity.class);
+		//send exercise Id to the Map Activity to retrieve coordinates and draw the route
+		i.putExtra("ejercicioId", view.getId());
 		startActivity(i);
 		
 	}
@@ -130,6 +132,7 @@ public class ExerciseHistoryActivity extends ListActivity {
 				TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
 				
 				trashExercise.setId(e.getId());
+				typeImg.setId(e.getId());
 				
 				if (typeImg != null) {
 					int type = e.getTipoEjercicio().getTipo();

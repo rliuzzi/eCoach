@@ -10,6 +10,7 @@ import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.beans.Progreso;
 import com.caloriecalc.dao.DaoEjercicio;
 import com.caloriecalc.dao.DaoProgreso;
+import com.google.android.maps.GeoPoint;
 
 /**
  * @author Romina
@@ -217,6 +218,22 @@ public class LaoProgreso {
 		daoEjercicio.deleteEjercicio(ejercicioId);
 		
 	}
+	
+	/**
+	 * Retrieves a list of GeoPoints associated to an exercise.
+	 * 
+	 * @author Romina
+	 * 
+	 * @param ejercicioId
+	 * @return list of GeoPoints
+	 */
+	
+	public List<GeoPoint> getGeoPoints(int ejercicioId) {
+
+		return this.daoProgreso.getGeoPoints(ejercicioId);
+
+	}
+
 	
 
 }

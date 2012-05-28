@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.caloriecalc.beans.Progreso;
+import com.google.android.maps.GeoPoint;
 
 /**
  * @author Romina
@@ -111,6 +112,7 @@ public class DaoProgreso extends DataBaseHelper {
 		c.moveToFirst();
 		
 		double result = c.getDouble(0);
+		
 		
 		this.close();
 		
@@ -305,6 +307,44 @@ public class DaoProgreso extends DataBaseHelper {
 		}
 		this.close();
 		return progreso;
+	}
+	
+	/**
+	 * 
+	 * Retrieve a list of GeoPoints associated to an exercise
+	 * 
+	 * @author Romina
+	 * 
+	 * @param ejercicioId
+	 * @return list of GeoPoints
+	 */
+	public List<GeoPoint> getGeoPoints(int ejercicioId){
+		
+		List<GeoPoint> list = new ArrayList<GeoPoint>();
+		int latitude, longitude;
+
+		this.openDataBase();
+
+		String sql = "SELECT Latitude, Longitude FROM Progreso WHERE EjercicioId = "
+				+ ejercicioId;
+
+		Cursor c = myDataBase.rawQuery(sql, null);
+
+		while (c.moveToNext()) {
+			
+			latitude =  (int) ((c.getDouble(0))*1E6);
+			longitude = (int) ((c.getDouble(1))*1E6);
+			
+			GeoPoint g = new GeoPoint(latitude, longitude);
+			
+			list.add(g);
+			
+		}
+
+		this.close();
+
+		return list;
+		
 	}
 	
 
