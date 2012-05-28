@@ -4,11 +4,14 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.Serie;
+import com.caloriecalc.beans.UserSettings;
+import com.caloriecalc.content.UserSettingsPreferencesTransformer;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.presentation.graphs.BarGraph;
 import com.caloriecalc.presentation.graphs.LineGraph;
@@ -61,12 +64,23 @@ public class StatsSelectingActivity extends Activity {
 	public void MinMaxCurWeightGraphHandler (View view){
 		WeightDialChart weightDial = new WeightDialChart();
 		weightDial.setGraphTitle("Tu rango de peso saludable");
-		//TODO Hardcoded
-		//Retrieve height/weight from SharedPreferences File
-		//Calculate min, max (Utils?)
-		weightDial.setMinValue(60.00);
-		weightDial.setMaxValue(90.00);
-		weightDial.setCurrentValue(75.00);
+
+		
+		//Retrieve SharedPreferences to be transformed and stored
+		SharedPreferences settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);		
+
+		int w = settings.getInt(UserRegistrationActivity.USER_WEIGHT, 0);
+		int h = settings.getInt(UserRegistrationActivity.USER_HEIGHT, 0);
+		
+		//Convert
+		UserSettings userData = UserSettingsPreferencesTransformer.getUserSettings(h, w); 
+		
+		
+		//Calculate Min and Max		
+		weightDial.setMinValue(18.5 * userData.getHeight() * userData.getHeight());
+		weightDial.setMaxValue(24.9 * userData.getHeight() * userData.getHeight());
+		
+		weightDial.setCurrentValue(userData.getWeight());
 		Intent weightIntent = weightDial.execute(this);
 		startActivity(weightIntent);
 		

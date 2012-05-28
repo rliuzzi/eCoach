@@ -72,7 +72,7 @@ public class MapViewActivity extends MapActivity {
 	    
 	    if (listOfGeoPoints.size() > 0){
 	    	mapController.animateTo(listOfGeoPoints.get(0));
-	    	mapController.setZoom(20);
+	    	mapController.setZoom(15);
 	    	mapView.invalidate();
 	    }
 	    

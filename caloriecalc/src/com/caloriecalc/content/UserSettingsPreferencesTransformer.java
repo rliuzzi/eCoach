@@ -30,17 +30,13 @@ public final class UserSettingsPreferencesTransformer {
 			user.setDob(dob);
 		}
 		
-		//HEIGHT: convert from integer cm to double meters
+		//HEIGHT
 		
-		double height = Utilities.cmToMeters(h);
+		user.setHeight(transformHeight(h));
 		
-		user.setHeight(height);
+		//WEIGHT
 		
-		//WEIGHT: convert from integer grams to double Kg
-		
-		double weight = Utilities.gramsToKg(w);
-		
-		user.setWeight(weight);
+		user.setWeight(transformWeight(w));
 		
 		//SEX: the input is already limited to allowed strings
 		
@@ -49,5 +45,35 @@ public final class UserSettingsPreferencesTransformer {
 		return user;
 
 	}
+	
+	public static UserSettings getUserSettings(int h, int w) {
+		
+		
+		UserSettings user = new UserSettings();
+				
+		user.setHeight(transformHeight(h));
+		
+		user.setWeight(transformWeight(w));
+		
+		return user;
+		
+	}
+	
+	//WEIGHT: convert from integer grams to double Kg
+	
+	private static double transformWeight(int weight){
+		
+		return Utilities.gramsToKg(weight);
+	
+	}
+	
+	//HEIGHT: convert from integer cm to double meters
+	
+	private static double transformHeight (int height){
+		
+		return Utilities.cmToMeters(height);
+		
+	}
+	
 
 }

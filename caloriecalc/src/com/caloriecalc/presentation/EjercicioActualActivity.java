@@ -68,6 +68,10 @@ public class EjercicioActualActivity extends Activity {
 			//Cada vez que recibo una actualizacion de la ubicacion incremento el contador
 			i++;
 			
+			if (i == 1){				
+				timer.start();
+			}
+			
 			//Guardo el numero de posicion en la bbdd. Mejora: cache?
 			progresoEnd = laoProgreso.guardarProgreso(ejercicio.getId(),
 					location.getLatitude(), location.getLongitude(),
@@ -223,7 +227,7 @@ public class EjercicioActualActivity extends Activity {
 		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());
 
 		comenzarLocalizacion();
-		timer.start();
+		
 
 	}
 
@@ -234,11 +238,11 @@ public class EjercicioActualActivity extends Activity {
 		// Obtenemos una referencia al LocationManager
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		Location loc = locationManager
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		//Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 		//Mostramos la última posición conocida
-		mostrarPosicion(loc);
+		
+		//mostrarPosicion(loc);
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				0, 20, locationListener);
