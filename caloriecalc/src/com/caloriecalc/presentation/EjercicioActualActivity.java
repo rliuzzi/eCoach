@@ -238,7 +238,7 @@ public class EjercicioActualActivity extends Activity {
 		// Obtenemos una referencia al LocationManager
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		//Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 		//Mostramos la última posición conocida
 		
