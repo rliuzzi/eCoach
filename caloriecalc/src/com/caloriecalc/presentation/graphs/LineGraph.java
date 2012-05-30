@@ -37,17 +37,16 @@ public class LineGraph {
 		//Render the series, to support multiple series we use XYMultipleSeriesRenderer
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM");
+		String fecha = null;
 		
 		for (int i=0; i < data.size(); i++)
 		{
 			
-			SimpleDateFormat sdf=new SimpleDateFormat("dd/MM");
-			
-			String fecha = sdf.format(data.get(i).getX());
-			
-			series.add(data.get(i).getX().getDay(), data.get(i).getY());
-			
-			mRenderer.addXTextLabel(i+1, fecha);
+			fecha = sdf.format(data.get(i).getX());
+			//improvement: use a time series.
+			series.add(i, data.get(i).getY());
+			mRenderer.addXTextLabel(i, fecha);
 			
 			
 		}
