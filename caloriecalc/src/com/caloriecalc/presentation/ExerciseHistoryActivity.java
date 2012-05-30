@@ -117,55 +117,59 @@ public class ExerciseHistoryActivity extends ListActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			if (v == null) {
+				
 				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.exercise_item, null);
-			}
-			
-			Ejercicio e = items.get(position);
-			
-			if (e != null) {
-				ImageButton typeImg = (ImageButton) v.findViewById(R.id.icon);
-				ImageButton trashExercise = (ImageButton) v.findViewById(R.id.ex_trash);
 				
-				TextView date = (TextView) v.findViewById(R.id.ex_date);
-				TextView dist = (TextView) v.findViewById(R.id.ex_distance);
-				TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
+				Ejercicio e = items.get(position);
 				
-				trashExercise.setId(e.getId());
-				typeImg.setId(e.getId());
+				if (e != null) {
+					ImageButton typeImg = (ImageButton) v.findViewById(R.id.icon);
+					ImageButton trashExercise = (ImageButton) v.findViewById(R.id.ex_trash);
+					
+					TextView date = (TextView) v.findViewById(R.id.ex_date);
+					TextView dist = (TextView) v.findViewById(R.id.ex_distance);
+					TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
+					
+					
+					trashExercise.setId(e.getId());
+					typeImg.setId(e.getId());
 				
-				if (typeImg != null) {
-					int type = e.getTipoEjercicio().getTipo();
-					switch(type){
-					case 0:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.walk);
-						break;
-					case 1:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.run);
-						break;
-					case 2:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
-						break;
-					case 3:
-						typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
-						break;
+					
+					if (typeImg != null) {
+						int type = e.getTipoEjercicio().getTipo();
+						switch(type){
+						case 0:
+							typeImg.setImageResource(com.caloriecalc.R.drawable.walk);
+							break;
+						case 1:
+							typeImg.setImageResource(com.caloriecalc.R.drawable.run);
+							break;
+						case 2:
+							typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
+							break;
+						case 3:
+							typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
+							break;
+						}
 					}
-				}
-				if (date != null) {
-					SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
-					String fecha = sdf.format(e.getFechaInicio());
-					date.setText("Fecha: " + fecha);
-				}
-				if (dist != null) {
-					dist.setText("Distancia: " + Math.round(e.getDistancia()) + " mts.");
-				}
-				if (cal  != null){
-					cal.setText("Calorias: " + Math.round(e.getCalorias()) + " Kcal");
+					if (date != null) {
+						SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
+						String fecha = sdf.format(e.getFechaInicio());
+						date.setText("Fecha: " + fecha);
+					}
+					if (dist != null) {
+						dist.setText("Distancia: " + Math.round(e.getDistancia()) + " mts.");
+					}
+					if (cal  != null){
+						cal.setText("Calorias: " + Math.round(e.getCalorias()) + " Kcal");
+					}
+					
 				}
 				
-			}
-			
-			
+			} else {
+		        v = convertView;
+		    }
 			
 			return v;
 		}
