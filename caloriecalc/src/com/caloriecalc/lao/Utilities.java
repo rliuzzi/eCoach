@@ -235,6 +235,22 @@ public final class Utilities {
 		
 	}
 	
+	/**
+	 * Out of a date provided in miliseconds a date formatted dd/MM/YYYY is returned
+	 * 
+	 * @param dateMiliseconds
+	 * @return
+	 */
+	public static String getFormattedDate(Date dateMiliseconds){
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(dateMiliseconds);
+		
+	}
+	
+	
+
+	
 	
 	
 

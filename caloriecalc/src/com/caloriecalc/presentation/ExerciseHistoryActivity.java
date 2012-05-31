@@ -19,7 +19,7 @@ import com.caloriecalc.R;
 import com.caloriecalc.beans.Ejercicio;
 import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.lao.LaoProgreso;
-
+import com.caloriecalc.lao.Utilities;
 
 public class ExerciseHistoryActivity extends ListActivity {
 
@@ -35,7 +35,6 @@ public class ExerciseHistoryActivity extends ListActivity {
 	private LaoEjercicio laoEjercicio;
 	private LaoProgreso laoProgreso;
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,9 +43,9 @@ public class ExerciseHistoryActivity extends ListActivity {
 		laoEjercicio = new LaoEjercicio(ExerciseHistoryActivity.this);
 		laoProgreso = new LaoProgreso(ExerciseHistoryActivity.this);
 
-
 		exercises = new ArrayList<Ejercicio>();
-		this.adapter = new ExerciseAdapter(this, R.layout.exercise_item, exercises);
+		this.adapter = new ExerciseAdapter(this, R.layout.exercise_item,
+				exercises);
 		setListAdapter(this.adapter);
 
 		loadExercises = new Runnable() {
@@ -59,28 +58,28 @@ public class ExerciseHistoryActivity extends ListActivity {
 		progressDialog = ProgressDialog.show(ExerciseHistoryActivity.this,
 				"Por favor espera...", "Recogiendo datos ...", true);
 	}
-	
-	public void deleteEjercicio (View view){
-		
+
+	public void deleteEjercicio(View view) {
+
 		laoProgreso.deleteProgreso(view.getId());
 		laoEjercicio.deleteEjercicio(view.getId());
-		
-		//Refresh the view
+
+		// Refresh the view
 		Intent i = new Intent(ExerciseHistoryActivity.this,
 				ExerciseHistoryActivity.class);
 		startActivity(i);
 		finish();
-		
-		
-		
+
 	}
-	
-	public void showRoute(View view){
-		Intent i = new Intent(ExerciseHistoryActivity.this, MapViewActivity.class);
-		//send exercise Id to the Map Activity to retrieve coordinates and draw the route
+
+	public void showRoute(View view) {
+		Intent i = new Intent(ExerciseHistoryActivity.this,
+				MapViewActivity.class);
+		// send exercise Id to the Map Activity to retrieve coordinates and draw
+		// the route
 		i.putExtra("ejercicioId", view.getId());
 		startActivity(i);
-		
+
 	}
 
 	private Runnable returnRes = new Runnable() {
@@ -115,65 +114,83 @@ public class ExerciseHistoryActivity extends ListActivity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+
 			View v = convertView;
+			ViewHolder holder;
+
 			if (v == null) {
-				
+
 				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.exercise_item, null);
+
+				// cache view fields into the holder
+				holder = new ViewHolder();
+
+				holder.typeImg = (ImageButton) v.findViewById(R.id.icon);
+				holder.trashExercise = (ImageButton) v
+						.findViewById(R.id.ex_trash);
+
+				holder.date = (TextView) v.findViewById(R.id.ex_date);
+				holder.dist = (TextView) v.findViewById(R.id.ex_distance);
+				holder.cal = (TextView) v.findViewById(R.id.ex_calories);
+
+				v.setTag(holder);
+
 				
-				Ejercicio e = items.get(position);
-				
-				if (e != null) {
-					ImageButton typeImg = (ImageButton) v.findViewById(R.id.icon);
-					ImageButton trashExercise = (ImageButton) v.findViewById(R.id.ex_trash);
-					
-					TextView date = (TextView) v.findViewById(R.id.ex_date);
-					TextView dist = (TextView) v.findViewById(R.id.ex_distance);
-					TextView cal  = (TextView) v.findViewById(R.id.ex_calories);
-					
-					
-					trashExercise.setId(e.getId());
-					typeImg.setId(e.getId());
-				
-					
-					if (typeImg != null) {
-						int type = e.getTipoEjercicio().getTipo();
-						switch(type){
-						case 0:
-							typeImg.setImageResource(com.caloriecalc.R.drawable.walk);
-							break;
-						case 1:
-							typeImg.setImageResource(com.caloriecalc.R.drawable.run);
-							break;
-						case 2:
-							typeImg.setImageResource(com.caloriecalc.R.drawable.skate);
-							break;
-						case 3:
-							typeImg.setImageResource(com.caloriecalc.R.drawable.bike);
-							break;
-						}
-					}
-					if (date != null) {
-						SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
-						String fecha = sdf.format(e.getFechaInicio());
-						date.setText("Fecha: " + fecha);
-					}
-					if (dist != null) {
-						dist.setText("Distancia: " + Math.round(e.getDistancia()) + " mts.");
-					}
-					if (cal  != null){
-						cal.setText("Calorias: " + Math.round(e.getCalorias()) + " Kcal");
-					}
-					
-				}
-				
+
 			} else {
-		        v = convertView;
-		    }
+
+				holder = (ViewHolder) v.getTag();
+
+			}
 			
+			Ejercicio e = items.get(position);
+
+			if (e != null) {
+
+				holder.trashExercise.setId(e.getId());
+				holder.typeImg.setId(e.getId());
+
+
+				switch (e.getTipoEjercicio().getTipo()) {
+					case 0:
+						holder.typeImg
+								.setImageResource(com.caloriecalc.R.drawable.walk);
+						break;
+					case 1:
+						holder.typeImg
+								.setImageResource(com.caloriecalc.R.drawable.run);
+						break;
+					case 2:
+						holder.typeImg
+								.setImageResource(com.caloriecalc.R.drawable.skate);
+						break;
+					case 3:
+						holder.typeImg
+								.setImageResource(com.caloriecalc.R.drawable.bike);
+						break;
+				}
+
+				holder.date.setText("Fecha: " + Utilities.getFormattedDate(e.getFechaInicio()));
+
+				holder.dist.setText("Distancia: "
+						+ Math.round(e.getDistancia()) + " mts.");
+
+				holder.cal.setText("Calorias: "
+						+ Math.round(e.getCalorias()) + " Kcal");
+
+			}
+
 			return v;
 		}
 	}
 
+	static class ViewHolder {
+		ImageButton typeImg;
+		ImageButton trashExercise;
+		TextView date;
+		TextView dist;
+		TextView cal;
+	}
 
 }

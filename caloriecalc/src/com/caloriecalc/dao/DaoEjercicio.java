@@ -162,7 +162,7 @@ public class DaoEjercicio extends DataBaseHelper {
 	public ArrayList<Ejercicio> getExerciseList() {
 		
 		this.openDataBase();
-		String sql = "SELECT * FROM Ejercicio";
+		String sql = "SELECT * FROM Ejercicio order by _id asc";
 		
 		Cursor c = myDataBase.rawQuery(sql, null);
 
