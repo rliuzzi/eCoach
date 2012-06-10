@@ -17,6 +17,7 @@ public class LocationItemizedOverlay extends ItemizedOverlay {
 	Context mContext;
 
 	
+	
 	//define the default marker and have its bounds defined
 	public LocationItemizedOverlay(Drawable defaultMarker, Context context) {
 		super(boundCenterBottom(defaultMarker));

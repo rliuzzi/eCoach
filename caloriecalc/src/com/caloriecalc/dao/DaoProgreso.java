@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.caloriecalc.beans.MapItem;
 import com.caloriecalc.beans.Progreso;
 import com.google.android.maps.GeoPoint;
 
@@ -311,33 +312,34 @@ public class DaoProgreso extends DataBaseHelper {
 	
 	/**
 	 * 
-	 * Retrieve a list of GeoPoints associated to an exercise
+	 * Retrieve a list of MapItems relative to an exercise
 	 * 
 	 * @author Romina
 	 * 
 	 * @param ejercicioId
-	 * @return list of GeoPoints
+	 * @return list of MapItems
 	 */
-	public List<GeoPoint> getGeoPoints(int ejercicioId){
+	public List<MapItem> getMapItems(int ejercicioId){
 		
-		List<GeoPoint> list = new ArrayList<GeoPoint>();
-		int latitude, longitude;
+		List<MapItem> list = new ArrayList<MapItem>();
 
 		this.openDataBase();
 
-		String sql = "SELECT Latitude, Longitude FROM Progreso WHERE EjercicioId = "
+		String sql = "SELECT Latitude, Longitude, Distance, Speed, Calories FROM Progreso WHERE EjercicioId = "
 				+ ejercicioId;
 
 		Cursor c = myDataBase.rawQuery(sql, null);
 
 		while (c.moveToNext()) {
 			
-			latitude =  (int) ((c.getDouble(0))*1E6);
-			longitude = (int) ((c.getDouble(1))*1E6);
+			MapItem m = new MapItem();
 			
-			GeoPoint g = new GeoPoint(latitude, longitude);
-			
-			list.add(g);
+			m.setGeoPoint(new GeoPoint((int) ((c.getDouble(0))*1E6), (int) ((c.getDouble(1))*1E6)));
+			m.setDistance(c.getDouble(2));
+			m.setSpeed(c.getDouble(3));
+			m.setCalories(c.getDouble(4));
+						
+			list.add(m);
 			
 		}
 

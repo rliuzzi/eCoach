@@ -3,6 +3,7 @@
 
     <string name="app_name">calorieCalc</string>
     <string name="txt_length">Duracion</string>
+    <string name="txt_calories">Calorias</string>
     <string name="lbl_speed">Velocidad</string>
     <string name="eula_title">Licencia</string>
     <string name="eula_accept">Aceptar</string>

@@ -7,10 +7,10 @@ import android.content.Context;
 import android.location.Location;
 
 import com.caloriecalc.beans.Ejercicio;
+import com.caloriecalc.beans.MapItem;
 import com.caloriecalc.beans.Progreso;
 import com.caloriecalc.dao.DaoEjercicio;
 import com.caloriecalc.dao.DaoProgreso;
-import com.google.android.maps.GeoPoint;
 
 /**
  * @author Romina
@@ -220,17 +220,17 @@ public class LaoProgreso {
 	}
 	
 	/**
-	 * Retrieves a list of GeoPoints associated to an exercise.
+	 * Retrieves a list of MapItems associated to an exercise.
 	 * 
 	 * @author Romina
 	 * 
 	 * @param ejercicioId
-	 * @return list of GeoPoints
+	 * @return list of MapItems
 	 */
 	
-	public List<GeoPoint> getGeoPoints(int ejercicioId) {
+	public List<MapItem> getMapItems(int ejercicioId) {
 
-		return this.daoProgreso.getGeoPoints(ejercicioId);
+		return this.daoProgreso.getMapItems(ejercicioId);
 
 	}
 
