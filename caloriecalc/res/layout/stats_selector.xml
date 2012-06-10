@@ -63,20 +63,7 @@
         </Button>
     </TableRow>
 
-    <TableRow
-        android:id="@+id/stats_selector_row_graph5"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/graph_top_speed_vs_date_vs_type"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="TopSpeedsByTypeGraphHandler"
-            android:text="@string/btn_top_speed_vs_date_vs_type"
-            android:textSize="20dip" >
-        </Button>
-    </TableRow>
 
     <TableRow
         android:id="@+id/stats_selector_row_graph6"

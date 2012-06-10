@@ -85,13 +85,7 @@ public class StatsSelectingActivity extends Activity {
 		startActivity(weightIntent);
 		
 		
-	}
-	
-	public void TopSpeedsByTypeGraphHandler (View view){
-		ScatterGraph scatter = new ScatterGraph();
-		Intent scatterIntent = scatter.getIntent(this);
-		startActivity(scatterIntent);
-	}
+	}	
 	
 	public void TopCaloriesVsDateGraphHandler (View view){
 		
