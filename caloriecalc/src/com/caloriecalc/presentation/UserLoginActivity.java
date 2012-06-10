@@ -3,6 +3,7 @@ package com.caloriecalc.presentation;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,19 +33,25 @@ public class UserLoginActivity extends Activity {
         super.onCreate(null);
         Eula.show(this);
         
+        setContentView(R.layout.login_screen);
+        
+        //Initialize views
+        
+        inputUsername = (EditText)findViewById(R.id.username);
+        inputPassword = (EditText)findViewById(R.id.password);
+        btnLogin = (Button)findViewById(R.id.login_button);
+        btnCancel = (Button)findViewById(R.id.cancel_button);
+        errorMsg = (TextView)findViewById(R.id.error_msg);
+        linkRegister = (TextView)findViewById(R.id.register);
+        linkForgatPassword = (TextView) findViewById(R.id.forgat_password);
+        
         settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
         
+        if(settings.getBoolean(UserRegistrationActivity.IS_REGISTERED, false)){
+        	linkRegister.setVisibility(View.INVISIBLE);
+        }
+        
         if(settings.getBoolean(UserRegistrationActivity.USER_LOGIN_REQUIRED, true)){
-
-	        setContentView(R.layout.login_screen);
-	        
-	        inputUsername = (EditText)findViewById(R.id.username);
-	        inputPassword = (EditText)findViewById(R.id.password);
-	        btnLogin = (Button)findViewById(R.id.login_button);
-	        btnCancel = (Button)findViewById(R.id.cancel_button);
-	        errorMsg = (TextView)findViewById(R.id.error_msg);
-	        linkRegister = (TextView)findViewById(R.id.register);
-	        linkForgatPassword = (TextView) findViewById(R.id.forgat_password);
 	        
 	    	btnLogin.setOnClickListener(new OnClickListener() {
 	    		

@@ -37,6 +37,7 @@ public class UserRegistrationActivity extends Activity {
 	public static final String USER_HEIGHT = "user.height";
 	public static final String USER_DOB = "user.dob";
 	public static final String USER_LOGIN_REQUIRED = "user.login.required";
+	public static final String IS_REGISTERED = "user.registered";
 
 	/**
 	 * SharedPreference file
@@ -90,6 +91,9 @@ public class UserRegistrationActivity extends Activity {
 				
 				//Set the login screen required to true by default during registration.
 				editor.putBoolean(USER_LOGIN_REQUIRED, true);
+				
+				//Set the user as registered
+				editor.putBoolean(IS_REGISTERED, true);
 
 				// Commit the edits
 				editor.commit();
