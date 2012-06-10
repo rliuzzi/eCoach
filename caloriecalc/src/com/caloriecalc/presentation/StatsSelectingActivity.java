@@ -16,7 +16,6 @@ import com.caloriecalc.lao.LaoEjercicio;
 import com.caloriecalc.presentation.graphs.BarGraph;
 import com.caloriecalc.presentation.graphs.LineGraph;
 import com.caloriecalc.presentation.graphs.PieGraph;
-import com.caloriecalc.presentation.graphs.ScatterGraph;
 import com.caloriecalc.presentation.graphs.WeightDialChart;
 
 public class StatsSelectingActivity extends Activity {

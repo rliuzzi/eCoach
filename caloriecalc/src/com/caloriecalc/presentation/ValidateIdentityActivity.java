@@ -97,6 +97,9 @@ public class ValidateIdentityActivity extends Activity {
 	OnClickListener btnCancelPress = new OnClickListener() {
 
 		public void onClick(View v) {
+			Intent i = new Intent(ValidateIdentityActivity.this,
+					UserLoginActivity.class);
+			startActivity(i);
 			finish();
 		}
 

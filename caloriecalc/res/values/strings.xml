@@ -22,6 +22,7 @@
     <string name="btn_configure">Ajustes</string>
     <string name="btn_user_settings">Mi Cuenta</string>
     <string name="btn_terminar">Finalizar</string>
+    <string name="btn_back_to_main">Otra actividad</string>
     <string name="btn_salir">Salir</string>
     <string name="btn_stats">Estadisticas</string>
     <string name="btn_history">Historico</string>

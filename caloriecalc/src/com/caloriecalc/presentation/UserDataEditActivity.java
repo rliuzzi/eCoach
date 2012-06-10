@@ -1,7 +1,6 @@
 package com.caloriecalc.presentation;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -43,86 +42,12 @@ public class UserDataEditActivity extends Activity {
 	private boolean isLoginRequired;
 
 	/**
-	 * onClicListener to handle radioButton changes
-	 */
-	OnClickListener radio_listener = new OnClickListener() {
-		public void onClick(View view) {
-			RadioButton rb = (RadioButton) view;
-			inputSex = rb.getText().toString().toLowerCase();
-		}
-	};
-	
-	/**
-	 * onClicListener to handle checkBox changes
-	 */	
-	OnClickListener login_required_listener = new OnClickListener() {
-		
-		public void onClick(View v) {
-			
-			CheckBox cb = (CheckBox) v;
-			isLoginRequired = cb.isChecked();					
-			
-		}
-	};
-	
-
-	/**
 	 * Form Buttons
 	 */
 	private Button btnSave;
 	private Button btnCancel;
 
-	/**
-	 * Form Buttons onClickListener for save action
-	 */
-	OnClickListener btnSavePress = new OnClickListener() {
 
-		public void onClick(View v) {
-
-			// retrieve input data in the appropriate format to be persisted
-
-			String username = inputUsername.getText().toString();
-			
-
-			int weight = Utilities.kgToGrams(Float.parseFloat(inputWeight
-					.getText().toString()));
-
-			int height = Utilities.metersToCm(Float.parseFloat(inputHeight
-					.getText().toString()));
-
-			String dob = inputDOB.getText().toString();
-
-			// Editor object to make preference changes.
-
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putString(UserRegistrationActivity.USER_NAME, username);
-			editor.putString(UserRegistrationActivity.USER_SEX, inputSex);
-			editor.putInt(UserRegistrationActivity.USER_WEIGHT, weight);
-			editor.putInt(UserRegistrationActivity.USER_HEIGHT, height);
-			editor.putBoolean(UserRegistrationActivity.USER_LOGIN_REQUIRED, isLoginRequired);
-
-			// validate correct values
-			editor.putString(UserRegistrationActivity.USER_DOB, dob);
-
-			// Commit the edits
-			editor.commit();
-
-			Intent i = new Intent(UserDataEditActivity.this,
-					CalorieCalc.class);
-			startActivity(i);
-			finish();
-
-		}
-	};
-
-	/**
-	 * Form Buttons onClickListener for cancel action
-	 */
-	OnClickListener btnCancelPress = new OnClickListener() {
-		public void onClick(View v) {
-			finish();
-		}
-	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -203,5 +128,79 @@ public class UserDataEditActivity extends Activity {
 				TextView.BufferType.NORMAL);
 
 	}
+	
+	/**
+	 * Form Buttons onClickListener for save action
+	 */
+	OnClickListener btnSavePress = new OnClickListener() {
+
+		public void onClick(View v) {
+
+			// retrieve input data in the appropriate format to be persisted
+
+			String username = inputUsername.getText().toString();
+			
+
+			int weight = Utilities.kgToGrams(Float.parseFloat(inputWeight
+					.getText().toString()));
+
+			int height = Utilities.metersToCm(Float.parseFloat(inputHeight
+					.getText().toString()));
+
+			String dob = inputDOB.getText().toString();
+
+			// Editor object to make preference changes.
+
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString(UserRegistrationActivity.USER_NAME, username);
+			editor.putString(UserRegistrationActivity.USER_SEX, inputSex);
+			editor.putInt(UserRegistrationActivity.USER_WEIGHT, weight);
+			editor.putInt(UserRegistrationActivity.USER_HEIGHT, height);
+			editor.putBoolean(UserRegistrationActivity.USER_LOGIN_REQUIRED, isLoginRequired);
+
+			// validate correct values
+			editor.putString(UserRegistrationActivity.USER_DOB, dob);
+
+			// Commit the edits
+			editor.commit();
+
+			
+			finish();
+
+		}
+	};
+
+	/**
+	 * Form Buttons onClickListener for cancel action
+	 */
+	OnClickListener btnCancelPress = new OnClickListener() {
+		public void onClick(View v) {
+			finish();
+		}
+	};
+	
+	/**
+	 * onClickListener to handle checkBox changes
+	 */	
+	OnClickListener login_required_listener = new OnClickListener() {
+		
+		public void onClick(View v) {
+			
+			CheckBox cb = (CheckBox) v;
+			isLoginRequired = cb.isChecked();					
+			
+		}
+	};
+	
+	/**
+	 * onClickListener to handle radioButton changes
+	 */
+	OnClickListener radio_listener = new OnClickListener() {
+		public void onClick(View view) {
+			RadioButton rb = (RadioButton) view;
+			inputSex = rb.getText().toString().toLowerCase();
+		}
+	};
+	
 
 }

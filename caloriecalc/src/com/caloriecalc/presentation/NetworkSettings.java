@@ -10,13 +10,7 @@ import android.preference.PreferenceActivity;
 
 public class NetworkSettings extends PreferenceActivity {
 	
-	OnPreferenceClickListener gpsStatus =
-	new OnPreferenceClickListener(){
-		public boolean onPreferenceClick(Preference preference){
-			startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-			return true;
-		}
-	};
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,4 +22,11 @@ public class NetworkSettings extends PreferenceActivity {
 		
 	}
 	
+	OnPreferenceClickListener gpsStatus =
+	new OnPreferenceClickListener(){
+		public boolean onPreferenceClick(Preference preference){
+			startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+			return true;
+		}
+	};
 }

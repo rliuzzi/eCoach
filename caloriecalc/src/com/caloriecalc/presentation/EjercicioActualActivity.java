@@ -31,6 +31,7 @@ import com.caloriecalc.lao.Utilities;
 public class EjercicioActualActivity extends Activity {
 
 	private Button btnFinalizar;
+	private Button btnBackToMain;
 
 	private TextView lblLatitud;
 	private TextView lblLongitud;
@@ -57,6 +58,91 @@ public class EjercicioActualActivity extends Activity {
 
 	private LocationManager locationManager;
 
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.ejercicio_actual);
+		
+		
+
+		laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
+		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
+
+		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
+		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
+		lblAltitude = (TextView) findViewById(R.id.LblPosAltitude);
+		lblEstado = (TextView) findViewById(R.id.lbl_provider_status);
+		
+		lblTipo = (TextView) findViewById(R.id.LblTipoEjercicio);
+		lblCalories = (TextView) findViewById(R.id.calories);
+		lblDistance = (TextView) findViewById(R.id.distance);
+		lblSpeed = (TextView) findViewById(R.id.txt_speed);
+		
+		timer = (Chronometer) findViewById(R.id.chronometer);
+
+		btnFinalizar = (Button) findViewById(R.id.BtnFinalizar);
+		btnFinalizar.setOnClickListener(clickFinalizar);
+		
+		btnBackToMain = (Button) findViewById(R.id.BtnBackToMain);
+		btnBackToMain.setOnClickListener(clickBackToMain);
+
+		// Leermos el intent que llamo a esta activdad para averiguar el valor
+		// del tipoEjercicio
+		// Devuvele -1 si no se ha inicializado en la llamada.
+
+		Intent i = getIntent();
+		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra(
+				"ejercicio", -1)];
+		
+		lblTipo.setText("Tipo de ejercicio: 	  " + tipoEjercicio.name());
+		
+		//Retrieve SharedPreferences to be transformed and stored
+		SharedPreferences settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
+		String s = settings.getString(UserRegistrationActivity.USER_SEX, null);
+		String d = settings.getString(UserRegistrationActivity.USER_DOB, null) ;
+		int w = settings.getInt(UserRegistrationActivity.USER_WEIGHT, 0);
+		int h = settings.getInt(UserRegistrationActivity.USER_HEIGHT, 0);
+		
+		UserSettings userData = UserSettingsPreferencesTransformer.getUserSettings(d, s, h, w); 
+				
+		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());
+
+		comenzarLocalizacion();
+		
+
+	}
+
+	/**
+	 * @author Romina
+	 */
+	private void comenzarLocalizacion() {
+		// Obtenemos una referencia al LocationManager
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				0, 20, locationListener);
+	}
+
+	/**
+	 * @param loc
+	 * @author Romina
+	 */
+	private void mostrarPosicion(Progreso progreso) {
+		if (progreso != null) {
+			lblLatitud.setText( progreso.getLatitude()+"");
+			lblLongitud.setText(progreso.getLongitude()+"");
+			lblAltitude.setText(progreso.getAltitude()+"");
+			lblCalories.setText(calories + " Kcal");
+			lblDistance.setText(distance + " mts");
+			lblSpeed.setText(speed + " Km/h");
+			
+
+		} 
+	}
+	
 	/**
 	 * Registrarmos un LocationListener para recibir actualizaciones de la
 	 * posicion
@@ -156,8 +242,8 @@ public class EjercicioActualActivity extends Activity {
 
 		}
 	};
-
-	private OnClickListener finalizar = new OnClickListener() {
+	
+	private OnClickListener clickFinalizar = new OnClickListener() {
 
 		public void onClick(View v) {
 			
@@ -178,119 +264,14 @@ public class EjercicioActualActivity extends Activity {
 		}
 
 	};
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ejercicio_actual);
-		
-		
-
-		laoProgreso = new LaoProgreso(EjercicioActualActivity.this);
-		laoEjercicio = new LaoEjercicio(EjercicioActualActivity.this);
-
-		lblLatitud = (TextView) findViewById(R.id.LblPosLatitud);
-		lblLongitud = (TextView) findViewById(R.id.LblPosLongitud);
-		lblAltitude = (TextView) findViewById(R.id.LblPosAltitude);
-		lblEstado = (TextView) findViewById(R.id.lbl_provider_status);
-		
-		lblTipo = (TextView) findViewById(R.id.LblTipoEjercicio);
-		lblCalories = (TextView) findViewById(R.id.calories);
-		lblDistance = (TextView) findViewById(R.id.distance);
-		lblSpeed = (TextView) findViewById(R.id.txt_speed);
-		
-		timer = (Chronometer) findViewById(R.id.chronometer);
-
-		btnFinalizar = (Button) findViewById(R.id.BtnDesactivar);
-		btnFinalizar.setOnClickListener(finalizar);
-
-		// Leermos el intent que llamo a esta activdad para averiguar el valor
-		// del tipoEjercicio
-		// Devuvele -1 si no se ha inicializado en la llamada.
-
-		Intent i = getIntent();
-		TipoEjercicio tipoEjercicio = TipoEjercicio.values()[i.getIntExtra(
-				"ejercicio", -1)];
-		
-		lblTipo.setText("Tipo de ejercicio: 	  " + tipoEjercicio.name());
-		
-		//Retrieve SharedPreferences to be transformed and stored
-		SharedPreferences settings = getSharedPreferences(UserRegistrationActivity.PREFS_NAME, MODE_PRIVATE);
-		String s = settings.getString(UserRegistrationActivity.USER_SEX, null);
-		String d = settings.getString(UserRegistrationActivity.USER_DOB, null) ;
-		int w = settings.getInt(UserRegistrationActivity.USER_WEIGHT, 0);
-		int h = settings.getInt(UserRegistrationActivity.USER_HEIGHT, 0);
-		
-		UserSettings userData = UserSettingsPreferencesTransformer.getUserSettings(d, s, h, w); 
-				
-		ejercicio = laoEjercicio.crearEjercicio(tipoEjercicio, userData.getWeight());
-
-		comenzarLocalizacion();
-		
-
-	}
-
-	/**
-	 * @author Romina
-	 */
-	private void comenzarLocalizacion() {
-		// Obtenemos una referencia al LocationManager
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-		Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-		//Mostramos la última posición conocida
-		
-		//mostrarPosicion(loc);
-
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				0, 20, locationListener);
-	}
-
-	/**
-	 * @param loc
-	 * @author Romina
-	 */
-	private void mostrarPosicion(Progreso progreso) {
-		if (progreso != null) {
-			lblLatitud.setText( progreso.getLatitude()+"");
-			lblLongitud.setText(progreso.getLongitude()+"");
-			lblAltitude.setText(progreso.getAltitude()+"");
-			lblCalories.setText(calories + " Kcal");
-			lblDistance.setText(distance + " mts");
-			lblSpeed.setText(speed + " Km/h");
-			
-
-		} 
-	}
 	
-	private void mostrarPosicion(Location loc){
+	private OnClickListener clickBackToMain = new OnClickListener() {
 		
-		if (loc != null) {
-			lblLatitud.setText( loc.getLatitude()+"");
-			lblLongitud.setText(loc.getLongitude()+"");
-			lblAltitude.setText(loc.getAltitude()+"");
+		public void onClick(View v) {
+			finish();
 		}
-		
-		lblCalories.setText(0 + " Kcal");
-		lblDistance.setText(0 + " mts");
-		lblSpeed.setText(0 + " Km/h");
-		
-	}
+	};
 
-	/*
-	 * //TODO Implement onPause()
-	 * 
-	 * @Override protected void onPause(){
-	 * 
-	 * }
-	 * 
-	 * //TODO Implement onResume()
-	 * 
-	 * @Override protected void onResume(){
-	 * 
-	 * }
-	 */
+
 
 }

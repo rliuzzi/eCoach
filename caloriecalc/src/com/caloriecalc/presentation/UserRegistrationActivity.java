@@ -118,10 +118,14 @@ public class UserRegistrationActivity extends Activity {
 	};
 
 	/**
-	 * Form Buttons onClickListener for cancel action
+	 * Form Buttons onClickListener for cancel action.
+	 * Finishes the activity and prompts back the user to the login screen.
 	 */
 	OnClickListener btnCancelPress = new OnClickListener() {
 		public void onClick(View v) {
+			Intent i = new Intent(UserRegistrationActivity.this,
+					UserLoginActivity.class);
+			startActivity(i);
 			finish();
 		}
 	};
