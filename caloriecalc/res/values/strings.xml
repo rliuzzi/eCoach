@@ -48,7 +48,7 @@
     <string name="btn_min_max_cur_weight">Peso Saludable</string>
     <string name="btn_top_speed_vs_date_vs_type">Velocidades Maximas</string>
     <string name="btn_top_kcal_vs_date_vs_type">Kcal quemadas</string>
-    <string name="txt_stats_title">Mide tu progreso y descubre tus mejores tiempos</string>
+    <string name="txt_stats_title">Mide tu progreso y continúa mejorando!</string>
     <string name="register.title">Regístrate</string>
     <string name="register.msg">Dinos quien eres para comenzar a usar calorieCalc.</string>
     <string name="register.next">Continuar</string>
