@@ -2,8 +2,6 @@ package com.caloriecalc.presentation;
 
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,7 +10,6 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.caloriecalc.R;
 import com.caloriecalc.beans.LocationItemizedOverlay;

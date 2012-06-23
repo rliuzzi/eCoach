@@ -1,6 +1,5 @@
 package com.caloriecalc.presentation;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
